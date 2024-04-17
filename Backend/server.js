@@ -14,6 +14,7 @@ mongoose.connect("mongodb://localhost:27017/E-Commerce") //Orders Users Products
 //#region MiddleWare
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+// app.set('view engine', 'view');
 //#endregion
 
 app.use("/api/orders", OrdersRoutes);
