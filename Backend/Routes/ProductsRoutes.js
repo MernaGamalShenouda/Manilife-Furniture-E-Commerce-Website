@@ -9,8 +9,11 @@ const ProductsController=require("../Controllers/ProductsController")
 
 //----------------------routes---------------------------
 router.get('/',ProductsController.GetAllProducts);
-router.post('/',ProductsController.CeateProducts)
-
+router.post('/',ProductsController.CreateProducts);
+router.get('/:id', ProductsController.GetProductById);
+router.get('/name/:name', ProductsController.GetProductByName);
+//router.put('/:id', ProductsController.UpdateProduct);
+//router.delete('/:id', ProductsController.DeleteProduct);
 
 
 

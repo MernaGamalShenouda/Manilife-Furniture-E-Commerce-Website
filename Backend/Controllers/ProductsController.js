@@ -1,7 +1,7 @@
 
 let ProductsModel=require("../Model/Products.Model");
 
-let ProductsValiation=require("../Utils/ProductsValidation")
+let ProductsValidation=require("../Utils/ProductsValidation")
 
 
 // ----------GetALl Products---------------------------
@@ -24,13 +24,13 @@ let GetAllProducts= async(req,res)=>{
 };
 
 // ----------Create Product---------------------------
-let CeateProducts=(req,res)=>{
+let CreateProducts=(req,res)=>{
     
     try{
 
          let newProduct=req.body;
 
-           if(ProductsValiation(newProduct)){
+           if(ProductsValidation(newProduct)){
             
                 let createProduct=new ProductsModel(newProduct);
                   createProduct.save();
@@ -40,7 +40,7 @@ let CeateProducts=(req,res)=>{
         }else{
 
             return res.status(404).
-                json({'Message':`${ProductsValiation.errors[0].instancePath.split("/")[1]} ${ProductsValiation.errors[0].message}`})
+                json({'Message':`${ProductsValidation.errors[0].instancePath.split("/")[1]} ${ProductsValidation.errors[0].message}`})
 
         }
 
@@ -52,6 +52,68 @@ let CeateProducts=(req,res)=>{
     }
     
 };
+
+//-----------search by id-----------//
+
+let GetProductById = async (req, res) => {
+    try {
+        let product = await ProductsModel.findById(req.params.id);
+        return res.status(200).json({ 'Product': product });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ err: 'Server fail' });
+    }
+};
+
+
+//---------search by name-----------------//
+
+let GetProductByName = async (req, res) => {
+    try {
+        let product = await ProductsModel.findOne({ title: req.params.name });
+        return res.status(200).json({ 'Product': product });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ err: 'Server fail' });
+    }
+};
+/*
+// ------------Update Product ----------//
+
+
+let UpdateProduct = async (req, res) => {
+    try {
+        let updatedProduct = await ProductsModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        return res.status(200).json({ 'Product': updatedProduct });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ err: 'Server fail' });
+    }
+};
+
+//-------- delete product-----------------//
+
+let DeleteProduct = async (req, res) => {
+    try {
+        await ProductsModel.findByIdAndRemove(req.params.id);
+        return res.status(200).json({ 'Message': 'Product deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ err: 'Server fail' });
+    }
+};
+
+// Add the new functions to the exports
+*/
+module.exports = {
+    GetAllProducts,
+    CreateProducts,
+    GetProductById,
+    GetProductByName,
+  /*  UpdateProduct,
+    DeleteProduct
+    */
+}
 
 
 
@@ -70,5 +132,5 @@ let CeateProducts=(req,res)=>{
 //-------export functions----------------------
 module.exports={
     GetAllProducts,
-    CeateProducts
+    CreateProducts
 }
