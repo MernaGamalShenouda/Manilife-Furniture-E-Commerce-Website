@@ -77,7 +77,7 @@ let GetProductByName = async (req, res) => {
         return res.status(500).json({ err: 'Server fail' });
     }
 };
-/*
+
 // ------------Update Product ----------//
 
 
@@ -104,15 +104,15 @@ let DeleteProduct = async (req, res) => {
 };
 
 // Add the new functions to the exports
-*/
+
 module.exports = {
     GetAllProducts,
     CreateProducts,
     GetProductById,
     GetProductByName,
-  /*  UpdateProduct,
+    UpdateProduct,
     DeleteProduct
-    */
+    
 }
 
 
