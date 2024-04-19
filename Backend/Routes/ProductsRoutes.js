@@ -11,7 +11,7 @@ const ProductsController=require("../Controllers/ProductsController")
 router.get('/',ProductsController.GetAllProducts);
 router.post('/',ProductsController.CreateProducts);
 router.get('/:id', ProductsController.GetProductById);
-router.get('/name/:name', ProductsController.GetProductByName);
+router.get('/name/:title', ProductsController.GetProductByName);
 router.put('/:id', ProductsController.UpdateProduct);
 router.delete('/:id', ProductsController.DeleteProduct);
 

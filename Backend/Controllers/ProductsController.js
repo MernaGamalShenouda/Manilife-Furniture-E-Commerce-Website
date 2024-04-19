@@ -70,7 +70,7 @@ let GetProductById = async (req, res) => {
 
 let GetProductByName = async (req, res) => {
     try {
-        let product = await ProductsModel.findOne({ title: req.params.name });
+        let product = await ProductsModel.findOne({ title: req.params.title });
         return res.status(200).json({ 'Product': product });
     } catch (err) {
         console.error(err);
@@ -80,11 +80,20 @@ let GetProductByName = async (req, res) => {
 
 // ------------Update Product ----------//
 
-
 let UpdateProduct = async (req, res) => {
     try {
-        let updatedProduct = await ProductsModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        return res.status(200).json({ 'Product': updatedProduct });
+             let newProduct=req.body
+        if(ProductsValidation(newProduct)){
+
+            let updatedProduct = await ProductsModel.findByIdAndUpdate(req.params.id, newProduct, { new: true });
+
+            return res.status(200).json({ 'Product': updatedProduct });
+        }else
+        {
+            return res.status(404).
+                json({'Message':`${ProductsValidation.errors[0].instancePath.split("/")[1]} ${ProductsValidation.errors[0].message}`})
+
+        }
     } catch (err) {
         console.error(err);
         return res.status(500).json({ err: 'Server fail' });
@@ -95,7 +104,7 @@ let UpdateProduct = async (req, res) => {
 
 let DeleteProduct = async (req, res) => {
     try {
-        await ProductsModel.findByIdAndRemove(req.params.id);
+        await ProductsModel.findOneAndDelete({_id:req.params.id},{ new: true });
         return res.status(200).json({ 'Message': 'Product deleted successfully' });
     } catch (err) {
         console.error(err);
@@ -103,8 +112,10 @@ let DeleteProduct = async (req, res) => {
     }
 };
 
-// Add the new functions to the exports
 
+
+
+//-------export functions----------------------
 module.exports = {
     GetAllProducts,
     CreateProducts,
@@ -113,24 +124,4 @@ module.exports = {
     UpdateProduct,
     DeleteProduct
     
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//-------export functions----------------------
-module.exports={
-    GetAllProducts,
-    CreateProducts
 }

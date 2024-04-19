@@ -7,21 +7,20 @@ const ajv = new AJV();
 const DetailsSchema = {
     type: "object",
     properties: {
-        description: { type: "string" },
-        manufacturer: { type: "string" },
+        description: { type: "string" ,minLength:3},
         reviews: {
             type: "array",
             items: {
                 type: "object",
                 properties: {
-                    rating: { type: "number" },
+                    rating: { type: "number",minimum:0,maximum:5 },
                     review: { type: "string" }
                 },
                 required: ["rating", "review"]
             }
         }
     },
-    required: ['description', 'manufacturer', 'reviews'],
+    required: ['description', 'reviews'],
     additionalProperties: false
 };
 
@@ -29,10 +28,10 @@ const DetailsSchema = {
 const ProductSchema = {
     type: "object",
     properties: {
-        title: { type: "string" },
-        price: { type: "number" },
-        category: { type: "string" },
-        quantity: { type: "number" },
+        title: { type: "string" , minLength: 3},
+        price: { type: "number",minimum:0 },
+        category: { type: "string" ,minLength:3},
+        quantity: { type: "number",minimum:0  },
         image: { type: "string" },
         details: { $ref: "#/definitions/DetailsSchema" }
     },
