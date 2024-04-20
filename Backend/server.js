@@ -4,8 +4,8 @@ const app = express();
 const PORT = process.env.PORT || 7005;
 const bodyParser = require("body-parser");
 const ProductsRoutes = require("./Routes/ProductsRoutes");
-// const OrdersRoutes = require("./Routes/OrdersRoutes");
-// const UsersRoutes = require("./Routes/UsersRoutes");
+const OrdersRoutes = require("./Routes/OrdersRoutes");
+const UsersRoutes = require("./Routes/UsersRoutes");
 
 const mongoose = require("mongoose");
 // mongoose.connect("mongodb://localhost:27017/E-Commerce") //Orders Users Products
@@ -34,6 +34,7 @@ app.use(bodyParser.json());
 
 app.use("/api/products", ProductsRoutes);
 app.use("/api/users", UsersRoutes);
+app.use("/api/orders", OrdersRoutes);
 
 app.listen(PORT, () => {
   console.log("http://localhost:" + PORT);
