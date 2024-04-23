@@ -42,8 +42,8 @@ const ProductSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    image: {
-        type: String,
+    images: {
+        type: [String], 
         required: true
     },
     details: {
@@ -51,7 +51,5 @@ const ProductSchema = new mongoose.Schema({
         required: true
     }
 });
-
-
 
 module.exports=mongoose.model("Products",ProductSchema);
