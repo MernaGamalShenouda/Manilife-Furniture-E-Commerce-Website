@@ -13,7 +13,6 @@ const ProductsRoutes = require("./Routes/ProductsRoutes");
 const OrdersRoutes = require("./Routes/OrdersRoutes");
 const UsersRoutes = require("./Routes/UsersRoutes");
 
-// Allow all origins
 app.use(cors());
 
 const mongoose = require("mongoose");
