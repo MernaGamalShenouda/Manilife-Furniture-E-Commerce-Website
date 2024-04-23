@@ -6,9 +6,11 @@ const bodyParser = require("body-parser");
 const ProductsRoutes = require("./Routes/ProductsRoutes");
 const OrdersRoutes = require("./Routes/OrdersRoutes");
 const UsersRoutes = require("./Routes/UsersRoutes");
+let Products  = require("./Models/Products.Model");
+
+const fs = require('fs');
 
 const mongoose = require("mongoose");
-// mongoose.connect("mongodb://localhost:27017/E-Commerce") //Orders Users Products
 //#endregion
 
 //#region Connect to MongoDB
@@ -23,6 +25,45 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 db.once("open", function () {
   console.log("Connected to MongoDB");
+
+   // Read data from JSON file
+  fs.readFile('data.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading JSON file:', err);
+      return;
+    }
+
+    try {
+      const jsonData = JSON.parse(data);
+
+      jsonData.forEach(async (item) => {
+        try {
+          const { name, price, category, short_description, images } = item;
+
+          // Create a new product instance
+          const newProduct = new Products({
+            title: name,
+            price: price,
+            category: category,
+            quantity: 5, 
+            images: images, 
+            details: {
+              description: short_description,
+              reviews: [] 
+            }
+          });
+
+          await newProduct.save();
+          console.log('Product created:', newProduct);
+        } catch (err) {
+          console.error('Error creating product:', err);
+        }
+      });
+    } catch (parseError) {
+      console.error('Error parsing JSON data:', parseError);
+    }
+  });
+  
 });
 //#endregion
 
