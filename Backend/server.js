@@ -1,11 +1,20 @@
 //#region Requires
 const express = require("express");
+const cors = require('cors');
+
+
+
+
+
 const app = express();
 const PORT = process.env.PORT || 7005;
 const bodyParser = require("body-parser");
 const ProductsRoutes = require("./Routes/ProductsRoutes");
 const OrdersRoutes = require("./Routes/OrdersRoutes");
 const UsersRoutes = require("./Routes/UsersRoutes");
+
+// Allow all origins
+app.use(cors());
 
 const mongoose = require("mongoose");
 // mongoose.connect("mongodb://localhost:27017/E-Commerce") //Orders Users Products
