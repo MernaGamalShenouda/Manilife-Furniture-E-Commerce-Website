@@ -1,5 +1,11 @@
 //#region Requires
 const express = require("express");
+const cors = require('cors');
+
+
+
+
+
 const app = express();
 const PORT = process.env.PORT || 7005;
 const bodyParser = require("body-parser");
@@ -9,6 +15,8 @@ const UsersRoutes = require("./Routes/UsersRoutes");
 let Products  = require("./Models/Products.Model");
 
 const fs = require('fs');
+
+app.use(cors());
 
 const mongoose = require("mongoose");
 //#endregion
