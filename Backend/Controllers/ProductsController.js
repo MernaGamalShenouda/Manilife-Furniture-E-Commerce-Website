@@ -1,13 +1,23 @@
-let ProductsModel = require("../Models/Products.Model");
+const ProductsModel = require("../Models/Products.Model");
 
-let ProductsValidation = require("../Utils/ProductsValidation");
+const  ProductsValidation=require("../Utils/ProductsValidation")
+
+
 
 // ----------GetALl Products---------------------------
 let GetAllProducts = async (req, res) => {
-  try {
-    let Products = await ProductsModel.find();
 
-    return res.status(200).json({ Products: Products });
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = parseInt(req.query.pageSize) ||5;
+  try {
+
+    let countProducts= await ProductsModel.countDocuments();
+    let Products= await ProductsModel.find()
+            .skip((page - 1) * pageSize)
+            .limit(pageSize)
+            .exec();
+
+    return res.status(200).json({ Products: Products,countProducts:countProducts });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ err: "Server fail" });

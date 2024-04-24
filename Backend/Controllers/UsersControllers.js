@@ -1,6 +1,8 @@
 const UsersModel = require("../Models/UsersModel");
 const bcrypt = require("bcrypt");
 const UserValid = require("../Utils/UsersValidation");
+const jwt = require('jsonwebtoken');
+const jwtSecret = 'secret_key'; 
 
 let Register = async (req, res) => {
   let foundUser = await UsersModel.findOne({
@@ -34,15 +36,28 @@ let Register = async (req, res) => {
 };
 
 let Login = async (req, res) => {
-  let foundUser = await UsersModel.findOne({
-    email: req.body.email.toLowerCase(),
-  });
-  if (!foundUser) return res.send("Invalid Email / Password");
+  try {
+    let foundUser = await UsersModel.findOne({
+      email: req.body.email.toLowerCase(),
+    });
 
-  let passTrue = await bcrypt.compare(req.body.password, foundUser.password);
-  if (!passTrue) return res.send("Invalid Email / Password");
+    if (!foundUser) {
+      return res.status(401).json({ error: "User not found" });
+    }
 
-  return res.send("Logged-In Successfully");
+    let passTrue = await bcrypt.compare(req.body.password, foundUser.password);
+
+    if (!passTrue) {
+      return res.status(401).json({ error: "Invalid password" });
+    }
+
+    const token = jwt.sign({ id: foundUser._id }, jwtSecret, { expiresIn: '5h' });
+
+    return res.json({ message: "Logged-In Successfully", token });
+  } catch (error) {
+    console.error('Error logging in:', error);
+    return res.status(500).json({ error: 'Internal Server Error' });
+  }
 };
 
 const updateUserById = async (req, res) => {
@@ -118,6 +133,7 @@ const deleteUserById = async (req, res) => {
     return res.status(500).send("Internal Server Error");
   }
 };
+
 
 module.exports = {
   Register,

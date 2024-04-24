@@ -1,5 +1,6 @@
 //#region Requires
 const express = require("express");
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 7005;
 const bodyParser = require("body-parser");
@@ -9,6 +10,8 @@ const UsersRoutes = require("./Routes/UsersRoutes");
 let Products  = require("./Models/Products.Model");
 
 const fs = require('fs');
+
+app.use(cors());
 
 const mongoose = require("mongoose");
 //#endregion
@@ -35,8 +38,10 @@ db.once("open", function () {
 
     try {
       const jsonData = JSON.parse(data);
+      const jsonDataSlice = jsonData.slice(0, 20); // Extract the first 20 items from the array
 
-      jsonData.forEach(async (item) => {
+
+      jsonDataSlice.forEach(async (item) => {
         try {
           const { name, price, category, short_description, images } = item;
 
@@ -66,6 +71,7 @@ db.once("open", function () {
   
 });
 //#endregion
+
 
 //#region MiddleWare
 app.use(bodyParser.urlencoded({ extended: true }));
