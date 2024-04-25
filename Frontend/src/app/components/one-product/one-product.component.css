@@ -1,0 +1,11 @@
+.card-container {
+    display: flex; /* Use flexbox */
+    flex-wrap: nowrap; /* Prevent wrapping */
+  }
+  
+  .card {
+    /* Optionally set width to each card */
+    width: 18rem;
+    margin-right: 10px;
+  }
+  
