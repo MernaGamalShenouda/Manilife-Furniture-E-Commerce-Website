@@ -10,6 +10,8 @@ import { ProductsService } from './Services/products.service';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { DataSharingService } from './Services/data-sharing.service';
+import { AdminGuard } from './Guards/admin.guard';
+import { AuthService } from './Services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +27,9 @@ import { DataSharingService } from './Services/data-sharing.service';
   ],
   providers:[//services
           ProductsService,
-          DataSharingService
+          DataSharingService,
+          AuthService,
+          AdminGuard
         ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
