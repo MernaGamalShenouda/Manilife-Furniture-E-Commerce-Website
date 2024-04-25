@@ -26,15 +26,15 @@ const db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-db.once("open", function () {
-  console.log("Connected to MongoDB");
+// db.once("open", function () {
+//   console.log("Connected to MongoDB");
 
-   // Read data from JSON file
-  fs.readFile('data.json', 'utf8', (err, data) => {
-    if (err) {
-      console.error('Error reading JSON file:', err);
-      return;
-    }
+//    // Read data from JSON file
+//   fs.readFile('data.json', 'utf8', (err, data) => {
+//     if (err) {
+//       console.error('Error reading JSON file:', err);
+//       return;
+//     }
 
     try {
       const jsonData = JSON.parse(data);
@@ -45,31 +45,31 @@ db.once("open", function () {
         try {
           const { name, price, category, short_description, images } = item;
 
-          // Create a new product instance
-          const newProduct = new Products({
-            title: name,
-            price: price,
-            category: category,
-            quantity: 5, 
-            images: images, 
-            details: {
-              description: short_description,
-              reviews: [] 
-            }
-          });
+//           // Create a new product instance
+//           const newProduct = new Products({
+//             title: name,
+//             price: price,
+//             category: category,
+//             quantity: 5, 
+//             images: images, 
+//             details: {
+//               description: short_description,
+//               reviews: [] 
+//             }
+//           });
 
-          await newProduct.save();
-          console.log('Product created:', newProduct);
-        } catch (err) {
-          console.error('Error creating product:', err);
-        }
-      });
-    } catch (parseError) {
-      console.error('Error parsing JSON data:', parseError);
-    }
-  });
+//           await newProduct.save();
+//           console.log('Product created:', newProduct);
+//         } catch (err) {
+//           console.error('Error creating product:', err);
+//         }
+//       });
+//     } catch (parseError) {
+//       console.error('Error parsing JSON data:', parseError);
+//     }
+//   });
   
-});
+// });
 //#endregion
 
 
