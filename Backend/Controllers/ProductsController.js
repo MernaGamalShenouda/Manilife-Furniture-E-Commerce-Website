@@ -28,7 +28,6 @@ let GetAllProducts = async (req, res) => {
 let CreateProducts = (req, res) => {
   try {
     let newProduct = req.body;
-
     if (ProductsValidation(newProduct)) {
       let createProduct = new ProductsModel(newProduct);
       createProduct.save();
@@ -70,13 +69,18 @@ let GetProductById = async (req, res) => {
 
 let GetProductByName = async (req, res) => {
   try {
-    let product = await ProductsModel.findOne({ title: req.params.title });
-    return res.status(200).json({ Product: product });
+   
+    let searchPattern = new RegExp(req.params.title, 'i'); 
+
+    let products = await ProductsModel.find({ title: { $regex: searchPattern } });
+
+    return res.status(200).json({ Product: products});
   } catch (err) {
     console.error(err);
     return res.status(500).json({ err: "Server fail" });
   }
 };
+
 
 // ------------Update Product ----------//
 

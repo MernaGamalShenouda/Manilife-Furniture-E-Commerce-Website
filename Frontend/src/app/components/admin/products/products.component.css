@@ -2,6 +2,18 @@
   background-color: #034058;
 }
 
+
+.btn-custom{
+  background-color:#034058;
+  color:  #FBEDCF;
+}
+
+
+.btn-custom:hover{
+  background-color:#006287;
+
+}
+
 .table-wrapper {
   background: #fff;
   padding: 20px 25px;
@@ -71,16 +83,8 @@ opacity: 0.9;
 font-size: 22px;
   margin: 0 5px;
 }
-table.table td a {
-font-weight: bold;
-color: #566787;
-display: inline-block;
-text-decoration: none;
-outline: none !important;
-}
-table.table td a:hover {
-color: #2196F3;
-}
+
+
 table.table td a.edit {
   color: #FFC107;
 }
@@ -90,48 +94,18 @@ table.table td a.delete {
 table.table td i {
   font-size: 19px;
 }
-table.table .avatar {
-border-radius: 50%;
-vertical-align: middle;
-margin-right: 10px;
-}
+
 .pagination {
   float: right;
   margin: 0 0 5px;
 }
-.pagination li a {
-  border: none;
-  font-size: 13px;
-  min-width: 30px;
-  min-height: 30px;
-  color: #999;
-  margin: 0 2px;
-  line-height: 30px;
-  border-radius: 2px !important;
-  text-align: center;
-  padding: 0 6px;
-}
-.pagination li a:hover {
-  color: #666;
-}
-.pagination li.active a, .pagination li.active a.page-link {
-  background: #03A9F4;
-}
-.pagination li.active a:hover {
-  background: #0397d6;
-}
-.pagination li.disabled i {
-  color: #ccc;
-}
-.pagination li i {
-  font-size: 16px;
-  padding-top: 6px
-}
+
 .hint-text {
   float: left;
   margin-top: 10px;
   font-size: 13px;
 }
+
 /* Custom checkbox */
 .custom-checkbox {
 position: relative;
@@ -183,35 +157,4 @@ cursor: auto;
 box-shadow: none;
 background: #ddd;
 }
-/* Modal styles */
-.modal .modal-dialog {
-max-width: 400px;
-}
-.modal .modal-header, .modal .modal-body, .modal .modal-footer {
-padding: 20px 30px;
-}
-.modal .modal-content {
-border-radius: 3px;
-}
-.modal .modal-footer {
-background: #ecf0f1;
-border-radius: 0 0 3px 3px;
-}
-.modal .modal-title {
-  display: inline-block;
-}
-.modal .form-control {
-border-radius: 2px;
-box-shadow: none;
-border-color: #dddddd;
-}
-.modal textarea.form-control {
-resize: vertical;
-}
-.modal .btn {
-border-radius: 2px;
-min-width: 100px;
-}
-.modal form label {
-font-weight: normal;
-}
+

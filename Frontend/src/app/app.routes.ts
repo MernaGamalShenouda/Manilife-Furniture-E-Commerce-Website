@@ -8,11 +8,17 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { RegisterComponent } from './components/users/register/register.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { HomeComponent } from './components/home/home/home.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 export const routes: Routes = [
   // {path:"",component:ProductsComponent},
   // {path:"Products",component:ProductsComponent},
   // {path:"CreateProduct",component:CreateProductComponent},
+
+  {path:"dashboard",component:DashboardComponent},
+  {path:"adminProducts",component:ProductsComponent},
+  {path:"adminCreateProduct",component:CreateProductComponent},
+  {path:"adminOrders",component:OrdersComponent},
   
   { path: 'shop', component: ShopComponent, children: [
     { path: "products", component: AllProductsComponent },
