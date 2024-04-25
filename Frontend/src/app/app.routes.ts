@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './components/admin/products/products.component';
 import { OrdersComponent } from './components/admin/orders/orders.component';
 import { CreateProductComponent } from './components/admin/create-product/create-product.component';
@@ -13,15 +13,21 @@ export const routes: Routes = [
   // {path:"",component:ProductsComponent},
   // {path:"Products",component:ProductsComponent},
   // {path:"CreateProduct",component:CreateProductComponent},
-  
-  { path: 'shop', component: ShopComponent, children: [
-    { path: "products", component: AllProductsComponent },
-    { path: "products/:id", component: ProductDetailsComponent }]},
-  
-  {path:"Orders",component:OrdersComponent},
 
-  {path:"Register", component:RegisterComponent},
-  {path:"Login", component:LoginComponent},
-  {path:"Home", component:HomeComponent},
+  { path: '', redirectTo: 'Home', pathMatch: 'full' },
+  { path: 'Home', component: HomeComponent },
+  { path: 'Register', component: RegisterComponent },
+  { path: 'Login', component: LoginComponent },
+  {
+    path: 'shop',
+    component: ShopComponent,
+    children: [
+      { path: 'products', component: AllProductsComponent },
+      { path: 'products/:id', component: ProductDetailsComponent },
+    ],
+  },
+
+  { path: 'Orders', component: OrdersComponent },
+
 
 ];

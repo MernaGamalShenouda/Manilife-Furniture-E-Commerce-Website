@@ -10,27 +10,31 @@ import { ProductsService } from './Services/products.service';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { DataSharingService } from './Services/data-sharing.service';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,
-            IndexComponent,
-            AllProductsComponent,
-            SearchComponent,
-            OneProductComponent,
-            HttpClientModule,
-            ProductDetailsComponent,
-            ShopComponent
+  imports: [
+    RouterOutlet,
+    IndexComponent,
+    AllProductsComponent,
+    SearchComponent,
+    OneProductComponent,
+    HttpClientModule,
+    ProductDetailsComponent,
+    ShopComponent,
+    NavbarComponent,
   ],
-  providers:[//services
-          ProductsService,
-          DataSharingService
-        ],
+  providers: [
+    //services
+    ProductsService,
+    DataSharingService,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
   title = 'Frontend';
 }
