@@ -12,6 +12,11 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { AdminMainComponent } from './components/admin/admin-main/admin-main.component';
 import { AdminGuard } from './Guards/admin.guard';
 import { loggedInGuard } from './Guards/logged-in.guard';
+import { HttpClientModule } from '@angular/common/http';
+import { userAuthGuard } from './Guards/user-auth.guard';
+import { authGuard } from './Guards/auth.guard';
+import { adminAuthGuard } from './Guards/admin-auth.guard';
+import { ErrorComponent } from './components/error/error.component';
 
 export const routes: Routes = [
   // {path:"",component:ProductsComponent},
@@ -19,7 +24,7 @@ export const routes: Routes = [
   // {path:"CreateProduct",component:CreateProductComponent},
 
   {
-    path: 'admin',
+    path: 'admin',canActivate:[authGuard,adminAuthGuard],
     component: AdminMainComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
@@ -30,11 +35,15 @@ export const routes: Routes = [
   },
 
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
-  { path: 'Home', component: HomeComponent },
-  { path: 'Register',/*canActivate:[loggedInGuard],*/ component: RegisterComponent },
-  { path: 'Login', component: LoginComponent },
+  { path: 'Home',canActivate:[userAuthGuard], component: HomeComponent },
   {
-    path: 'shop',
+    path: 'Register',
+    canActivate: [loggedInGuard],
+    component: RegisterComponent,
+  },
+  { path: 'Login', canActivate: [loggedInGuard], component: LoginComponent },
+  {
+    path: 'shop',canActivate:[userAuthGuard,authGuard],
     component: ShopComponent,
     children: [
       { path: 'products', component: AllProductsComponent },
@@ -42,5 +51,7 @@ export const routes: Routes = [
     ],
   },
 
-  { path: 'Orders', component: OrdersComponent },
+  { path: 'Orders',canActivate:[userAuthGuard,authGuard], component: OrdersComponent },
+
+  {path:'**', component:ErrorComponent},
 ];

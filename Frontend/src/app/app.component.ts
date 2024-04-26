@@ -27,6 +27,7 @@ import { AuthService } from './Services/auth.service';
     ProductDetailsComponent,
     ShopComponent,
     NavbarComponent,
+    
   ],
   providers: [
     //services
@@ -34,6 +35,7 @@ import { AuthService } from './Services/auth.service';
     DataSharingService,
     AuthService,
     AdminGuard,
+    
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
