@@ -31,7 +31,7 @@ export const routes: Routes = [
 
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: 'Home', component: HomeComponent },
-  { path: 'Register',canActivate:[loggedInGuard], component: RegisterComponent },
+  { path: 'Register',/*canActivate:[loggedInGuard],*/ component: RegisterComponent },
   { path: 'Login', component: LoginComponent },
   {
     path: 'shop',
