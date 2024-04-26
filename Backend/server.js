@@ -1,6 +1,7 @@
 //#region Requires
 const express = require("express");
 const cors = require('cors');
+
 const app = express();
 const PORT = process.env.PORT || 7005;
 const bodyParser = require("body-parser");
@@ -38,8 +39,7 @@ db.once("open", function () {
 
     try {
       const jsonData = JSON.parse(data);
-      const jsonDataSlice = jsonData.slice(0, 20); // Extract the first 20 items from the array
-
+      const jsonDataSlice = jsonData.slice(0, 20);
 
       jsonDataSlice.forEach(async (item) => {
         try {
@@ -71,7 +71,6 @@ db.once("open", function () {
   
 });
 //#endregion
-
 
 //#region MiddleWare
 app.use(bodyParser.urlencoded({ extended: true }));

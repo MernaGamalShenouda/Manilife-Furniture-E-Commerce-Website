@@ -11,6 +11,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ShopComponent } from './components/shop/shop.component';
 import { DataSharingService } from './Services/data-sharing.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AdminGuard } from './Guards/admin.guard';
+import { AuthService } from './Services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -29,7 +31,9 @@ import { NavbarComponent } from './navbar/navbar.component';
   providers: [
     //services
     ProductsService,
-    DataSharingService,
+    DataSharingService,,
+          AuthService,
+          AdminGuard
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
