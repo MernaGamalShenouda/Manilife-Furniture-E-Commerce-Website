@@ -8,6 +8,7 @@ import { FormControl, FormGroup, NgForm, ReactiveFormsModule, Validators } from 
 import { AdminServiceService } from '../admin-service.service';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatCardModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
     ],
     providers:[
       AdminServiceService
@@ -34,9 +36,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 
-export class CreateProductComponent {
+export class CreateProductComponent implements OnInit {
 
+  categories:any={};
   constructor(private adminService:AdminServiceService,private router:Router){}
+  ngOnInit(): void {
+   this.getProducts();
+  }
 
   form = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -95,6 +101,21 @@ export class CreateProductComponent {
 
   this.adminService.creatProduct(product).subscribe();
   this.router.navigate(['adminProducts']);
+  }
+
+
+
+  getProducts(): void {
+    this.adminService.GetProducts().subscribe({
+      next: (data: any) => {
+        this.categories=data.categories;
+
+
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
   }
 
 

@@ -16,7 +16,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AdminGuard } from './Guards/admin.guard';
 import { AuthService } from './Services/auth.service';
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -30,7 +29,7 @@ import { AuthService } from './Services/auth.service';
     ProductDetailsComponent,
     ShopComponent,
     NavbarComponent,
-    HomeComponent,
+HomeComponent,
     NavigationComponent
   ],
   providers: [

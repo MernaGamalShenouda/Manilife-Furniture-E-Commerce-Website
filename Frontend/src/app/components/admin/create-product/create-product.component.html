@@ -25,13 +25,15 @@
           <div class="col-md-12 mb-3 ">
             <mat-form-field class="w-100">
               <mat-label>Category</mat-label>
-              <mat-select formControlName="category" >
-                <mat-option value="option1">Option1</mat-option>
-                <mat-option value="option2">Option2</mat-option>
-                <mat-option value="option3">Option3</mat-option>
-                <mat-option value="option4">Option4</mat-option>
-                <mat-option value="option5">Option5</mat-option>
+
+              <mat-select formControlName="category">
+
+                <ng-container *ngFor="let category of categories">
+                  <mat-option value="{{category}}">{{ category }}</mat-option>
+                </ng-container>
+
               </mat-select>
+
               <mat-hint align="end">Here's the dropdown arrow </mat-hint>
             </mat-form-field>
 

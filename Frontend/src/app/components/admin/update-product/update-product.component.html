@@ -1,64 +1,113 @@
-<h2 mat-dialog-title>Install Angular</h2>
-<mat-dialog-content class="mat-typography">
-  <h3>Develop across all platforms</h3>
-  <p>Learn one way to build applications with Angular and reuse your code and abilities to build
-    apps for any deployment target. For web, mobile web, native mobile and native desktop.</p>
+<h2 mat-dialog-title>Update Product</h2>
 
-  <h3>Speed &amp; Performance</h3>
-  <p>Achieve the maximum speed possible on the Web Platform today, and take it further, via Web
-    Workers and server-side rendering. Angular puts you in control over scalability. Meet huge
-    data requirements by building data models on RxJS, Immutable.js or another push-model.</p>
+<mat-dialog-content>
 
-  <h3>Incredible tooling</h3>
-  <p>Build features quickly with simple, declarative templates. Extend the template language with
-    your own components and use a wide array of existing components. Get immediate Angular-specific
-    help and feedback with nearly every IDE and editor. All this comes together so you can focus
-    on building amazing apps rather than trying to make the code work.</p>
+  <div class="row">
+    <div class="col-5">
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
 
-  <h3>Loved by millions</h3>
-  <p>From prototype through global deployment, Angular delivers the productivity and scalable
-    infrastructure that supports Google's largest applications.</p>
+          <div class="carousel-item active">
+            <img src="{{ product.images[0]}}" class=" img-fluid rounded-start d-block w-100" alt="...">
+          </div>
+         @for (image of product.images; track image.image) {
 
-  <h3>What is Angular?</h3>
+          <div class="carousel-item">
+            <img src="{{image}}" class=" img-fluid rounded-start d-block w-100" alt="...">
+          </div>
+        }
 
-  <p>Angular is a platform that makes it easy to build applications with the web. Angular
-    combines declarative templates, dependency injection, end to end tooling, and integrated
-    best practices to solve development challenges. Angular empowers developers to build
-    applications that live on the web, mobile, or the desktop</p>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-7 mt-3">
 
-  <h3>Architecture overview</h3>
+      @if (product) {
 
-  <p>Angular is a platform and framework for building client applications in HTML and TypeScript.
-  Angular is itself written in TypeScript. It implements core and optional functionality as a
-  set of TypeScript libraries that you import into your apps.</p>
 
-  <p>The basic building blocks of an Angular application are NgModules, which provide a compilation
-  context for components. NgModules collect related code into functional sets; an Angular app is
-  defined by a set of NgModules. An app always has at least a root module that enables
-  bootstrapping, and typically has many more feature modules.</p>
+      <form class="card-body "  [formGroup]="form" >
 
-  <p>Components define views, which are sets of screen elements that Angular can choose among and
-  modify according to your program logic and data. Every app has at least a root component.</p>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="w-100">
+              <mat-label>Title Product</mat-label>
+            <input formControlName="title" #title matInput placeholder="Ex. NORDVIKEN" [value]="product.title">
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="w-100">
+              <mat-label>Category</mat-label>
+              <mat-select     [value]="product.category">
+                <ng-container *ngFor="let category of categories">
 
-  <p>Components use services, which provide specific functionality not directly related to views.
-  Service providers can be injected into components as dependencies, making your code modular,
-  reusable, and efficient.</p>
+                  <mat-option value="{{category}}">{{ category }}</mat-option>
+                </ng-container>
 
-  <p>Both components and services are simply classes, with decorators that mark their type and
-  provide metadata that tells Angular how to use them.</p>
+              </mat-select>
 
-  <p>The metadata for a component class associates it with a template that defines a view. A
-  template combines ordinary HTML with Angular directives and binding markup that allow Angular
-  to modify the HTML before rendering it for display.</p>
+            </mat-form-field>
+          </div>
+        </div>
 
-  <p>The metadata for a service class provides the information Angular needs to make it available
-  to components through Dependency Injection (DI).</p>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="w-100 ">
+              <mat-label>Quantity</mat-label>
+              <input matInput  formControlName="quantity" type="number" class="example-right-align" placeholder="0" value="{{product.quantity}}">
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="w-100">
+              <mat-label>Price</mat-label>
+              <input matInput type="number" formControlName="price" class="example-right-align" placeholder="0" value="{{product.price}}">
+              <span matTextPrefix>$&nbsp;</span>
+              <span matTextSuffix>.00</span>
+            </mat-form-field>
+          </div>
+        </div>
 
-  <p>An app's components typically define many views, arranged hierarchically. Angular provides
-  the Router service to help you define navigation paths among views. The router provides
-  sophisticated in-browser navigational capabilities.</p>
+
+
+
+        <div class="d-flex flex-column justify-content-center align-items-center">
+
+          <div class="row mx-3" style="width: 60%;">
+            <div class="col-md-12  ">
+              <mat-form-field class="w-100 ">
+                <mat-label>Description</mat-label>
+                <textarea matInput  #description formControlName="description" value="{{product.details.description}}" ></textarea>
+              </mat-form-field>
+
+
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="imageProduct" class="form-label">Upload images of Product</label>
+            <input class="form-control" formControlName="image" #imageProduct type="file" value="{{product.imag}}"  multiple>
+          </div>
+          <button  type="submit"  [disabled]="!form.valid"
+          (click)="updateProcut()" mat-dialog-close  disabled class="btn btn-custom w-50 fs-5">Submit</button>
+        </div>
+      </form>
+    }
+    </div>
+  </div>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close >Close</button>
 </mat-dialog-actions>
+
+
+
+
+
