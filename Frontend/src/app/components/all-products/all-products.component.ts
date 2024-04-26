@@ -165,9 +165,9 @@ export class AllProductsComponent implements OnInit, DoCheck {
     private dataSharingService: DataSharingService
   ) {}
 
- 
+
   ngOnInit(): void {
-    // Subscribe to searchByWord$ observable
+    
     this.subscriptions.push(
       DataSharingService.searchByWord$.subscribe((word) => {
         this.searchByWord = word;
@@ -175,7 +175,7 @@ export class AllProductsComponent implements OnInit, DoCheck {
       })
     );
 
-    // Subscribe to productByCategory$ observable
+    
     this.subscriptions.push(
       DataSharingService.productByCategory$.subscribe((category) => {
         this.productByCategory = category;
@@ -183,14 +183,14 @@ export class AllProductsComponent implements OnInit, DoCheck {
       })
     );
 
-    // Initialize products
+    
     this.loadProducts();
   }
 
   ngDoCheck(): void {}
 
   ngOnDestroy(): void {
-    // Unsubscribe from all subscriptions to avoid memory leaks
+    
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
@@ -200,7 +200,7 @@ export class AllProductsComponent implements OnInit, DoCheck {
       next: (data) => {
         console.log(this.searchByWord);
         if (this.searchByWord != '') {
-          console.log('Fatma');
+          
           this.products = data.Products.filter((product: any) => {
             return product.title
               .toLowerCase()

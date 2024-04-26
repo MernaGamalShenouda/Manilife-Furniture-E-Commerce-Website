@@ -1,3 +1,6 @@
-@for (p of products; track p.id ){
-    <app-one-product [Product]="p"></app-one-product>
-}
+<div class="items-background">
+
+    @for (p of products; track p.id ){
+        <app-one-product [Product]="p"></app-one-product>
+    }
+</div>

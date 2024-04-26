@@ -9,6 +9,8 @@ import { ProductsService } from './Services/products.service';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { DataSharingService } from './Services/data-sharing.service';
+import { NavigationComponent } from './navigation/navigation.component';
+import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
@@ -20,14 +22,16 @@ import { DataSharingService } from './Services/data-sharing.service';
             OneProductComponent,
             HttpClientModule,
             ProductDetailsComponent,
-            ShopComponent
+            ShopComponent,
+            NavigationComponent,
+            HomeComponent
   ],
   providers:[//services
           ProductsService,
           DataSharingService
         ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
 
