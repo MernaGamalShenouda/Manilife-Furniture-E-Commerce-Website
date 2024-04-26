@@ -1,1 +1,73 @@
-<p>orders works!</p>
+<div class="container " style="height: 100%;">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h2>Manage <b>Products</b></h2>
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Title Product</th>
+              <th scope="col">Username</th>
+              <th scope="col">Total Price</th>
+              <th scope="col">Date</th>
+              <th scope="col">Order State</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (order of Orders; track order._id) {
+
+              <tr>
+                <th scope="row">1</th>
+                <td>{{order.State}}</td>
+                <td>{{order.State}}</td>
+                <td>{{order.State}}</td>
+                <td>{{order.State}}</td>
+                <td>
+                  <div class="d-flex justify-content-center align-items-center gap-1">
+                    <input id="accept" type="radio" name="decision" value="accept">
+                    <label for="accept" class="text-success">Accept</label>
+                    <input id="reject" type="radio" name="decision" value="reject">
+                    <label for="reject"  class="text-danger">Reject</label>
+                  </div>
+
+
+
+
+                </td>
+              </tr>
+
+              <tr>
+            }
+
+          </tbody>
+        </table>
+
+
+
+          <div class="clearfix">
+            <div class="hint-text">Showing <b>3</b> out of <b>6</b> entries</div>
+
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><button  class="page-link btn-custom" >Previous</button></li>
+
+              <li class="page-item"><button   class="page-link btn-custom" >Next</button></li>
+            </ul>
+          </nav>
+          </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

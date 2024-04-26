@@ -5,7 +5,7 @@
 //   Input,
 //   OnChanges,
 //   OnInit,
-//   SimpleChanges,
+//   SimpleChanges, 
 // } from '@angular/core';
 // import { ProductsService } from '../../Services/products.service';
 // import { DataSharingService } from '../../Services/data-sharing.service';
@@ -62,7 +62,7 @@
 //   }
 
 //   ngDoCheck(): void {
-//     this.dataSharingService.searchByWord="fatma";
+//     this.dataSharingService.searchByWord="Register";
 //     console.log(this.dataSharingService.searchByWord);
 //     if (this.dataSharingService.searchByWord!="") {
 //       console.log("a7eh");
@@ -88,7 +88,7 @@
 //       next: (data) => {
 //         console.log(this.searchByWord);
 //         if (this.searchByWord != '') {
-//           console.log('Fatma');
+//           console.log('Register');
 //           this.products = data.Products.filter((product: any) => {
 //             return product.title
 //               .toLowerCase()
@@ -118,8 +118,6 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { ProductsService } from '../../Services/products.service';
-import { DataSharingService } from '../../Services/data-sharing.service';
 import { ShopComponent } from '../shop/shop.component';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -130,6 +128,8 @@ import { SearchComponent } from '../search/search.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { ProductsService } from '../../Services/products.service';
+import { DataSharingService } from '../../Services/data-sharing.service';
 
 @Component({
   selector: 'app-all-products',

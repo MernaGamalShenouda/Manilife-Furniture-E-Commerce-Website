@@ -1,10 +1,10 @@
 
-<div class="card-container" style="display: inline-block;width: 18rem; margin-right: 10px;">
+<div class="card-container product-card">
     <img src="{{Product.images[0]}}" class="card-img-top" alt="...">
     <div class="card-body">
-        <h4>{{Product.title}}</h4>
-        <p>{{Product.price}}</p>
+        <h3 class="product-title">{{Product.title}}</h3>
+        <!-- <p>{{Product.price}}</p> -->
     </div>
-    <a [routerLink]="'/shop/products/' + Product._id">See more</a>
+    <a class="btn btn-primary" [routerLink]="'/shop/products/' + Product._id">view</a>
 </div>
 

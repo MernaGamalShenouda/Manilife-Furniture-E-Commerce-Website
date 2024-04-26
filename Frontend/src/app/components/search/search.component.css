@@ -19,6 +19,7 @@
     padding-top: 0 !important;
     padding: 0 !important;
     margin-bottom: 80px;
+    
 }
 .navbar-top {
     background-color: #086484;
@@ -96,6 +97,17 @@
     font-weight: 600;
     font-size: 16px;
 }
+
+.nav-link-text {
+    list-style: none;
+    display: flex;
+    font-weight: 600;
+    font-size: 24px;
+    color: #002a3a;
+    margin-top: 20px;
+    text-decoration: none; 
+    
+  }
 
 
 .navbar-light .btn {
