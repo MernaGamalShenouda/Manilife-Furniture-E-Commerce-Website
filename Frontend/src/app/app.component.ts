@@ -31,9 +31,9 @@ import { AuthService } from './Services/auth.service';
   providers: [
     //services
     ProductsService,
-    DataSharingService,,
-          AuthService,
-          AdminGuard
+    DataSharingService,
+    AuthService,
+    AdminGuard,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

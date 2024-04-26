@@ -1,5 +1,5 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../Services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule, NgIf } from '@angular/common';
 

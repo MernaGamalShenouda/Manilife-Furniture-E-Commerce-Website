@@ -11,22 +11,27 @@ import { HomeComponent } from './components/home/home/home.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { AdminMainComponent } from './components/admin/admin-main/admin-main.component';
 import { AdminGuard } from './Guards/admin.guard';
+import { loggedInGuard } from './Guards/logged-in.guard';
 
 export const routes: Routes = [
   // {path:"",component:ProductsComponent},
   // {path:"Products",component:ProductsComponent},
   // {path:"CreateProduct",component:CreateProductComponent},
 
-  {path:"admin",component:AdminMainComponent, children:[
-    {path:"dashboard",component:DashboardComponent},
-    {path:"adminProducts",component:ProductsComponent},
-    {path:"adminCreateProduct",component:CreateProductComponent},
-    {path:"adminOrders",component:OrdersComponent},
-  ]},
+  {
+    path: 'admin',
+    component: AdminMainComponent,
+    children: [
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'adminProducts', component: ProductsComponent },
+      { path: 'adminCreateProduct', component: CreateProductComponent },
+      { path: 'adminOrders', component: OrdersComponent },
+    ],
+  },
 
   { path: '', redirectTo: 'Home', pathMatch: 'full' },
   { path: 'Home', component: HomeComponent },
-  { path: 'Register', component: RegisterComponent },
+  { path: 'Register',canActivate:[loggedInGuard], component: RegisterComponent },
   { path: 'Login', component: LoginComponent },
   {
     path: 'shop',
@@ -38,6 +43,4 @@ export const routes: Routes = [
   },
 
   { path: 'Orders', component: OrdersComponent },
-
-
 ];
