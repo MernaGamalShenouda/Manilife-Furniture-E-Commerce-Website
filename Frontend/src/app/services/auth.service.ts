@@ -37,27 +37,35 @@ export class AuthService {
       );
   }
 
-  async GetUserByID(id: number): Promise<any> {
-    try {
-      const userData = await this.http
-        .get<any>(`${this.apiUrl}/${id}`)
-        .toPromise();
-      return userData;
-    } catch (error) {
-      console.error('Error:', error);
-      throw error;
-    }
+  // async GetUserByID(id: number): Promise<any> {
+  //   try {
+  //     const userData = await this.http
+  //       .get<any>(`${this.apiUrl}/${id}`)
+  //       .toPromise();
+  //     return userData;
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //     throw error;
+  //   }
+  // }
+
+  // async getMyUser() {
+  //   try {
+  //     const userID = await this.getLoggedInUser();
+  //     const user = await this.GetUserByID(userID);
+  //     return user;
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //     throw error;
+  //   }
+  // }
+
+  GetUserByID(id:number){
+    return this.http.get(this.apiUrl+"/"+id);
   }
 
-  async getMyUser() {
-    try {
-      const userID = await this.getLoggedInUser();
-      const user = await this.GetUserByID(userID);
-      return user;
-    } catch (error) {
-      console.error('Error:', error);
-      throw error;
-    }
+  updateUser(id:number,user:any){
+    return this.http.put(this.apiUrl+"/"+id, user);
   }
 
   getLoggedInUser() {
