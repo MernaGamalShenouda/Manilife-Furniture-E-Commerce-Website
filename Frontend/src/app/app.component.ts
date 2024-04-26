@@ -7,7 +7,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet ,ProfileInfoComponent,OrderItemComponent, MatSlideToggleModule],
+  imports: [RouterOutlet, ProfileInfoComponent, OrderItemComponent, MatSlideToggleModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
