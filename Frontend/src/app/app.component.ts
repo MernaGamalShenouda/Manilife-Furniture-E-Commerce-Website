@@ -10,11 +10,12 @@ import { ProductsService } from './Services/products.service';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { DataSharingService } from './Services/data-sharing.service';
+import { NavigationComponent } from './navigation/navigation.component';
+import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminGuard } from './Guards/admin.guard';
 import { AuthService } from './Services/auth.service';
-import { NavigationComponent } from './navigation/navigation.component';
-import { HomeComponent } from './home/home.component';
+
 
 @Component({
   selector: 'app-root',
@@ -29,8 +30,8 @@ import { HomeComponent } from './home/home.component';
     ProductDetailsComponent,
     ShopComponent,
     NavbarComponent,
-    NavigationComponent,
     HomeComponent,
+    NavigationComponent
   ],
   providers: [
     //services

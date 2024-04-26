@@ -16,19 +16,33 @@ export class OneProductComponent implements OnInit{
   @Input() Product:any;
 
   ngOnInit(): void {
-    this.assignRandomColors();
+    this.assignCardColors();
   }
   
-  assignRandomColors() {
+  assignCardColors() {
     const cardContainers = document.querySelectorAll('.card-container');
-    const colors = ['#3f555a', '#4B879C','#E1DCD4', '#206F96'];
+    const colors = ['#3f555a', '#afbdc0','#b4b1a1', '#086383'];
+    const hoverColors = ['#5e8087', '#cad9dc', '#dad6c0', '#0786b5'];
 
     cardContainers.forEach((container: Element, index: number) => {
       const colorIndex = index % colors.length;
       const color = colors[colorIndex];
       (container as HTMLElement).style.backgroundColor = color;
+
+      const hoverColorIndex = index % hoverColors.length;
+      const hoverColor = hoverColors[hoverColorIndex];
+      container.addEventListener('mouseenter', () => {
+        (container as HTMLElement).style.backgroundColor = hoverColor;
+      });
+
+      container.addEventListener('mouseleave', () => {
+        (container as HTMLElement).style.backgroundColor = color;
+      });
     });
+    
   }
+  
+    
 }
 
 
