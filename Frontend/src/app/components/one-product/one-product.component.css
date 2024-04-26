@@ -1,11 +1,33 @@
-.card-container {
-    display: flex; /* Use flexbox */
-    flex-wrap: nowrap; /* Prevent wrapping */
+/* .card-container {
+    display: flex; 
+    flex-wrap: nowrap; 
   }
   
   .card {
-    /* Optionally set width to each card */
+    
     width: 18rem;
     margin-right: 10px;
-  }
+  } */
   
+
+  /* CSS for the card containers */
+.card-container {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* For large screens, display 4 cards horizontally */
+@media only screen and (min-width: 768px) {
+  .card-container {
+      width: calc(25% - 10px); /* 4 cards in a row with margin-right */
+      margin-right: 10px;
+  }
+}
+
+/* For small screens, display 1 card horizontally */
+@media only screen and (max-width: 767px) {
+  .card-container {
+      width: calc(100% - 10px); /* Full width with margin-right */
+      margin-right: 0;
+  }
+}

@@ -1,16 +1,10 @@
 
-
-    <div class="card card-container" style="display: inline-block;width: 18rem; margin-right: 10px;">
-        <img src="{{Product.images[0]}}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h4>{{Product.title}}</h4>
-            <p>{{Product.price}}</p>
-        </div>
-        <a [routerLink]="'/shop/products/' + Product._id">See more</a>
+<div class="card-container" style="display: inline-block;width: 18rem; margin-right: 10px;">
+    <img src="{{Product.images[0]}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h4>{{Product.title}}</h4>
+        <p>{{Product.price}}</p>
     </div>
-    
-    
-
-
-
+    <a [routerLink]="'/shop/products/' + Product._id">See more</a>
+</div>
 
