@@ -2,22 +2,17 @@ import { Component } from '@angular/core';
 import { RegisterService } from '../../../Services/register.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [
-    FormsModule,
-    HttpClientModule
-  ],
-  providers:[
-    RegisterService
-  ],
+  imports: [FormsModule, HttpClientModule, RouterModule, CommonModule],
+  providers: [RegisterService],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
 })
-
 export class RegisterComponent {
   user = {
     username: '',
@@ -25,10 +20,13 @@ export class RegisterComponent {
     email: '',
     password: '',
     image: null as File | null,
-    gender: ''
+    gender: '',
   };
 
-  constructor(private registerService: RegisterService, private router: Router) {}
+  constructor(
+    private registerService: RegisterService,
+    private router: Router
+  ) {}
 
   submitForm() {
     this.registerService.AddUser(this.user).subscribe(
@@ -45,9 +43,9 @@ export class RegisterComponent {
   formData = new FormData();
 
   onFileSelected(event: any) {
-    const file: File = event.target.files[0]; 
+    const file: File = event.target.files[0];
     console.log(file);
-    this.user.image = file; 
+    this.user.image = file;
     this.formData.append('image', this.user.image);
   }
 }

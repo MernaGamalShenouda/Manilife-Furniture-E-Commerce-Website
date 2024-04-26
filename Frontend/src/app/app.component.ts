@@ -29,9 +29,8 @@ import { HomeComponent } from './home/home.component';
     ProductDetailsComponent,
     ShopComponent,
     NavbarComponent,
-    ,
-            NavigationComponent,
-            HomeComponent
+    NavigationComponent,
+    HomeComponent,
   ],
   providers: [
     //services
@@ -39,7 +38,6 @@ import { HomeComponent } from './home/home.component';
     DataSharingService,
     AuthService,
     AdminGuard,
-    
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
