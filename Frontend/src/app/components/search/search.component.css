@@ -1,0 +1,38 @@
+.search-container {
+    background-color:#fbedcf;
+    display: flex;
+    justify-content: center;
+}
+
+.search-input {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.rounded-input {
+    border: 2px solid #002a3a; /* Set border color */
+    border-radius: 40px; /* Set border radius for rounded corners */
+    padding: 5px 10px; /* Adjust padding for better appearance */
+    margin-right: 10px; /* Add some margin between input and button */
+}
+
+.rounded-input:active {
+    border:2px solid #002a3a; /* Change border color when input is focused */
+}
+
+.btn {
+    background-color: #002a3a;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: white; 
+    color: #002a3a;
+    border: 1px solid #002a3a;
+}

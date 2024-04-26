@@ -1,94 +1,113 @@
-<!-- <h2 mat-dialog-title>Install Angular</h2> -->
-<mat-dialog-content class="mat-typography vh-100">
+<h2 mat-dialog-title>Update Product</h2>
 
-<div class="card mb-3" style="max-width: 900px;" >
-  <div class="row g-0">
-    <div class="col-md-5">
-      <img src="https://www.ikea.com/sa/en/images/products/franklin-bar-stool-with-backrest-foldable-black-black__0874580_pe680502_s5.jpg?f=s"class="img-fluid rounded-start h-100" alt="imageProdcuts">
-    </div>
-    <div class="col-md-7">
-      <div class="card-body">
-        <form class="card-body d-flex flex-column align-items-center"  >
-          <h3 class="card-title mb-4">Create Product</h3>
+<mat-dialog-content>
 
-          <div class="row mx-3" style="width: 60%;">
-            <div class="col-md-12 mb-3 ">
-              <mat-form-field class="w-100">
-                <mat-label>Title Product</mat-label>
-                <input formControlName="title" #title matInput placeholder="Ex. NORDVIKEN">
-              </mat-form-field>
+  <div class="row">
+    <div class="col-5">
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
 
-            </div>
+          <div class="carousel-item active">
+            <img src="{{ product.images[0]}}" class=" img-fluid rounded-start d-block w-100" alt="...">
           </div>
+         @for (image of product.images; track image.image) {
 
-
-          <div class="row mx-3" style="width: 60%;">
-            <div class="col-md-12 mb-3 ">
-              <mat-form-field class="w-100">
-                <mat-label>Category</mat-label>
-                <mat-select formControlName="category" >
-                  <mat-option value="option1">Option1</mat-option>
-                  <mat-option value="option2">Option2</mat-option>
-                  <mat-option value="option3">Option3</mat-option>
-                  <mat-option value="option4">Option4</mat-option>
-                  <mat-option value="option5">Option5</mat-option>
-                </mat-select>
-                <mat-hint align="end">Here's the dropdown arrow </mat-hint>
-              </mat-form-field>
-
-            </div>
+          <div class="carousel-item">
+            <img src="{{image}}" class=" img-fluid rounded-start d-block w-100" alt="...">
           </div>
+        }
 
-          <div class="row mx-3" style="width: 60%;">
-            <div class="col-md-12 mb-3 ">
-              <mat-form-field class="w-100 ">
-                <mat-label>Quantity</mat-label>
-                <input matInput  formControlName="quantity" type="number" class="example-right-align" placeholder="0">
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row mx-3" style="width: 60%;">
-            <div class="col-md-12 mb-3 ">
-              <mat-form-field class="w-100">
-                <mat-label>Price</mat-label>
-                <input matInput type="number" formControlName="price" class="example-right-align" placeholder="0">
-                <span matTextPrefix>$&nbsp;</span>
-                <span matTextSuffix>.00</span>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row mx-3" style="width: 60%;">
-            <div class="col-md-12 mb-3 ">
-              <mat-form-field class="w-100">
-                <mat-label>Description</mat-label>
-                <textarea matInput  #description formControlName="description" ></textarea>
-              </mat-form-field>
-
-
-            </div>
-          </div>
-
-
-          <div class="row mx-3" style="width: 60%;">
-            <div class="col-md-12 mb-3 ">
-              <div class="mb-3">
-                <label for="imageProduct" class="form-label">Upload images of Product</label>
-                <input class="form-control" formControlName="image" #imageProduct type="file"  multiple>
-              </div>
-
-            </div>
-          </div>
-
-          <button  type="submit"  disabled class="btn btn-custom w-50 fs-5">Submit</button>
-        </form>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
     </div>
-  </div>
-</div>
+    <div class="col-7 mt-3">
 
+      @if (product) {
+
+
+      <form class="card-body "  [formGroup]="form" >
+
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="w-100">
+              <mat-label>Title Product</mat-label>
+            <input formControlName="title" #title matInput placeholder="Ex. NORDVIKEN" [value]="product.title">
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="w-100">
+              <mat-label>Category</mat-label>
+              <mat-select     [value]="product.category">
+                <ng-container *ngFor="let category of categories">
+
+                  <mat-option value="{{category}}">{{ category }}</mat-option>
+                </ng-container>
+
+              </mat-select>
+
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field class="w-100 ">
+              <mat-label>Quantity</mat-label>
+              <input matInput  formControlName="quantity" type="number" class="example-right-align" placeholder="0" value="{{product.quantity}}">
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="w-100">
+              <mat-label>Price</mat-label>
+              <input matInput type="number" formControlName="price" class="example-right-align" placeholder="0" value="{{product.price}}">
+              <span matTextPrefix>$&nbsp;</span>
+              <span matTextSuffix>.00</span>
+            </mat-form-field>
+          </div>
+        </div>
+
+
+
+
+        <div class="d-flex flex-column justify-content-center align-items-center">
+
+          <div class="row mx-3" style="width: 60%;">
+            <div class="col-md-12  ">
+              <mat-form-field class="w-100 ">
+                <mat-label>Description</mat-label>
+                <textarea matInput  #description formControlName="description" value="{{product.details.description}}" ></textarea>
+              </mat-form-field>
+
+
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="imageProduct" class="form-label">Upload images of Product</label>
+            <input class="form-control" formControlName="image" #imageProduct type="file" value="{{product.imag}}"  multiple>
+          </div>
+          <button  type="submit"  [disabled]="!form.valid"
+          (click)="updateProcut()" mat-dialog-close  disabled class="btn btn-custom w-50 fs-5">Submit</button>
+        </div>
+      </form>
+    }
+    </div>
+  </div>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close >Close</button>
 </mat-dialog-actions>
+
+
+
+
+

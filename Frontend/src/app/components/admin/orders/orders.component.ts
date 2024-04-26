@@ -2,12 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { AdminServiceService } from '../admin-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import {MatChipsModule} from '@angular/material/chips';
+import { CommonModule } from '@angular/common';
+import {MatDialog} from '@angular/material/dialog';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 @Component({
   selector: 'app-orders',
   standalone: true,
   imports: [
     HttpClientModule,
-    MatChipsModule
+    MatChipsModule,
+    CommonModule,
+    MatButtonToggleModule
   ],
   providers:[AdminServiceService],
   templateUrl: './orders.component.html',
@@ -17,7 +22,7 @@ export class OrdersComponent  implements OnInit {
 
   Orders:any[]=[];
 
-  constructor(private adminService:AdminServiceService){}
+  constructor(private adminService:AdminServiceService ,public dialog: MatDialog){}
 
 
   ngOnInit(): void {
@@ -31,7 +36,9 @@ export class OrdersComponent  implements OnInit {
     this.adminService.GetOrders().subscribe({
       next:(data:any)=>{
         this.Orders=data;
-     
+
+        console.log(data);
+
 
       },
 
@@ -43,6 +50,11 @@ export class OrdersComponent  implements OnInit {
   }
 
 
-
+  updateOrderState(orderId: number, newState: string) {
+    this.adminService.updateOrderState(orderId, newState).subscribe(() => {
+      this.GetOrders();
+    });
+  }
 
 }
+

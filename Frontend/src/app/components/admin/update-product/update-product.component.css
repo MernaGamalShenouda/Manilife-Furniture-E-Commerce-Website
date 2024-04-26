@@ -18,3 +18,7 @@
   background-color:#006287;
 
 }
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+}
