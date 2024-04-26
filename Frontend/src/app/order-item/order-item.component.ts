@@ -1,16 +1,40 @@
 import { Component } from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTabsModule} from '@angular/material/tabs';
+import { UserService } from '../user.service';
+import { ActivatedRoute } from '@angular/router';
+import { RouterModule} from '@angular/router';
 
 
 @Component({
   selector: 'app-order-item',
   standalone: true,
-  imports: [MatCardModule,MatTabsModule, MatIconModule],
+  imports: [RouterModule],
+  providers:[
+    UserService],
   templateUrl: './order-item.component.html',
-  styleUrl: './order-item.component.css'
+  styleUrls: ['./order-item.component.css']
 })
 export class OrderItemComponent {
+  username: string = "torky";
+  userOrders: any[] = [];
 
+  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  ngOnInit(): void {
+    this.username ="torky" //this.route.snapshot.params["username"];
+    this.route.params.subscribe(params => {
+      this.username = "torky"//params['username'];
+      this.fetchUserOrders();
+  });
+
+}
+
+fetchUserOrders() {
+  this.userService.getOrdersByUserName(this.username).subscribe(
+    (orders: any[]) => {
+      this.userOrders = orders;
+    },
+    error => {
+      console.error('Error fetching user orders:', error);
+    }
+  );
+}
 }

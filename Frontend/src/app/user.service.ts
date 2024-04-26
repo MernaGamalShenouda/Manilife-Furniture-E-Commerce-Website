@@ -8,11 +8,11 @@ import { catchError } from 'rxjs/operators';
 })
 export class UserService {
 
-  private apiUrl = 'https://randomuser.me/api/';
+  private apiUrl = 'http://localhost:3000/users';
 
   constructor(private http: HttpClient) { }
 
-  GetUserByID(id:number){
+  GetUserByID(id:number=1){
     return this.http.get(this.apiUrl+"/"+id).pipe(
       catchError(error => {
         console.error('Error fetching users:', error);
@@ -21,10 +21,22 @@ export class UserService {
     );
   }
 
+  
+
   updateUserById(id: number, user: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${id}`, user).pipe(
       catchError(error => {
         console.error(`Error updating user with ID ${id}:`, error);
+        return throwError(error);
+      })
+    );
+  }
+
+
+  getOrdersByUserName(username: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${username}/orders`).pipe(
+      catchError(error => {
+        console.error(`Error fetching orders for user with ID ${username}:`, error);
         return throwError(error);
       })
     );

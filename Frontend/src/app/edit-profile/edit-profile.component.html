@@ -35,26 +35,26 @@
     <div class="text">
         Contact us Form
     </div>
-    <form (submit)="onSubmit()">
+    <form (submit)="onSubmit( username.value , email.value , image.value)">
         <div class="form-row">
             <div class="input-data">
-                <input type="text" required>
+                <input #username type="text" required>
                 <div class="underline"></div>
-                <label for="">First Name</label>
+                <label for="">Name</label>
             </div>
             <div class="input-data">
-                <input type="text" required>
+                <input #email type="text" required>
                 <div class="underline"></div>
-                <label for="">Last Name</label>
+                <label for="">E-mail</label>
             </div>
         </div>
-        <div class="form-row">
+       <div class="form-row">
             <div class="input-data">
-                <input type="text" required>
+                <input #image type="text" required>
                 <div class="underline"></div>
-                <label for="">Email Address</label>
+                <label for="">image</label>
             </div>
-            <div class="input-data">
+         <!--     <div class="input-data">
                 <input type="text" required>
                 <div class="underline"></div>
                 <label for="">Website Name</label>
@@ -66,8 +66,8 @@
                 <br />
                 <div class="underline"></div>
                 <label for="">Write your message</label>
-            </div> 
-        </div>
+            </div> -->
+        </div> 
         <div class="form-row submit-btn">
             <div class="input-data">
                 <div class="inner"></div>

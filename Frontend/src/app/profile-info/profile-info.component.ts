@@ -1,6 +1,6 @@
 import { Component ,OnInit} from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -16,12 +16,16 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class ProfileInfoComponent implements OnInit  {
   user: any;
-  id:number =1;
-  constructor(private userService: UserService) { }
+  id:number=1;
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService) { 
+    this.id =this.route.snapshot.params["id"];
+  }
 
   ngOnInit(): void {
     this.userService.GetUserByID(this.id).subscribe((data: any) => {
-    this.user = data.results[0]
+    this.user = data;
     console.log(this.user);
     });
   }

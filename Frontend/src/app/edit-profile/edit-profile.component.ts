@@ -14,21 +14,22 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class EditProfileComponent implements OnInit {
   user: any;
-
+  userId : any; 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService
-  ) { }
-
+  ) { 
+     this.userId =this.route.snapshot.params["id"]; // Assuming user ID is passed in route params }
+  }
   ngOnInit(): void {
-    const userId = 1  //+this.route.snapshot.paramMap.get('id'); // Assuming user ID is passed in route params
-    this.userService.GetUserByID(userId).subscribe(user => {
+    this.userService.GetUserByID(this.userId).subscribe(user => {
       this.user = user;
     });
   }
 
-  onSubmit(): void {
-    this.userService.updateUserById(this.user.id, this.user).subscribe(updatedUser => {
+  onSubmit(username:any ,email:any , image:any): void {
+    let updatedUser = { username, email ,image}
+    this.userService.updateUserById(this.user.id, updatedUser).subscribe(updatedUser => {
       console.log('User updated successfully:', updatedUser);
      
     });
