@@ -1,0 +1,36 @@
+{
+  "name": "ul",
+  "version": "5.0.0",
+  "description": "A minimalist utility library.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:IonicaBizau/node-ul.git"
+  },
+  "keywords": [
+    "util",
+    "nodejs",
+    "minimalist"
+  ],
+  "author": "Ionică Bizău <bizauionica@gmail.com>",
+  "license": "KINDLY",
+  "bugs": {
+    "url": "https://github.com/IonicaBizau/node-ul/issues"
+  },
+  "homepage": "https://github.com/IonicaBizau/node-ul",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "dependencies": {
+    "typpy": "2.0.0",
+    "deffy": "2.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "is-there": "^4.0.0"
+  }
+}
