@@ -1,13 +1,34 @@
 @if(Product){
-    <div class=" alert alert-secondary">
-        <img src="{{Product.images[0]}}" alt="...">
-        <p>Name: {{Product.title}}</p>
-        <p>Price: {{Product.price}}</p>
-        <input type="number" [(ngModel)]="quantity" placeholder="Enter quantity">
-        <input type="button" value="ADD" (click)="Add_Item(Product)">
-    </div>
+<div class="alert alert-secondary">
+  <img src="{{ Product.images[0] }}" alt="..." />
+  <p>Name: {{ Product.title }}</p>
+  <p>Price: {{ Product.price }}</p>
+  <input type="number" [(ngModel)]="quantity" placeholder="Enter quantity" />
+  <input type="button" value="ADD" (click)="Add_Item(Product)" />
+</div>
+<!-- <div
+  *ngIf="!cartHidden && cartProducts && cartProducts.length"
+  class="cart-parent w-100 h-100"
+>
+  <div class="cart-clickable h-100 w-75" (click)="hide()">p</div>
+  <div class="cart h-100 w-25 overflow-auto">
+    <div *ngFor="let product of cartProducts" class="product">
+        <div *ngIf="productDetails[product.productId]">
+          <p>Product Name: {{ productDetails[product.productId]?.title }}</p>
+          <p>Price: {{ productDetails[product.productId]?.price *product.quantity}}</p>
+          <img width="100px" [src]="productDetails[product.productId]?.images[0]" alt="" />
+          
+          <button (click)="decreaseQuantity(product)">-</button>
+          <input type="number" [(ngModel)]="product.quantity" />
+          <button (click)="increaseQuantity(product)">+</button>
+          <button (click)="deleteProductFromCart(product.productId)"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+      </div>
+      
+  </div>
+</div> -->
 }@else {
-    <div>
-        <h1>Loading ...</h1>
-    </div>
+<div>
+  <h1>Loading ...</h1>
+</div>
 }
