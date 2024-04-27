@@ -1,0 +1,72 @@
+
+<div class="wdt bg-black">
+ 
+</div>
+
+<nav class="navbar navbar-expand-lg">
+  <div class="navbar-top">
+    <div class="navbar-text">TRENDY FURNITURE IS AVAILABLE NOW</div>
+  </div>
+  <div class="navbar-light">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item"><a class="nav-link" href="#">SHOP</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">THE MANI STORY</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link manilife-text" href="#"
+          ><img
+            src="https://mani-life.com/cdn/shop/files/Group_276_2x_95a68e50-cf75-4902-9d13-432730e20bf9.png?v=1671513721"
+            style=" width: 70%"
+        /></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">PROFILE</a>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="/cart">CART</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="myrow">
+<div class="container">
+  <div class="row ">
+    <div class="col-1"></div>
+    <div class="col-4">
+      <div class="container test mt-4 mb-4 p-3 d-flex justify-content-center border border-dark rounded">
+        <div class="card p-4 test">
+          <div class="image d-flex flex-column justify-content-center align-items-center">
+            <button class="btn btn-secondary">
+              <img src="{{ user.image }}" height="100" width="100" />
+            </button>
+            <span class="name mt-3">{{ user.username }} </span>
+            <span class="idd">{{ user.email }}</span>
+            <span class="idd">{{ user.gender }}</span>
+              <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                <span class="idd1">Oxc4c16a645_b21a</span>
+                <span><i class="fa fa-copy"></i></span>
+              </div>
+      
+              <div class="d-flex mt-2 ">
+                  <a routerLink="/edit-profile/{{user.id}}">
+                      <button class="btn1 btnnnnn">Edit Profile</button>
+                    </a>
+              </div>
+              <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center">
+                <span><i class="fa fa-twitter"></i></span>
+                <span><i class="fa fa-facebook-f"></i></span>
+                <span><i class="fa fa-instagram"></i></span>
+                <span><i class="fa fa-linkedin"></i></span>
+              </div>
+              <div class="px-2 rounded mt-4 date">
+                <span class="join">Joined May,2021</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+</div>
+
