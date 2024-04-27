@@ -31,16 +31,6 @@ import { DataSharingService } from '../../Services/data-sharing.service';
   styleUrls: ['./shop.component.css'] 
 })
 export class ShopComponent {
-  // searchByWord="";
-  // productsByCategory="";
-  // getWord(e:any){
-  //   this.searchByWord=e;
-  //   //console.log(this.searchByWord);
-  // }
   
-  // getCategory(c:any){
-  //   this.productsByCategory=c;
-  //   //console.log(this.productsByCategory);
-  // }
 }
 

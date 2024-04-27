@@ -4,6 +4,10 @@
         <app-one-product [Product]="p"></app-one-product>
     }
 
-    <input type="button" value="Prev" (click)="Prev()">
-    <input type="button" value="Next" (click)="Next()">
+    <ng-container *ngIf="!searchByWord && !productByCategory">
+        <input type="button" value="Prev" (click)="Prev()">
+        <input type="button" value="Next" (click)="Next()">
+    </ng-container>
+
+    
 </div>

@@ -5,6 +5,6 @@
         <h3 class="product-title">{{Product.title}}</h3>
         <!-- <p>{{Product.price}}</p> -->
     </div>
-    <a class="btn btn-primary" [routerLink]="'/shop/products/' + Product._id">view</a>
+    <a class="btn btn-primary" (click)="viewdetails()" [routerLink]="'/shop/products/' + Product._id">view</a>
 </div>
 

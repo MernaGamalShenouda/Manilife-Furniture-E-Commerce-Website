@@ -102,17 +102,25 @@ export class SearchComponent implements OnInit {
   searchTerm = '';
   categories: Set<string> = new Set();
   TotalNumberOfProducts: number=500;//l7ad ma n3raf el number
+  // DataSharingService: any;
+  viewDetails:string=';'
 
   constructor(
     private productsService: ProductsService,
-    private dataSharingService: DataSharingService
+    // private dataSharingService: DataSharingService
   ) {}
 
   ngOnInit(): void {
     this.fetchCategories();
 
-    DataSharingService.searchByWord$.subscribe((word) => {
-      this.searchTerm = word;
+    // DataSharingService.searchByWord$.subscribe((word) => {
+    //   this.searchTerm = word;
+    // });
+
+    DataSharingService.viewdetails$.subscribe((details: any) => {
+      this.viewDetails=details;
+      console.log('Details from viewdetails:', details);
+      // Handle the details here
     });
   }
 
@@ -139,4 +147,6 @@ export class SearchComponent implements OnInit {
   pickedCategory(category: string): void {
     DataSharingService.updateProductByCategory(category);
   }
+
+
 }
