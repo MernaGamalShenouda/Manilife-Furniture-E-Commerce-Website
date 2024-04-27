@@ -162,7 +162,7 @@ export class AllProductsComponent implements OnInit, DoCheck {
   private subscriptions: Subscription[] = [];
   currentPage: number = 1;
   pageSize: number = 8;
-  totalProducts: number = 100;//l7ad ma nkarar fe kam product 3andena
+  totalProducts: number = 500;//l7ad ma nkarar fe kam product 3andena
 
   constructor(
     private http: HttpClient,
@@ -201,7 +201,7 @@ export class AllProductsComponent implements OnInit, DoCheck {
 
 
   private loadProducts(): void {
-    this.productsService.GetAllProducts().subscribe({
+    this.productsService.GetAllProducts(this.currentPage,this.pageSize).subscribe({
       next: (data) => {
         console.log(data);
         if (this.searchByWord != '') {

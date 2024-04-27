@@ -101,6 +101,7 @@ import { FormsModule } from '@angular/forms';
 export class SearchComponent implements OnInit {
   searchTerm = '';
   categories: Set<string> = new Set();
+  TotalNumberOfProducts: number=500;//l7ad ma n3raf el number
 
   constructor(
     private productsService: ProductsService,
@@ -117,7 +118,7 @@ export class SearchComponent implements OnInit {
 
   fetchCategories(): void {
     this.categories.add('All');
-    this.productsService.GetAllProducts().subscribe({
+    this.productsService.GetAllProducts(1,this.TotalNumberOfProducts).subscribe({
       next: (data) => {
         data.Products.forEach((product: any) => {
           if (product.category) {

@@ -3,6 +3,7 @@
         <img src="{{Product.images[0]}}" alt="...">
         <p>Name: {{Product.title}}</p>
         <p>Price: {{Product.price}}</p>
+        <input type="number" [(ngModel)]="quantity" placeholder="Enter quantity">
         <input type="button" value="ADD" (click)="Add_Item(Product)">
     </div>
 }@else {
