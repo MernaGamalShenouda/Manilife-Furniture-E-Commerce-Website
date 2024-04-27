@@ -1,0 +1,33 @@
+{
+  "name": "ansi-parser",
+  "version": "3.0.0",
+  "description": "Parse strings containing ANSI style characters.",
+  "main": "lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "author": "Ionică Bizău <bizauionica@gmail.com> (http://ionicabizau.net/)",
+  "contributors": [
+    "Unihedron <vyfcalt@gmail.com>",
+    "Jongware http://stackoverflow.com/users/2564301/jongware"
+  ],
+  "devDependencies": {
+    "couleurs": "5.0.0"
+  },
+  "license": "KINDLY",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IonicaBizau/node-ansi-parser.git"
+  },
+  "keywords": [
+    "ansi",
+    "parser"
+  ],
+  "bugs": {
+    "url": "https://github.com/IonicaBizau/node-ansi-parser/issues"
+  },
+  "homepage": "https://github.com/IonicaBizau/node-ansi-parser"
+}
