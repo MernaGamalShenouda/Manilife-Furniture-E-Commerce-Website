@@ -159,6 +159,10 @@ export class AllProductsComponent implements OnInit, DoCheck {
   productByCategory = '';
   products: any;
   private subscriptions: Subscription[] = [];
+  // currentPage: number = 1;
+
+  // pageSize: number = 5;
+  // totalProducts: number = 0;
 
   constructor(
     private productsService: ProductsService,
@@ -212,6 +216,7 @@ export class AllProductsComponent implements OnInit, DoCheck {
           });
         } else {
           this.products = data.Products;
+          // console.log(this.products)
         }
       },
       error: (err) => {
@@ -219,4 +224,33 @@ export class AllProductsComponent implements OnInit, DoCheck {
       },
     });
   }
+
+  // getProducts(): void {
+  //   const url = `http://your-backend-url/api/products?page=${this.currentPage}&pageSize=${this.pageSize}`;
+  //   this.http.get<any>(url).subscribe(
+  //     (response) => {
+  //       this.Products = response.Products;
+  //       this.totalProducts = response.countProducts;
+  //     },
+  //     (error) => {
+  //       console.error(error);
+  //       // Handle error
+  //     }
+  //   );
+  // }
+
+  // prevPage(): void {
+  //   if (this.currentPage > 1) {
+  //     this.currentPage--;
+  //     this.getProducts();
+  //   }
+  // }
+
+  // nextPage(): void {
+  //   const totalPages = Math.ceil(this.totalProducts / this.pageSize);
+  //   if (this.currentPage < totalPages) {
+  //     this.currentPage++;
+  //     this.getProducts();
+  //   }
+  // }
 }

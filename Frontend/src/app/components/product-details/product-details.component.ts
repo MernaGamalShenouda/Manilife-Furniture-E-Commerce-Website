@@ -21,6 +21,9 @@ export class ProductDetailsComponent implements OnInit{
   user: any;
   userID: number=0;
   userCart:any[] = []
+
+  productItem: any={} ;
+  
 constructor(private myRoute : ActivatedRoute, private productsService:ProductsService, private authService: AuthService){
   this.ID=myRoute.snapshot.params["id"];
 }
@@ -45,10 +48,13 @@ constructor(private myRoute : ActivatedRoute, private productsService:ProductsSe
   }
 
   Add_Item(Product: any){
-    // console.log('Adding item:', Product);
-
-    this.userCart.push(Product);
-    // console.log('User Cart:', this.userCart);
+    // console.log('Adding item:', Product._id,Product.quantity);
+    this.productItem = {
+      "productId": Product._id,
+      "quantity": Product.quantity
+    };
+    this.userCart.push(this.productItem);
+    console.log('User Cart:', this.userCart);
     this.user.data.cart=this.userCart;
     // console.log('User Data====>:', this.user);
 

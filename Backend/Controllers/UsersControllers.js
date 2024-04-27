@@ -61,18 +61,22 @@ let Login = async (req, res) => {
 };
 
 const updateUserById = async (req, res) => {
+  const newData =req.body.user.data;
+    console.log("fatma",newData);
   try {
     const userId = req.params.id;
-    const newData = {
-      username: req.body.username,
-      fullname: req.body.fullname,
-      email: req.body.email,
-      password: req.body.password,
-      image: req.body.image,
-      gender: req.body.gender,
-      cart: req.body.cart,
-    };
+    // const newData = {
+    //   username: req.body.username,
+    //   fullname: req.body.fullname,
+    //   email: req.body.email,
+    //   password: req.body.password,
+    //   image: req.body.image,
+    //   gender: req.body.gender,
+    //   cart: req.body.cart,
+    // };
 
+    const newData =req.body.user.data;
+    console.log("fatma",newData);
     const updatedUser = await UsersModel.findOneAndUpdate(
       { _id: userId },
       newData,
