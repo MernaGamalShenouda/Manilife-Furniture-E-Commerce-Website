@@ -30,7 +30,7 @@ constructor(private myRoute : ActivatedRoute, private productsService:ProductsSe
   ngOnInit(): void {
     this.productsService.GetProductByID(this.ID).subscribe({
       next:(data)=>{
-        this.Product = data.Product;
+        this.Product = data;
       },
       error:(err)=>{console.log(err)}
     })
@@ -48,16 +48,23 @@ constructor(private myRoute : ActivatedRoute, private productsService:ProductsSe
   }
 
   Add_Item(Product: any){
-    // console.log('Adding item:', Product._id,Product.quantity);
     this.productItem = {
       "productId": Product._id,
       "quantity": Product.quantity,
       "_id": Product._id
     };
-    this.userCart.push(this.productItem);
-    console.log('User Cart:', this.userCart);
+
+    const existingProductIndex = this.userCart.findIndex(item => item._id === Product._id);
+
+    if (existingProductIndex === -1) {
+      this.userCart.push(this.productItem);
+      console.log('Product added to cart:', Product);
+    } else {
+      console.log('Product already exists in cart');
+    }
+    
+      console.log('User Cart:', this.userCart);
     this.user.data.cart=this.userCart;
-    // console.log('User Data====>:', this.user);
 
     this.updateuserFunction( this.userID,this.user);
 

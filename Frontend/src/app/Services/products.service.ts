@@ -9,8 +9,9 @@ export class ProductsService {
   private readonly URL_API= "http://localhost:7005/api/products" //API
   constructor(public readonly http: HttpClient) {}
 
-  GetAllProducts(): Observable<ApiResponse>{
-    return this.http.get<ApiResponse>(this.URL_API);
+  GetAllProducts( page: number, pageSize: number): Observable<ApiResponse>{
+    const params = { page: page.toString(), pageSize: pageSize.toString() };
+    return this.http.get<any>(this.URL_API, { params });
   }
 
   GetProductByID(productId: string): Observable<any> {
