@@ -13,6 +13,10 @@ import { DataSharingService } from './Services/data-sharing.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminGuard } from './Guards/admin.guard';
 import { AuthService } from './Services/auth.service';
+import { NavigationComponent } from './navigation/navigation.component';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +31,10 @@ import { AuthService } from './Services/auth.service';
     ProductDetailsComponent,
     ShopComponent,
     NavbarComponent,
+    NavigationComponent,
+    HomeComponent,
+    FooterComponent,
+    AboutComponent,
   ],
   providers: [
     //services
@@ -36,6 +44,7 @@ import { AuthService } from './Services/auth.service';
     AdminGuard,
   ],
   templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
