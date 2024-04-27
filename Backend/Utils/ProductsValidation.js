@@ -32,10 +32,10 @@ const ProductSchema = {
         price: { type: "number",minimum:0 },
         category: { type: "string" ,minLength:3},
         quantity: { type: "number",minimum:0  },
-        image: { type: "string" },
+        images: { type: "string" },
         details: { $ref: "#/definitions/DetailsSchema" }
     },
-    required: ['title', 'price', 'category', 'quantity', 'image', 'details'],
+    required: ['title', 'price', 'category', 'quantity', 'images', 'details'],
     additionalProperties: false,
     definitions: {
         DetailsSchema

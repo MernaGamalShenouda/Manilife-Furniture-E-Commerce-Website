@@ -1,13 +1,15 @@
 //#region Requires
 const express = require("express");
 const cors = require('cors');
-
+require('dotenv').config()
 const app = express();
 const PORT = process.env.PORT || 7005;
 const bodyParser = require("body-parser");
 const ProductsRoutes = require("./Routes/ProductsRoutes");
 const OrdersRoutes = require("./Routes/OrdersRoutes");
 const UsersRoutes = require("./Routes/UsersRoutes");
+const uploadRoute = require("./Routes/UploadRoutes");
+
 let Products  = require("./Models/Products.Model");
 
 const fs = require('fs');
@@ -81,6 +83,8 @@ app.use(bodyParser.json());
 app.use("/api/products", ProductsRoutes);
 app.use("/api/users", UsersRoutes);
 app.use("/api/orders", OrdersRoutes);
+app.use("/api/uploadPhoto" , uploadRoute);
+
 
 app.listen(PORT, () => {
   console.log("http://localhost:" + PORT);
