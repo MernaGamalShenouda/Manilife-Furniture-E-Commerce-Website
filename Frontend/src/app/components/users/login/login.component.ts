@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { firstValueFrom } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { CommonModule } from '@angular/common';
 const jwtHelper = new JwtHelperService();
 
 @Component({

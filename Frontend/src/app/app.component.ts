@@ -16,6 +16,9 @@ import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { CartComponent } from './components/cart/cart.component';
+import { ProductsService } from './Services/products.service';
+import { SearchComponent } from './components/search/search.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -34,7 +37,8 @@ import { CartComponent } from './components/cart/cart.component';
     HomeComponent,
     FooterComponent,
     AboutComponent,
-    CartComponent
+    CartComponent,
+    CommonModule
   ],
   providers: [
     //services
