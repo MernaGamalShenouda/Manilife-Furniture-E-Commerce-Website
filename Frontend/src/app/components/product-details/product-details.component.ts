@@ -78,8 +78,11 @@ export class ProductDetailsComponent implements OnInit {
       console.log('Product added to cart:', Product);
     } else {
       const pastquantity = this.userCart[existingProductIndex].quantity;
-      console.log('Product already exists in cart so quantity was added');
-      this.userCart[existingProductIndex].quantity =this.quantity+ pastquantity;
+      console.log(
+        'Product already exists in cart so quantity was added' + pastquantity
+      );
+      this.userCart[existingProductIndex].quantity =
+        this.quantity + pastquantity;
       console.log('User Cart:', this.userCart);
     }
 
@@ -159,7 +162,7 @@ export class ProductDetailsComponent implements OnInit {
       (product) => product.productId !== productId
     );
     console.log(this.cartProducts);
-    
+
     // Update the user with the new cart
     this.updateuserFunction(this.userID, {
       ...this.user,
@@ -167,6 +170,6 @@ export class ProductDetailsComponent implements OnInit {
         ...this.user.data,
         cart: this.cartProducts,
       },
-    });
-  }
+    });
+  }
 }
