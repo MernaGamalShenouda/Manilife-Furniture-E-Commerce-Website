@@ -63,7 +63,7 @@ ul {
 
 .award-winning-content {
   text-align: center;
-  margin-top: 12vh;
+  margin-top: 30vh;
 }
 
 .award-winning-title {
@@ -99,7 +99,7 @@ ul {
 
 .rotating-section {
   background-color: #ffeccc;
-  height: 15vh;
+  height: 10vh;
   position: relative;
   overflow: hidden;
 }
@@ -137,9 +137,14 @@ ul {
 } */
 
 /* products section */
-.product-container {
-  margin: 0 !important;
-  padding: 0 !important;
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.row {
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .product-section {
@@ -260,4 +265,9 @@ ul {
   -moz-transition: ease-in-out 0.3s;
   -ms-transition: ease-in-out 0.3s;
   -o-transition: ease-in-out 0.3s;
+}
+
+.featured-products {
+  height: 100vh;
+  background-color: #ffeccc;
 }
