@@ -45,7 +45,6 @@ import { AboutComponent } from './about/about.component';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  styleUrl: './app.component.css',
 })
 export class AppComponent {
   constructor(private router: Router) {}

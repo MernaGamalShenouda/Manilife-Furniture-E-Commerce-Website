@@ -7,7 +7,6 @@ import { AllProductsComponent } from './components/all-products/all-products.com
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { RegisterComponent } from './components/users/register/register.component';
 import { LoginComponent } from './components/users/login/login.component';
-import { HomeComponent } from './components/home/home/home.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { AdminMainComponent } from './components/admin/admin-main/admin-main.component';
 import { AdminGuard } from './Guards/admin.guard';
@@ -16,8 +15,6 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 
 export const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
   // {path:"",component:ProductsComponent},
   // {path:"Products",component:ProductsComponent},
   // {path:"CreateProduct",component:CreateProductComponent},
@@ -33,10 +30,11 @@ export const routes: Routes = [
     ],
   },
 
-  { path: '', redirectTo: 'Home', pathMatch: 'full' },
-  { path: 'Home', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'Register',/*canActivate:[loggedInGuard],*/ component: RegisterComponent },
   { path: 'Login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
   {
     path: 'shop',
     component: ShopComponent,
