@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { DataSharingService } from '../../Services/data-sharing.service';
 
 @Component({
   selector: 'app-one-product',
@@ -9,11 +10,15 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     CommonModule
   ],
+  providers: [
+    DataSharingService
+  ],
   templateUrl: './one-product.component.html',
   styleUrl: './one-product.component.css'
 })
 export class OneProductComponent implements OnInit{
   @Input() Product:any;
+  
 
   ngOnInit(): void {
     this.assignCardColors();
@@ -41,8 +46,12 @@ export class OneProductComponent implements OnInit{
     });
     
   }
-  
-    
+  viewDetails:string ='';
+
+  viewdetails(): void {
+    this.viewDetails="Product got viewed";
+    DataSharingService.updateviewdetails(this.viewDetails);
+  }
 }
 
 

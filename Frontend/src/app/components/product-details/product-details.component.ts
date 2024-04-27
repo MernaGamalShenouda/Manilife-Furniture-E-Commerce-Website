@@ -78,11 +78,8 @@ export class ProductDetailsComponent implements OnInit {
       console.log('Product added to cart:', Product);
     } else {
       const pastquantity = this.userCart[existingProductIndex].quantity;
-      console.log(
-        'Product already exists in cart so quantity was added' + pastquantity
-      );
-      this.userCart[existingProductIndex].quantity =
-        this.quantity + pastquantity;
+      console.log('Product already exists in cart so quantity was added');
+      this.userCart[existingProductIndex].quantity =this.quantity+ pastquantity;
       console.log('User Cart:', this.userCart);
     }
 

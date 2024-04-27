@@ -23,16 +23,19 @@
         </div>
     </div> -->
 
-    <div class="search-container">
-        <div class="search-input">
-            <input class="rounded-input" type="text" placeholder="Search" [(ngModel)]="searchTerm">
-            <button class="btn" (click)="search()">Search</button>
-        </div>
-    </div>
+    @if(!viewDetails){
 
-    <div class="navbar-light">
-        <ul class="navbar-nav mx-auto" *ngFor="let category of categories" (click)="pickedCategory(category)">
-            <li class="nav-item btn "><a class="nav-link">{{category.toUpperCase()}}</a></li>
-        </ul>
-    </div>
+        <div class="search-container">
+            <div class="search-input">
+                <input class="rounded-input" type="text" placeholder="Search" [(ngModel)]="searchTerm">
+                <button class="btn" (click)="search()">Search</button>
+            </div>
+        </div>
+        
+        <div class="navbar-light">
+            <ul class="navbar-nav mx-auto" *ngFor="let category of categories" (click)="pickedCategory(category)">
+                <li class="nav-item btn "><a class="nav-link">{{category.toUpperCase()}}</a></li>
+            </ul>
+        </div>
+    }
 </div>
