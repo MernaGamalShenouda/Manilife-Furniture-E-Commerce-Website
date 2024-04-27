@@ -2,12 +2,11 @@
   <div class="row">
     <div class="col-12 mt-3 d-flex justify-content-center ">
       <div class="input-group w-50">
-        <input type="search" #search (input)="Getname($event)" class="form-control" placeholder="Search Product">
+        <input type="search" class="form-control" placeholder="Search Product">
         <div class="input-group-append">
-          <button class="btn bg-btn z-0" (click)="Getname(search.value)" type="button">
+          <button class="btn bg-btn " type="button">
             <i class="fa fa-search text-white"></i>
           </button>
-          {{name}}
         </div>
       </div>
     </div>
@@ -22,11 +21,9 @@
               <h2>Manage <b>Products</b></h2>
             </div>
             <div class="col-sm-6">
-              <a routerLink="adminCreateProduct" class="btn btn-success" data-toggle="modal"><i
-                  class="fa-solid fa-circle-plus"></i>
+              <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="fa-solid fa-circle-plus"></i>
                 <span>Add New Products</span></a>
-              <a class="btn btn-danger" data-toggle="modal"><i
-                  class="fa-sharp fa-solid fa-circle-minus"></i><span>Delete</span></a>
+              <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="fa-sharp fa-solid fa-circle-minus"></i><span>Delete</span></a>
             </div>
           </div>
         </div>
@@ -36,11 +33,10 @@
             <tr>
               <th>
                 <span class="custom-checkbox">
-                  <input type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleAllCheckboxes()">
+                  <input type="checkbox" id="selectAll">
                   <label for="selectAll"></label>
                 </span>
               </th>
-
               <th>Title</th>
               <th>Price</th>
               <th>Quantity</th>
@@ -55,51 +51,86 @@
 
             @if(products){
 
-            @for (product of products; track product._id) {
-            <tr>
-              <td>
-                <span class="custom-checkbox">
-                  <input type="checkbox" id="checkbox1" [(ngModel)]="product.checked" name="options[]" value="1">
-                  <label for="checkbox1"></label>
-                </span>
-              </td>
-              <td>{{ product.title }}</td>
-              <td>{{ product.price }}$</td>
-              <td>{{ product.quantity }}</td>
-              <td>{{ product.category }}</td>
-              <td>
-                <a (click)="openDialogUpdate()" class="edit" data-toggle="modal"><i
-                    class="fa-solid fa-pen-to-square"></i></a>
-                <a (click)="openDialog('0ms', '0ms', product._id)" class="delete"><i class="fa-solid fa-trash"></i></a>
-              </td>
-            </tr>
+              @for (product  of products; track product.id;) {
+
+
+                <tr>
+                  <td>
+                    <span class="custom-checkbox">
+                      <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                      <label for="checkbox1"></label>
+                    </span>
+                  </td>
+                  <td>{{product.name}}</td>
+                  <td>{{product.price}}$</td>
+                  <td>Electronics</td>
+                  <td>{{product.category}}</td>
+                  <td>
+                    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="fa-solid fa-trash"></i></a>
+                  </td>
+                </tr>
+              }
+
+
+
 
             }
-            }
+
+
 
           </tbody>
         </table>
 
+        <!-- @for (item of items; track $index) { -->
 
-
-        <div class="clearfix">
-          <div class="hint-text">Showing <b>{{ getRange()}}</b> out of <b>{{countProducts}}</b> entries</div>
+          <div class="clearfix">
+            <div class="hint-text">Showing <b>{{ getRange()}}</b> out of <b>{{countProducts}}</b> entries</div>
 
           <nav aria-label="Page navigation example">
             <ul class="pagination">
-              <li class="page-item"><button class="page-link btn-custom"
-                  (click)="goToPage(currentPage-1)">Previous</button></li>
-
-              <li class="page-item"><button class="page-link btn-custom" (click)="goToPage(currentPage+1)">Next</button>
-              </li>
+              <li class="page-item"><button  class="page-link" (click)="goToPage(currentPage-1)">Previous</button></li>
+              <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+              <li class="page-item"><button   class="page-link " (click)="goToPage(currentPage+1)">Next</button></li>
             </ul>
           </nav>
-        </div>
+          </div>
 
 
+        <!-- } -->
 
       </div>
     </div>
   </div>
 
 </div>
+
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <form>
+      <div class="modal-header">
+        <h4 class="modal-title">Delete Employee</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete these Records?</p>
+        <p class="text-warning"><small>This action cannot be undone.</small></p>
+      </div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+        <input type="submit" class="btn btn-danger" value="Delete">
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
