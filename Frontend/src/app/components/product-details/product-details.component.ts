@@ -66,7 +66,7 @@ constructor(private myRoute : ActivatedRoute, private productsService:ProductsSe
     } else {
       const pastquantity = this.userCart[existingProductIndex].quantity;
       console.log('Product already exists in cart so quantity was added');
-      this.userCart[existingProductIndex].quantity += pastquantity;
+      this.userCart[existingProductIndex].quantity +=this.quantity+ pastquantity;
       console.log('User Cart:', this.userCart);
     }
     
