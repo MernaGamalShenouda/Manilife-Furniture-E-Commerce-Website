@@ -29,7 +29,7 @@ import { AuthService } from './Services/auth.service';
     ProductDetailsComponent,
     ShopComponent,
     NavbarComponent,
-    HomeComponent,
+HomeComponent,
     NavigationComponent
   ],
   providers: [

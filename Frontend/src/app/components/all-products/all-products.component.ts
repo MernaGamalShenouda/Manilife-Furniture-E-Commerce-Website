@@ -203,7 +203,7 @@ export class AllProductsComponent implements OnInit, DoCheck {
   private loadProducts(): void {
     this.productsService.GetAllProducts().subscribe({
       next: (data) => {
-        console.log(this.searchByWord);
+        console.log(data);
         if (this.searchByWord != '') {
           
           this.products = data.Products.filter((product: any) => {

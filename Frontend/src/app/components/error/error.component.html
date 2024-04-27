@@ -1,0 +1,35 @@
+<html>
+  <body>
+    <div
+      class="container-fluid row justify-content-center align-items-center p-0 m-0 h-100"
+    >
+      <div class="col-10 row justify-content-center align-items-center h-100">
+        <div class="col-6 image-container row justify-content-end">
+          <div class="image col-8 row">
+            <img
+              src="../../../assets/images/not-found.png"
+              class="img-fluid col-9"
+              alt="missing leg chair"
+            />
+          </div>
+        </div>
+        <div
+          class="col-6 text-white not-found d-flex flex-column justify-content-center"
+        >
+          <h1>404</h1>
+          <h2>Something's missing.</h2>
+          <h3>
+            This page is missing or you <br />
+            assembled the link incorrectly.
+          </h3>
+          <a
+            class="text-decoration-none text-white home-link"
+            [routerLink]="'/Home'"
+          ><i class="fa-solid fa-arrow-left-long"></i>
+            GO TO HOME PAGE</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

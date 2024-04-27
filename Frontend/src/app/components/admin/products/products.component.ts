@@ -161,14 +161,17 @@ getRange(): string {
 
 //--------------------Update Modal-----------------------------------------
 
-  openDialogUpdate() {
-    const dialogRef = this.dialog.open(UpdateProductComponent);
+        openDialogUpdate(productId: string) {
+          const dialogRef = this.dialog.open(UpdateProductComponent, {
+            data: {
+              productId: productId
+            }
+          });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
+          dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+          });
+        }
 }
 
 
