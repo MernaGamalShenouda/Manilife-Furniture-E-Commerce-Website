@@ -79,13 +79,9 @@
           <div class="col-md-12 mb-3 ">
             <div class="mb-3">
               <label for="imageProduct" class="form-label">Upload images of Product</label>
-              <input class="form-control" formControlName="image" #imageProduct type="file"  multiple>
+              <input class="form-control" (change)="uploadPhoto($event)" formControlName="images" #imageProduct type="file"  multiple>
+
             </div>
-
-            @if (!imageValid && imageProduct.value ) {
-
-              <mat-error>title must  more than 3 charchter </mat-error>
-            }
           </div>
         </div>
 

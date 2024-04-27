@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {  MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+
 import {
   MatDialog,
   MatDialogRef,
@@ -15,7 +16,7 @@ import {
   MatDialogContent,
 
 } from '@angular/material/dialog';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UpdateProductComponent } from '../update-product/update-product.component';
 
 @Component({
@@ -49,7 +50,7 @@ export class ProductsComponent implements OnInit {
 
 
 
-  constructor(private adminService: AdminServiceService ,public dialog: MatDialog) {
+  constructor(private adminService: AdminServiceService ,public dialog: MatDialog,private router:Router) {
 
 
 
@@ -73,7 +74,6 @@ Getname(e:any) {
     this.adminService.GetProductByName(e.target.value.trim()).subscribe({
         next: (responseData: any) => {
             this.products = responseData.Product;
-            console.log(this.products);
 
         },
         error: (error: any) => {
@@ -152,7 +152,6 @@ getRange(): string {
     dialogRef.afterClosed().subscribe((updatedProducts: any[]) => {
       if (updatedProducts) {
         this.products = updatedProducts;
-        console.log(this.products);
 
       }
     });
@@ -169,9 +168,17 @@ getRange(): string {
           });
 
           dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
           });
         }
+
+
+//------------
+
+createProduct(){
+  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['admin/adminCreateProduct']);
+  });
+}
 }
 
 

@@ -47,4 +47,8 @@ export class AdminServiceService {
     return this.http.put(this.URB_DB+`orders/${id}`,{orderId:id,newState:state});
   }
 
+
+  uploadImage(formData: FormData) {
+    return this.http.post(this.URB_DB+`uploadPhoto/upload`, formData);
+  }
 }

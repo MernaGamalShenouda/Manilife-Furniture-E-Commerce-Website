@@ -6,16 +6,18 @@
     <div class="col-5">
       <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
+          @if ( product.images) {
 
-          <div class="carousel-item active">
-            <img src="{{ product.images[0]}}" class=" img-fluid rounded-start d-block w-100" alt="...">
-          </div>
+            <div class="carousel-item active">
+              <img src="{{ product.images[0]}}" class=" img-fluid rounded-start d-block w-100" alt="...">
+            </div>
          @for (image of product.images; track image.image) {
 
           <div class="carousel-item">
             <img src="{{image}}" class=" img-fluid rounded-start d-block w-100" alt="...">
           </div>
         }
+      }
 
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -30,7 +32,7 @@
     </div>
     <div class="col-7 mt-3">
 
-      @if (product) {
+      @if (product && product.details) {
 
 
       <form class="card-body "  [formGroup]="form" >
@@ -92,7 +94,8 @@
 
           <div class="mb-3">
             <label for="imageProduct" class="form-label">Upload images of Product</label>
-            <input class="form-control" formControlName="image" #imageProduct type="file" value="{{product.imag}}"  multiple>
+            <input class="form-control" (change)="uploadPhoto($event)" formControlName="images" #imageProduct value="{{product.imag}}"  type="file"  multiple>
+
           </div>
           <button  type="submit"  [disabled]="!form.valid"
           (click)="updateProcut()" mat-dialog-close  disabled class="btn btn-custom w-50 fs-5">Submit</button>
