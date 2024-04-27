@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -19,7 +19,6 @@ export class AuthService {
       this.saveUserData();
     }
   }
- 
 
   login(email: string, password: string): Observable<any> {
     return this.http
@@ -60,12 +59,13 @@ export class AuthService {
   //   }
   // }
 
-  GetUserByID(id:number){
-    return this.http.get(this.apiUrl+"/"+id);
+  GetUserByID(id: number) {
+    return this.http.get(this.apiUrl + '/' + id);
   }
 
-  updateUser(id:number,user:any){
-    return this.http.put(this.apiUrl+"/"+id, user);
+  updateUser(id: number, user: any): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put(url, { newData: user.data });
   }
 
   getLoggedInUser() {
@@ -75,8 +75,6 @@ export class AuthService {
       return decodedToken.id;
     }
   }
-
-
 
   saveUserData() {
     const encodedUserData = localStorage.getItem('token');
@@ -95,7 +93,7 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     let token = localStorage.getItem('token');
-    
+
     return token != null;
   }
 

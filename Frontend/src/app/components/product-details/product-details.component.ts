@@ -51,7 +51,8 @@ constructor(private myRoute : ActivatedRoute, private productsService:ProductsSe
     // console.log('Adding item:', Product._id,Product.quantity);
     this.productItem = {
       "productId": Product._id,
-      "quantity": Product.quantity
+      "quantity": Product.quantity,
+      "_id": Product._id
     };
     this.userCart.push(this.productItem);
     console.log('User Cart:', this.userCart);
