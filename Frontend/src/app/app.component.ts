@@ -1,16 +1,45 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ProfileInfoComponent } from './profile-info/profile-info.component'; // Fix the casing and add quotes around the module path
-import { OrderItemComponent } from './order-item/order-item.component'; // Fix the casing and add quotes around the module path
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { Router } from '@angular/router';
+import { IndexComponent } from './components/admin/index/index.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AllProductsComponent } from './components/all-products/all-products.component';
+import { SearchComponent } from './components/search/search.component';
+import { OneProductComponent } from './components/one-product/one-product.component';
+import { ProductsService } from './Services/products.service';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { ShopComponent } from './components/shop/shop.component';
+import { DataSharingService } from './Services/data-sharing.service';
+import { NavbarComponent } from './navbar/navbar.component';
+import { AdminGuard } from './Guards/admin.guard';
+import { AuthService } from './Services/auth.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ProfileInfoComponent, OrderItemComponent, MatSlideToggleModule],
+  imports: [
+    RouterOutlet,
+    IndexComponent,
+    AllProductsComponent,
+    SearchComponent,
+    OneProductComponent,
+    HttpClientModule,
+    ProductDetailsComponent,
+    ShopComponent,
+    NavbarComponent,
+
+  ],
+  providers: [
+    //services
+    ProductsService,
+    DataSharingService,
+    AuthService,
+    AdminGuard,
+
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
+  constructor(private router: Router) {}
   title = 'Frontend';
 }

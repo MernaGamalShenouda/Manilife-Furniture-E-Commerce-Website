@@ -12,7 +12,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  GetUserByID(id:number=1){
+  GetUserByID(id:number){
     return this.http.get(this.apiUrl+"/"+id).pipe(
       catchError(error => {
         console.error('Error fetching users:', error);

@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class ProfileInfoComponent implements OnInit  {
   user: any;
-  id:number=1;
+  id:number;
   constructor(
     private route: ActivatedRoute,
     private userService: UserService) { 

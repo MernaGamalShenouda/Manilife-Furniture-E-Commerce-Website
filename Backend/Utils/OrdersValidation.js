@@ -2,25 +2,23 @@ const Ajv = require("ajv");
 const ajv = new Ajv();
 
 let OrdersSchema = {
-    type: "object",
-    properties: {
-    "totalPrice": { type: "number" },
-    "state": { type: "string", default: "Pending" },
-    // "username": { type: "string" },
-    "date": { type: "object" },//fromat:"custom-date-time"
-    "productTitles": {
-        type: "array",
-        items: { type: "string" }
-    }
+  type: "object",
+  properties: {
+    totalPrice: { type: "number" },
+    state: { type: "string", default: "Pending" },
+    username: { type: "string" },
+    date: { type: "object" }, //fromat:"custom-date-time"
+    productTitles: {
+      type: "array",
+      items: { type: "string" },
     },
-    required: ["totalPrice", "productTitles"],//"username"
-    additionalProperties:true
-}
+  },
+  required: ["totalPrice", "productTitles", "username"], //"username"
+  additionalProperties: true,
+};
 
+ajv.addFormat("custom-date-time", function (dateTimeString) {
+  return !isNaN(Date.parse(dateTimeString));
+});
 
-    ajv.addFormat('custom-date-time', function(dateTimeString) {
-        return !isNaN(Date.parse(dateTimeString));
-    });
-
-
-module.exports = ajv.compile(OrdersSchema); 
+module.exports = ajv.compile(OrdersSchema);

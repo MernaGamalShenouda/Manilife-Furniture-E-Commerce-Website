@@ -1,0 +1,12 @@
+<div class="search-container" >
+
+    <div class="search-input">
+    <input class="rounded-input" type="text" placeholder="Search" [(ngModel)]="searchTerm">
+    <button class="btn" (click)="search()">Search</button>
+    </div>
+
+</div>
+
+
+<p *ngFor="let category of categories" (click)="pickedCategory(category)" >{{category}}</p>
+

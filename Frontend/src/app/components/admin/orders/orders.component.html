@@ -1,0 +1,120 @@
+<div class="container mt-5" id="orderContainer">
+  <div class="row">
+    @for (order of Orders; track order._id) {
+    <div class="col-lg-4 col-md-6 col-sm-12 order-item">
+      <div class="card text-center">
+        <div class="card-body">
+          <h2 class="card-title">{{order.username}}</h2>
+          <p class="card-text">{{order.date}}</p>
+          <h1>${{order.totalPrice}}</h1>
+          <div class="mb-4">
+            <h3>Product Titles</h3>
+            <div class="overflow-scroll border" style="max-height: 80px;">
+              @for (productTitle of order.productTitles; track $index) {
+                <p>{{productTitle}}</p>
+              }
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div style="width: 400px;">
+              <mat-button-toggle-group name="fontStyle" [value]="order.state" (change)="updateOrderState(order._id, $event.value)" class="d-flex justify-content-center" aria-label="Font Style">
+                <mat-button-toggle *ngIf="order.state === 'Pending'" [class.bg-warning]="order.state === 'Pending'" [class.text-main]="order.state === 'Pending'" value="Pending">Pending</mat-button-toggle>
+                <mat-button-toggle *ngIf="order.state !== 'Pending'" value="Pending">Pending</mat-button-toggle>
+                <mat-button-toggle *ngIf="order.state === 'Accepted'" [class.bg-success]="order.state === 'Accepted'" [class.text-main]="order.state === 'Accepted'" value="Accepted">Accepted</mat-button-toggle>
+                <mat-button-toggle *ngIf="order.state !== 'Accepted'" value="Accepted">Accepted</mat-button-toggle>
+                <mat-button-toggle *ngIf="order.state === 'Rejected'" [class.bg-danger]="order.state === 'Rejected'" [class.text-main]="order.state === 'Rejected'" value="Rejected">Rejected</mat-button-toggle>
+                <mat-button-toggle *ngIf="order.state !== 'Rejected'" value="Rejected">Rejected</mat-button-toggle>
+              </mat-button-toggle-group>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+
+
+
+
+<!--
+
+
+<div class="container " style="height: 100%;">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h2>Manage <b>Products</b></h2>
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Username</th>
+              <th scope="col">Total Price</th>
+              <th scope="col">Date</th>
+              <th scope="col">Details</th>
+              <th scope="col">Order State</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            @for (order of Orders; track order._id) {
+
+              <tr>
+                <tr *ngFor="let order of Orders; let i = index" [ngClass]="{'accepted': order.state === 'Accepted', 'rejected': order.state === 'Rejected'}">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ order.username }}</td>
+                  <td>{{ order.totalPrice }}</td>
+                  <td>{{ order.date }}</td>
+                  <td>
+                    <a (click)="openDialogUpdate(order._id)">
+
+                      <i class="fa-solid fa-circle-info  fs-2"></i>
+                    </a>
+                  </td>
+
+                  <td>
+                    <div class="d-flex gap-4 justify-content-center">
+                      <i *ngIf="order.state === 'Rejected'" class="fa-sharp fa-solid fa-circle-xmark fs-2 text-danger"></i>
+                      <i *ngIf="order.state === 'Accepted'" class="fa-solid fa-circle-check fs-2 text-success"></i>
+
+                      <button *ngIf="order.state === 'Pending'" (click)="updateOrderState(order._id, 'Accepted')" class="btn btn-success"><i class="fa-solid fa-check"></i></button>
+                      <button *ngIf="order.state === 'Pending'" (click)="updateOrderState(order._id, 'Rejected')" class="btn btn-danger"><i class="fa-solid fa-x"></i></button>
+                    </div>
+                  </td>
+                </tr>
+            }
+
+          </tbody>
+        </table>
+
+
+
+          <div class="clearfix">
+            <div class="hint-text">Showing <b>3</b> out of <b>6</b> entries</div>
+
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><button  class="page-link btn-custom" >Previous</button></li>
+
+              <li class="page-item"><button   class="page-link btn-custom" >Next</button></li>
+            </ul>
+          </nav>
+          </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div> -->
