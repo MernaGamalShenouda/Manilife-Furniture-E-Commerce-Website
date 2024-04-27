@@ -27,7 +27,7 @@ export class HomeComponent {
         this.user = data;
         this.user = this.user.data;
       },
-      error:(err)=>{console.log("7asal Error")}
+      error:(err)=>{console.log("Error")}
     })
   }
 }
