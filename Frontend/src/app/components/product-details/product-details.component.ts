@@ -3,11 +3,15 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../Services/products.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../Services/auth.service';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [HttpClientModule,
+    FormsModule
+  ],
   providers:[
             ProductsService,
             AuthService
@@ -21,7 +25,7 @@ export class ProductDetailsComponent implements OnInit{
   user: any;
   userID: number=0;
   userCart:any[] = []
-
+  quantity: any;
   productItem: any={} ;
   
 constructor(private myRoute : ActivatedRoute, private productsService:ProductsService, private authService: AuthService){
@@ -40,17 +44,17 @@ constructor(private myRoute : ActivatedRoute, private productsService:ProductsSe
       next:(data)=>{
         this.user = data;
         this.userCart = this.user.data.cart;
-        console.log('User Data:', this.user);
+        // console.log('User Data:', this.user);
         console.log('User Cart:', this.userCart);
       },
       error:(err)=>{console.log("Failed to update user:",err)}
     });
   }
 
-  Add_Item(Product: any){
+  Add_Item(Product: any ){
     this.productItem = {
       "productId": Product._id,
-      "quantity": Product.quantity,
+      "quantity": this.quantity||1,
       "_id": Product._id
     };
 
@@ -60,7 +64,10 @@ constructor(private myRoute : ActivatedRoute, private productsService:ProductsSe
       this.userCart.push(this.productItem);
       console.log('Product added to cart:', Product);
     } else {
-      console.log('Product already exists in cart');
+      const pastquantity = this.userCart[existingProductIndex].quantity;
+      console.log('Product already exists in cart so quantity was added');
+      this.userCart[existingProductIndex].quantity += pastquantity;
+      console.log('User Cart:', this.userCart);
     }
     
       console.log('User Cart:', this.userCart);
