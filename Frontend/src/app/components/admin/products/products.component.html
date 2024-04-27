@@ -68,7 +68,7 @@
               <td>{{ product.quantity }}</td>
               <td>{{ product.category }}</td>
               <td>
-                <a (click)="openDialogUpdate()" class="edit" data-toggle="modal"><i
+                <a (click)="openDialogUpdate(product._id)" class="edit" data-toggle="modal"><i
                     class="fa-solid fa-pen-to-square"></i></a>
                 <a (click)="openDialog('0ms', '0ms', product._id)" class="delete"><i class="fa-solid fa-trash"></i></a>
               </td>

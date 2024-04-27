@@ -2,24 +2,17 @@ import { Component, ViewChild } from '@angular/core';
 import { RegisterService } from '../../../Services/register.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; 
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [
-    CommonModule, 
-    FormsModule,
-    HttpClientModule
-  ],
-  providers:[
-    RegisterService
-  ],
+  imports: [FormsModule, HttpClientModule, RouterModule, CommonModule],
+  providers: [RegisterService],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  styleUrl: './register.component.css',
 })
-
 export class RegisterComponent {
 
   @ViewChild('registerForm', { static: false }) registerForm!: NgForm;
@@ -30,13 +23,16 @@ export class RegisterComponent {
     email: '',
     password: '',
     image: null as File | null,
-    gender: ''
+    gender: '',
   };
 
   emailError: string = ''; 
   passError: string = ''; 
 
-  constructor(private registerService: RegisterService, private router: Router) {}
+  constructor(
+    private registerService: RegisterService,
+    private router: Router
+  ) {}
 
   submitForm() {
     this.registerForm.form.markAllAsTouched();
@@ -76,9 +72,9 @@ export class RegisterComponent {
   formData = new FormData();
 
   onFileSelected(event: any) {
-    const file: File = event.target.files[0]; 
+    const file: File = event.target.files[0];
     console.log(file);
-    this.user.image = file; 
+    this.user.image = file;
     this.formData.append('image', this.user.image);
   }
 }

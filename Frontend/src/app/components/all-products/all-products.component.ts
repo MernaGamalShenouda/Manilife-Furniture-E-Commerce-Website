@@ -120,7 +120,7 @@ import {
 } from '@angular/core';
 import { ShopComponent } from '../shop/shop.component';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { OneProductComponent } from '../one-product/one-product.component';
 import { RouterOutlet } from '@angular/router';
 import { IndexComponent } from '../admin/index/index.component';
@@ -145,6 +145,7 @@ import { DataSharingService } from '../../Services/data-sharing.service';
     ShopComponent,
     FormsModule,
     CommonModule,
+    HttpClientModule
   ],
   providers: [
     //services
@@ -159,15 +160,19 @@ export class AllProductsComponent implements OnInit, DoCheck {
   productByCategory = '';
   products: any;
   private subscriptions: Subscription[] = [];
+  currentPage: number = 1;
+  pageSize: number = 8;
+  totalProducts: number = 500;//l7ad ma nkarar fe kam product 3andena
 
   constructor(
+    private http: HttpClient,
     private productsService: ProductsService,
     private dataSharingService: DataSharingService
   ) {}
 
- 
+
   ngOnInit(): void {
-    // Subscribe to searchByWord$ observable
+    
     this.subscriptions.push(
       DataSharingService.searchByWord$.subscribe((word) => {
         this.searchByWord = word;
@@ -175,7 +180,7 @@ export class AllProductsComponent implements OnInit, DoCheck {
       })
     );
 
-    // Subscribe to productByCategory$ observable
+    
     this.subscriptions.push(
       DataSharingService.productByCategory$.subscribe((category) => {
         this.productByCategory = category;
@@ -183,23 +188,24 @@ export class AllProductsComponent implements OnInit, DoCheck {
       })
     );
 
-    // Initialize products
+    
     this.loadProducts();
   }
 
   ngDoCheck(): void {}
 
   ngOnDestroy(): void {
-    // Unsubscribe from all subscriptions to avoid memory leaks
+    
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 
 
   private loadProducts(): void {
-    this.productsService.GetAllProducts().subscribe({
+    this.productsService.GetAllProducts(this.currentPage,this.pageSize).subscribe({
       next: (data) => {
-        console.log(this.searchByWord);
+        console.log(data);
         if (this.searchByWord != '') {
+          
           this.products = data.Products.filter((product: any) => {
             return product.title
               .toLowerCase()
@@ -211,11 +217,43 @@ export class AllProductsComponent implements OnInit, DoCheck {
           });
         } else {
           this.products = data.Products;
+          // console.log(this.products)
         }
       },
       error: (err) => {
         console.log(err);
       },
     });
+  }
+
+  getProducts(): void {
+    const url = `http://localhost:7005/api/products?page=${this.currentPage}&pageSize=${this.pageSize}`;
+    this.http.get<{ Products: any[], countProducts: number }>(url).subscribe(
+      (response) => {
+        this.products = response.Products;
+        this.totalProducts = response.countProducts;
+        console.log(this.products)
+      },
+      (error: any) => { // Explicitly define error type
+        console.error(error);
+        // Handle error
+      }
+    );
+  }
+
+  Prev(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.getProducts();
+    }
+  }
+
+  Next(): void {
+    console.log("next")
+    const totalPages = Math.ceil(this.totalProducts / this.pageSize);
+    if (this.currentPage < totalPages) {
+      this.currentPage++;
+      this.getProducts();
+    }
   }
 }

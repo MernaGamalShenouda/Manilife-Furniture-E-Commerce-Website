@@ -1,11 +1,86 @@
+
+/* CSS for the card containers */
 .card-container {
-    display: flex; /* Use flexbox */
-    flex-wrap: nowrap; /* Prevent wrapping */
-  }
+  display: flex; 
+  flex-wrap: wrap;
+  display: inline-block;
+  width: 18rem;
   
-  .card {
-    /* Optionally set width to each card */
-    width: 18rem;
-    margin-right: 10px;
+}
+
+/* For large screens, display 'n' cards horizontally */
+@media only screen and (min-width: 768px) {
+  .card-container {
+    width: calc(100% / 4); /* Adjust the width based on the number of cards */
+    margin: 0px 0px; /* Optional: Adjust margin between cards */
   }
+}
+
+/* For small screens, display 1 card horizontally */
+@media only screen and (max-width: 767px) {
+  .card-container {
+    width: calc(100%); /* Full width with margin-right */
+    margin-right: 0;
+  }
+}
+
+.card {
+  width:400px; /* Specify card width */
+  height: 300px; /* Specify card height */
+  border: 1px solid #ccc; /* Optional: Add border */
+  border-radius: 5px; /* Optional: Add border radius */
+  overflow: hidden; /* Optional: Hide overflow content */
   
+}
+
+img {
+  margin: auto;
+  display: block;
+  margin-top: 40px;
+  width: 300px; /* Make sure image fills the card */
+  height: auto; /* Automatically adjust height based on image width */
+}
+
+.product-title {
+  color: #002a3a;
+  font-size: 22px;
+  font-weight: 600;
+  opacity: 0;
+  text-align: center;
+  padding-top: 10%;
+}
+
+.btn-primary {
+  background-color: #002a3a;
+  border-color: #002a3a;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  opacity: 0;
+  margin-top: 20px;
+  bottom: 2%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+}
+
+.btn-primary:hover {
+  background-color: white;
+  border-color: #002a3a;
+  color: #002a3a;
+}
+
+.product-card:hover .product-title,
+.product-card:hover .btn-primary{
+  opacity: 1;
+  transition: ease-in-out 0.3s;
+  -webkit-transition: ease-in-out 0.3s;
+  -moz-transition: ease-in-out 0.3s;
+  -ms-transition: ease-in-out 0.3s;
+  -o-transition: ease-in-out 0.3s;
+}
