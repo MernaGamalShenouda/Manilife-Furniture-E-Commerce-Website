@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DataSharingService } from '../../Services/data-sharing.service';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-one-product',
@@ -18,6 +20,8 @@ import { DataSharingService } from '../../Services/data-sharing.service';
 })
 export class OneProductComponent implements OnInit{
   @Input() Product:any;
+  
+  constructor(public dialog: MatDialog) {}
   
 
   ngOnInit(): void {
@@ -52,7 +56,20 @@ export class OneProductComponent implements OnInit{
     this.viewDetails="Product got viewed";
     DataSharingService.updateviewdetails(this.viewDetails);
   }
+
+  openDialogUpdate(productId: string) {
+    const dialogRef = this.dialog.open(ProductDetailsComponent, {
+      data: {
+        productId: productId
+      }
+    });
+console.log(productId)
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
+
 
 
 
