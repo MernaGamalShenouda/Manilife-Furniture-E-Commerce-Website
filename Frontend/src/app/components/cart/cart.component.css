@@ -2,10 +2,12 @@
     position: fixed;
     top: 0;
     right: 0;  
+    z-index: 100;
 }
 
 .cart-clickable{
     background-color: rgba(0, 0, 0, 0.4);
+    cursor: default;
 }
 
 .cart{

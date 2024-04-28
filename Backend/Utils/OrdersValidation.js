@@ -6,14 +6,13 @@ let OrdersSchema = {
   properties: {
     totalPrice: { type: "number" },
     state: { type: "string", default: "Pending" },
-    username: { type: "string" },
     date: { type: "object" }, //fromat:"custom-date-time"
     productTitles: {
       type: "array",
       items: { type: "string" },
     },
   },
-  required: ["totalPrice", "productTitles", "username"], //"username"
+  required: ["totalPrice", "productTitles","username"], //"username"
   additionalProperties: true,
 };
 

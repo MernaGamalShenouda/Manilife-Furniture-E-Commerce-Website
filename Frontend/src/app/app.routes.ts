@@ -18,6 +18,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { RegisterComponent } from './components/users/register/register.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { AboutComponent } from './about/about.component';
+import { CartComponent } from './components/cart/cart.component';
 
 export const routes: Routes = [
   // {path:"",component:ProductsComponent},
@@ -61,6 +62,7 @@ export const routes: Routes = [
     canActivate: [userAuthGuard, authGuard],
     component: OrdersComponent,
   },
+ 
 
   { path: '**', component: ErrorComponent },
 ];
