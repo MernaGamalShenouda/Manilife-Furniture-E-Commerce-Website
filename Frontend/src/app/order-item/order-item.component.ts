@@ -1,3 +1,4 @@
+//import { AuthService } from './../Services/auth.service';
 /*import { Component } from '@angular/core';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
@@ -39,3 +40,95 @@ fetchUserOrders() {
 }
 }
 */
+// user-orders.component.ts
+/*
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../Services/auth.service';
+import { RouterModule} from '@angular/router';
+import { NgFor, NgIf } from '@angular/common';
+
+@Component({
+  selector: 'app-user-orders',
+  templateUrl: './order-item.component.html',
+  styleUrls: ['./order-item.component.css'],
+  standalone: true,
+  imports: [RouterModule,
+    NgFor, NgIf],
+  providers:[
+    AuthService],
+})
+export class UserOrdersComponent implements OnInit {
+  public userId:any;
+  orders: any[]=[];
+
+  constructor(
+    private route: ActivatedRoute,
+    private authService: AuthService
+  ) { }
+
+  ngOnInit(): void {
+   /* this.route.paramMap.subscribe(params => {
+      this.userId = params.get('userId');
+      this.loadUserOrders();
+      */
+/*this.loadUserOrders();
+    }
+  
+
+  loadUserOrders() {
+   // this.userOrdersService.getUserOrders(this.userId).subscribe(
+    this.authService.getorders().subscribe(
+      (data) => {
+        this.orders = data;
+        console.log(this.orders)
+      },
+      (error) => {
+        console.error('Error fetching user orders:', error);
+      }
+    );
+  }
+}
+*/
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../Services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import {MatChipsModule} from '@angular/material/chips';
+import { CommonModule } from '@angular/common';
+import {MatDialog} from '@angular/material/dialog';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+@Component({
+  selector: 'app-orders',
+  standalone: true,
+  imports: [
+    HttpClientModule,
+    MatChipsModule,
+    CommonModule,
+    MatButtonToggleModule
+  ],
+  providers:[AuthService],
+  templateUrl: './order-item.component.html',
+  styleUrl: './order-item.component.css'
+})
+export class OrdersComponent  implements OnInit {
+
+  orders: any[]=[];
+
+  constructor(private authService:AuthService ,public dialog: MatDialog){}
+
+
+  ngOnInit(): void {
+    this.loadOrdersByUsername();
+  }
+
+  async loadOrdersByUsername(): Promise<void> {
+    try {
+      this.orders = await this.authService.getOrdersByUsername();
+      console.log(this.orders);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+      // Handle error if needed
+    }
+  }
+
+}

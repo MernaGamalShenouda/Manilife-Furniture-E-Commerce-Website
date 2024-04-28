@@ -1,10 +1,11 @@
 const Order = require("../Models/OrderModel");
+const User = require("../Models/UsersModel");
 const OrderValid = require("../Utils/OrdersValidation");
 
 exports.getAllOrders = async (req, res) => {
   try {
     // const orders = await Order.find().populate("username");
-        const orders = await Order.find();
+    const orders = await Order.find();
 
     res.json(orders);
   } catch (err) {
@@ -20,6 +21,14 @@ exports.createOrder = async (req, res) => {
       return res
         .status(400)
         .json({ message: "Invalid order data", errors: OrderValid.errors });
+    } else {
+      const username=req.body.username;
+      const user = await User.findOne({ username });
+      if (!user) {
+        return res
+        .status(400)
+        .json({ message: "user not found"});
+      }
     }
 
     await newOrder.save();

@@ -1,6 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './components/admin/products/products.component';
-import { OrdersComponent } from './components/admin/orders/orders.component';
 import { CreateProductComponent } from './components/admin/create-product/create-product.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
@@ -19,7 +18,7 @@ import { adminAuthGuard } from './Guards/admin-auth.guard';
 import { ErrorComponent } from './components/error/error.component';
 import { EditProfileComponent } from  './edit-profile/edit-profile.component'
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
-//import { OrderItemComponent } from './order-item/order-item.component';
+import { OrdersComponent } from './order-item/order-item.component';
 
 export const routes: Routes = [
   // {path:"",component:ProductsComponent},
@@ -55,8 +54,8 @@ export const routes: Routes = [
   },
   {path: 'edit-profile/:id', component: EditProfileComponent},
   { path: 'profile',component: ProfileInfoComponent},
-  //{ path: 'order-item/:username',component: OrderItemComponent},
-  { path: 'Orders',canActivate:[userAuthGuard,authGuard], component: OrdersComponent },
+  //{ path: 'users/:id/orders',component: UserOrdersComponent},
+  { path: 'Orders',component: OrdersComponent},
 
   {path:'**', component:ErrorComponent},
  

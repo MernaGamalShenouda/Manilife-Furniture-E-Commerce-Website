@@ -44,5 +44,13 @@ export class ProfileInfoComponent implements OnInit {
     }).catch(error => {
       console.error('Error:', error);
     });
+
+    this.authService.getLoggedInUsername().then(user => {
+      this.userData = user;
+      console.log(this.userData);
+    }).catch(error => {
+      console.error('Error:', error);
+    });
+ 
   }
 }

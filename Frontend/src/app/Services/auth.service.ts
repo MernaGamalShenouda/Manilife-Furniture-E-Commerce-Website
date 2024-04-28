@@ -14,6 +14,7 @@ const jwtHelper = new JwtHelperService();
 export class AuthService {
   private apiUrl = 'http://localhost:7005/api/users'; // Change this to your API URL
   userData = new BehaviorSubject(null);
+  private URB_DB="http://localhost:7005/api/";
 
   constructor(private http: HttpClient, private router: Router) {
     if (localStorage.getItem('token') != null) {
@@ -70,7 +71,32 @@ export class AuthService {
     }
   }
 
- 
+   /*GetOrders(){
+    return this.http.get(this.URB_DB+"orders");
+  }
+*/
+
+  async getLoggedInUsername(): Promise<string> {
+    try {
+      const userData = await this.getLoggedInUser();
+      const user = await this.GetUserByID(userData);
+      return user.data.username; // Assuming username is a property of the user object
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  }
+async getOrdersByUsername(): Promise<any[]> {
+  try {
+    const username = await this.getLoggedInUsername();
+    const url = `${this.URB_DB}orders?username=${encodeURIComponent(username)}`;
+    const response = await this.http.get<any>(url).toPromise();
+    return response; // Assuming response is an array of orders
+  } catch (error) {
+    console.error('Error fetching orders by username:', error);
+    throw error;
+  }
+}
 
   saveUserData() {
     const encodedUserData = localStorage.getItem('token');
