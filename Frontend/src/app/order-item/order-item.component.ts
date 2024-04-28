@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+/*import { Component } from '@angular/core';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule} from '@angular/router';
@@ -38,3 +38,4 @@ fetchUserOrders() {
   );
 }
 }
+*/

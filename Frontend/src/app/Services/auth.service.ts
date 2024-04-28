@@ -1,6 +1,7 @@
+import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -60,6 +61,7 @@ export class AuthService {
     }
   }
 
+ 
   getLoggedInUser() {
     const token = localStorage.getItem('token');
     if (token) {
@@ -68,7 +70,7 @@ export class AuthService {
     }
   }
 
-
+ 
 
   saveUserData() {
     const encodedUserData = localStorage.getItem('token');
@@ -99,5 +101,13 @@ export class AuthService {
   isUser(): boolean {
     let role = localStorage.getItem('role');
     return role == 'user';
+  }
+  updateUser(id: number, updatedData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, updatedData).pipe(
+      catchError((error: any) => {
+        console.error('Error:', error);
+        throw error;
+      })
+    );
   }
 }

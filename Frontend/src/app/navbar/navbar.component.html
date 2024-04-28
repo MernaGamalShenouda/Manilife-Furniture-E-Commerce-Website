@@ -1,2 +1,40 @@
 
-<button *ngIf="isLoggedIn" class="btn btn-danger" (click)="logout()">LOGOUT</button>
+<nav class="navbar navbar-expand-lg">
+    <div class="navbar-top">
+      <div class="navbar-text">TRENDY FURNITURE IS AVAILABLE NOW</div>
+    </div>
+    <div class="navbar-light">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/products"
+            >SHOP</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/about"
+            >THE MANI STORY</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link manilife-text"
+            routerLinkActive="active"
+            routerLink="/"
+            ><img
+              src="https://mani-life.com/cdn/shop/files/Group_276_2x_95a68e50-cf75-4902-9d13-432730e20bf9.png?v=1671513721"
+              style="margin-top: 2rem; width: 70%"
+          /></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/profile"
+            >PROFILE</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/orders"
+            >CART</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>

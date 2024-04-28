@@ -24,18 +24,14 @@ import { AuthService } from './Services/auth.service';
     OneProductComponent,
     HttpClientModule,
     ProductDetailsComponent,
-    ShopComponent,
-    NavbarComponent,
-
-  ],
+    ShopComponent ],
   providers: [
     //services
     ProductsService,
     DataSharingService,
     AuthService,
     AdminGuard,
-
-  ],
+    NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

@@ -19,7 +19,7 @@ import { adminAuthGuard } from './Guards/admin-auth.guard';
 import { ErrorComponent } from './components/error/error.component';
 import { EditProfileComponent } from  './edit-profile/edit-profile.component'
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
-import { OrderItemComponent } from './order-item/order-item.component';
+//import { OrderItemComponent } from './order-item/order-item.component';
 
 export const routes: Routes = [
   // {path:"",component:ProductsComponent},
@@ -53,13 +53,13 @@ export const routes: Routes = [
       { path: 'products/:id', component: ProductDetailsComponent },
     ],
   },
-
+  {path: 'edit-profile/:id', component: EditProfileComponent},
+  { path: 'profile',component: ProfileInfoComponent},
+  //{ path: 'order-item/:username',component: OrderItemComponent},
   { path: 'Orders',canActivate:[userAuthGuard,authGuard], component: OrdersComponent },
 
   {path:'**', component:ErrorComponent},
-  {path: 'edit-profile/:id', component: EditProfileComponent},
-{ path: 'profile',component: ProfileInfoComponent},
-{ path: 'order-item/:username',component: OrderItemComponent}
+ 
 ];
 
 

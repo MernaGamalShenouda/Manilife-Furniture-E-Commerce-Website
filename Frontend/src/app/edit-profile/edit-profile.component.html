@@ -35,7 +35,7 @@
     <div class="text">
         Contact us Form
     </div>
-    <form (submit)="onSubmit( username.value , email.value , image.value)">
+    <form (submit)="onSubmit({ username: username.value, email: email.value, image: image.value })">
         <div class="form-row">
             <div class="input-data">
                 <input #username type="text" required>
