@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../Services/products.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../Services/auth.service';
 import {
   FormBuilder,
@@ -30,6 +30,7 @@ import { CartComponent } from '../cart/cart.component';
   standalone: true,
   imports: [
     HttpClientModule,
+    
     FormsModule,
     MatDialogModule,
     MatButtonModule,
@@ -41,7 +42,7 @@ import { CartComponent } from '../cart/cart.component';
     CommonModule,
     ReactiveFormsModule,
   ],
-  providers: [ProductsService, AuthService],
+  providers: [ProductsService, AuthService,HttpClient],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
 })

@@ -12,6 +12,15 @@ exports.getAllOrders = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+exports.getOrdersByName = async (req, res) => {
+  try {
+    const orders = await Order.find({username:req.params.username});
+
+    res.json(orders);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
 exports.createOrder = async (req, res) => {
   try {

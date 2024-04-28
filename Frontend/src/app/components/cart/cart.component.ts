@@ -23,6 +23,7 @@ import { HomeComponent } from '../../home/home.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { AboutComponent } from '../../about/about.component';
 import { SearchComponent } from '../../components/search/search.component';
+import { OrdersService } from '../../Services/orders.service';
 
 @Component({
   selector: 'app-cart',
@@ -48,7 +49,7 @@ import { SearchComponent } from '../../components/search/search.component';
   ],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  providers: [ProductsService, AuthService],
+  providers: [ProductsService, AuthService, HttpClient, OrdersService],
 })
 export class CartComponent implements OnInit {
   Product: any;
@@ -64,7 +65,8 @@ export class CartComponent implements OnInit {
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<CartComponent>,
     private productsService: ProductsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private orderService: OrdersService
   ) {}
 
   ngOnInit(): void {
@@ -207,6 +209,43 @@ export class CartComponent implements OnInit {
   }
 
   addOrder() {
-    
+    const totalPrice = this.userCart.reduce((sum, product) => {
+      const pricePerUnit = this.productDetails[product.productId]?.price ?? 0;
+      return sum + pricePerUnit * product.quantity;
+    }, 0);
+
+    const productTitles = this.userCart.map(
+      (product) => this.productDetails[product.productId]?.title
+    );
+
+    console.log('Total price:', totalPrice);
+    console.log('Product titles:', productTitles);
+
+    this.orderService.createOrder(totalPrice, productTitles).subscribe({
+      next: (response) => {
+        console.log('Order placed successfully', response);
+        this.userCart = [];
+        this.user.data.cart = [];
+        const updatedUser = {
+          ...this.user,
+          data: {
+            ...this.user.data,
+            cart: this.userCart,
+          },
+        };
+        this.updateuserFunction(this.userID, updatedUser).subscribe({
+          next: () => {
+            console.log('User updated successfully');
+            this.getCart();
+          },
+          error: (err) => {
+            console.error('Error updating user:', err);
+          },
+        });
+      },
+      error: (error) => {
+        console.error('Error placing order:', error);
+      },
+    });
   }
 }
