@@ -39,9 +39,13 @@ import { CommonModule } from '@angular/common';
 export class CreateProductComponent implements OnInit {
 
   categories:any={};
+  url_Photo:any={}
+
+
   constructor(private adminService:AdminServiceService,private router:Router){}
+
   ngOnInit(): void {
-   this.getProducts();
+   this.getcategories();
   }
 
   form = new FormGroup({
@@ -50,7 +54,7 @@ export class CreateProductComponent implements OnInit {
     quantity:new FormControl('',[Validators.required]),
     price:new FormControl('',[Validators.required,Validators.min(0)]),
     description:new FormControl('',[Validators.required,Validators.minLength(10)]),
-    image:new FormControl('',[Validators.required])
+    images:new FormControl('',[Validators.required])
    });
 
 
@@ -58,26 +62,10 @@ export class CreateProductComponent implements OnInit {
     return this.form.controls['title'].valid;
   }
 
-  get categoryValid() {
-    return this.form.controls['category'].valid;
-  }
-
-  get quantityValid() {
-    return this.form.controls['quantity'].valid;
-  }
-
-  get priceValid() {
-    return this.form.controls['price'].valid;
-  }
 
   get DescriptionValid() {
     return this.form.controls['description'].valid;
   }
-
-  get imageValid() {
-    return this.form.controls['image'].valid;
-  }
-
 
 
   //-----------------Add Product---------------------------------
@@ -88,7 +76,7 @@ export class CreateProductComponent implements OnInit {
                 category:this.form.controls['category'].value,
                 price:this.form.controls['price'].value,
                 quantity:this.form.controls['quantity'].value,
-                image:this.form.controls['image'].value,
+                images:this.url_Photo.data.url,
                 "details":{
                   description:this.form.controls['description'].value,
                   "reviews":[
@@ -99,17 +87,19 @@ export class CreateProductComponent implements OnInit {
 
 
 
+
   this.adminService.creatProduct(product).subscribe();
-  this.router.navigate(['adminProducts']);
+  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['admin/adminProducts']);
+  });
   }
 
 
-
-  getProducts(): void {
+//----------------get categories-------------------------------------------
+  getcategories(): void {
     this.adminService.GetProducts().subscribe({
       next: (data: any) => {
         this.categories=data.categories;
-
 
       },
       error: (err) => {
@@ -119,6 +109,24 @@ export class CreateProductComponent implements OnInit {
   }
 
 
+
+
+//--------------------upload Photo-------------------------------------------------
+uploadPhoto(event: any) {
+
+  const file: File = event.target.files[0];
+  const formData = new FormData();
+    formData.append('image', file);
+  this.adminService.uploadImage(formData).subscribe({
+    next: data => {
+      this.url_Photo=data
+
+    },
+    error: err => {
+      console.error(err);
+    }
+  });
 }
 
 
+}

@@ -74,6 +74,7 @@ let GetProductById = async (req, res) => {
 let GetProductByName = async (req, res) => {
   try {
    
+    
     let searchPattern = new RegExp(req.params.title, 'i'); 
 
     let products = await ProductsModel.find({ title: { $regex: searchPattern } });
