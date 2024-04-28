@@ -30,7 +30,7 @@ import { CartComponent } from '../cart/cart.component';
   standalone: true,
   imports: [
     HttpClientModule,
-    
+
     FormsModule,
     MatDialogModule,
     MatButtonModule,
@@ -42,7 +42,7 @@ import { CartComponent } from '../cart/cart.component';
     CommonModule,
     ReactiveFormsModule,
   ],
-  providers: [ProductsService, AuthService,HttpClient],
+  providers: [ProductsService, AuthService, HttpClient],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
 })
@@ -93,9 +93,7 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
   openCartDialog() {
-    
-    const dialogRef = this.dialog.open(CartComponent, {
-    });
+    const dialogRef = this.dialog.open(CartComponent, {});
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Cart dialog closed: ${result}`);
@@ -140,6 +138,4 @@ export class ProductDetailsComponent implements OnInit {
   updateuserFunction(userID: any, user: any): Observable<any> {
     return this.authService.updateUser(userID, user);
   }
-
- 
 }
