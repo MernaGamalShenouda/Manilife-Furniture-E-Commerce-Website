@@ -4,15 +4,17 @@
   display: flex; 
   flex-wrap: wrap;
   display: inline-block;
-  width: 18rem;
-  
+  width: 500px; /* Adjust the width of the cards */
+  border-radius: 15px;
+  gap: 20px;
 }
 
 /* For large screens, display 'n' cards horizontally */
 @media only screen and (min-width: 768px) {
   .card-container {
-    width: calc(100% / 4); /* Adjust the width based on the number of cards */
-    margin: 0px 0px; /* Optional: Adjust margin between cards */
+    width: calc(80% / 4); /* Adjust the width based on the number of cards */
+    margin: 10px 10px; /* Optional: Adjust margin between cards */
+    
   }
 }
 
@@ -24,20 +26,11 @@
   }
 }
 
-.card {
-  width:400px; /* Specify card width */
-  height: 300px; /* Specify card height */
-  border: 1px solid #ccc; /* Optional: Add border */
-  border-radius: 5px; /* Optional: Add border radius */
-  overflow: hidden; /* Optional: Hide overflow content */
-  
-}
-
 img {
   margin: auto;
   display: block;
   margin-top: 40px;
-  width: 300px; /* Make sure image fills the card */
+  width: 250px; /* Make sure image fills the card */
   height: auto; /* Automatically adjust height based on image width */
 }
 
@@ -45,7 +38,7 @@ img {
   color: #002a3a;
   font-size: 22px;
   font-weight: 600;
-  opacity: 0;
+  /* opacity: 0; */
   text-align: center;
   padding-top: 10%;
 }
@@ -61,7 +54,7 @@ img {
   opacity: 0;
   margin-top: 20px;
   bottom: 2%;
-  margin-left: 50%;
+  margin-left: 25%;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
