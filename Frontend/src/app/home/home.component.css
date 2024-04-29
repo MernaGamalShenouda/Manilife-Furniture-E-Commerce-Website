@@ -271,3 +271,54 @@ ul {
   height: 100vh;
   background-color: #ffeccc;
 }
+
+
+@media (max-width: 768px) {
+  .award-winning-section {
+    height: 50vh; 
+  }
+
+  .award-winning-content {
+    margin-top: 15vh; 
+  }
+
+  .award-winning-title {
+    font-size: 24px; 
+    margin-bottom: 15px;
+  }
+
+  .award-winning-text {
+    font-size: 14px; 
+    margin-bottom: 20px; 
+  }
+
+  .rotating-blocks {
+    left: 2%;
+  }
+
+  .product-container{
+    align-items: center;
+    text-align: center;
+  }
+
+  .section-title{
+    padding-top: 5%;
+  }
+
+  .product-card {
+    height: auto; 
+    padding: 20px; 
+  }
+
+  .product-title {
+    font-size: 20px; 
+    margin-bottom: 10px; 
+    padding: 10%;
+  }
+
+  .btn-primary {
+    padding: 10px 20px;
+    margin-top: 30%; 
+    font-size: 16px; 
+  }
+}

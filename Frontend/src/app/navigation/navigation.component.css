@@ -125,3 +125,29 @@ ul {
 .logout {
   box-shadow: whitesmoke 2px 2px 0px;
 }
+
+
+@media (max-width: 1000px) {
+  .navbar-top {
+    height: auto; 
+    justify-content: center; 
+  }
+
+  .navbar-text {
+    font-size: 12px; 
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav-item{
+     padding: 0.5rem;
+  }
+
+  .nav-link {
+    font-size: 14px; 
+    margin: 5px 0; 
+  }
+}
