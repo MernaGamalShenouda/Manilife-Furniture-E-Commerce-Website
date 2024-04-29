@@ -12,7 +12,7 @@ import { authGuard } from './Guards/auth.guard';
 import { adminAuthGuard } from './Guards/admin-auth.guard';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './components/error/error.component';
-import { EditProfileComponent } from  './edit-profile/edit-profile.component'
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { OrderItemComponent } from './order-item/order-item.component';
 import { ShopComponent } from './components/shop/shop.component';
@@ -65,16 +65,22 @@ export const routes: Routes = [
     canActivate: [userAuthGuard, authGuard],
     component: OrdersComponent,
   },
- 
 
-  {path:'**', component:ErrorComponent},
-  {path: 'edit-profile/:id', component: EditProfileComponent},
-{ path: 'profile',component: ProfileInfoComponent},
-{ path: 'order-item/:username',component: OrderItemComponent}
+  {
+    path: 'edit-profile/:id',
+    canActivate: [userAuthGuard, authGuard],
+    component: EditProfileComponent,
+  },
+  {
+    path: 'profile',
+    canActivate: [userAuthGuard, authGuard],
+    component: ProfileInfoComponent,
+  },
+  {
+    path: 'order-item/:username',
+    canActivate: [userAuthGuard, authGuard],
+    component: OrderItemComponent,
+  },
+
+  { path: '**', component: ErrorComponent },
 ];
-
-
-
-
-
-
