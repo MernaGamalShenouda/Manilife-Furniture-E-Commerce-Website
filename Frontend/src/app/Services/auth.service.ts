@@ -50,11 +50,30 @@ export class AuthService {
   //   }
   // }
 
+  async getLoggedInUsername(): Promise<any> {
+    try {
+      const userData = await this.getLoggedInUser();
+      const user:any = await this.GetUserByID(userData).subscribe((user)=>{
+        const userNEW:any=user;
+        console.log(userNEW);
+        
+        return userNEW;
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  } 
+
   async getMyUser() {
     try {
       const userID = await this.getLoggedInUser();
-      const user = await this.GetUserByID(userID);
-      return user;
+      const user = await this.GetUserByID(userID).subscribe((user)=>{
+
+        console.log(user);
+        return user;
+      });
+      
     } catch (error) {
       console.error('Error:', error);
       throw error;

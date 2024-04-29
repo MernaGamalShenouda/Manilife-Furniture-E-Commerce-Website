@@ -80,6 +80,7 @@ export class CartComponent implements OnInit,DoCheck {
         this.user = data;
         this.userCart = this.user.data.cart;
         this.isCartEmpty=  this.userCart.length === 0;
+        this.getCart();
         console.log(this.userCart);
       },
       error: (err) => {

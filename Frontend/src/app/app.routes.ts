@@ -20,11 +20,9 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { RegisterComponent } from './components/users/register/register.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { AboutComponent } from './about/about.component';
-import { CartComponent } from './components/cart/cart.component';
 import { UsersComponent } from './components/admin/users/users.component';
 
 export const routes: Routes = [
-
   {
     path: 'admin',
     canActivate: [authGuard, adminAuthGuard],
@@ -35,7 +33,6 @@ export const routes: Routes = [
       { path: 'adminCreateProduct', component: CreateProductComponent },
       { path: 'adminOrders', component: OrdersComponent },
       { path: 'adminUsers', component: UsersComponent },
-
     ],
   },
 
@@ -58,17 +55,10 @@ export const routes: Routes = [
       { path: 'products/:id', component: ProductDetailsComponent },
     ],
   },
-  {path: 'edit-profile/:id', component: EditProfileComponent},
-  { path: 'profile',component: ProfileInfoComponent},
+  { path: 'edit-profile/:id', component: EditProfileComponent },
+  { path: 'profile', component: ProfileInfoComponent },
   //{ path: 'users/:id/orders',component: UserOrdersComponent},
-  { path: 'OrdersbyUser',component: OrdersComponent},
+  { path: 'OrdersbyUser', component: OrdersComponent },
 
-  {path:'**', component:ErrorComponent},
- 
+  { path: '**', component: ErrorComponent },
 ];
-
-
-
-
-
-

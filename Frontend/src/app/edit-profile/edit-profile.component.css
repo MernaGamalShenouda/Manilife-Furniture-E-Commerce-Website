@@ -7,6 +7,11 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.cont {
+  background-color: #e8cab3 !important;
+  
+}
+
 body{
   display: flex;
   align-items: center;
@@ -18,7 +23,7 @@ body{
 }
 .all{
 
-    background-color: #FBEDCF !important ;
+    background-color: #e8cab3 !important ;
     height: 100vh;
 
 }
@@ -156,5 +161,3 @@ form .form-row .textarea{
   }
   
 }
-
-
