@@ -8,7 +8,7 @@ import { OneProductComponent } from './components/one-product/one-product.compon
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { DataSharingService } from './Services/data-sharing.service';
-// import { AdminGuard } from './Guards/admin.guard';
+import { AdminGuard } from './Guards/admin.guard';
 import { AuthService } from './Services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
@@ -32,7 +32,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     ProductDetailsComponent,
     ShopComponent,
     NavigationComponent,
-    HomeComponent, 
+    HomeComponent,
     FooterComponent,
     AboutComponent,
     CartComponent,

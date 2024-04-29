@@ -1,8 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
-// import { ProductsComponent } from './components/admin/products/products.component';
+import { ProductsComponent } from './components/admin/products/products.component';
 import { OrdersComponent } from './components/admin/orders/orders.component';
 import { CreateProductComponent } from './components/admin/create-product/create-product.component';
-// import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { AdminMainComponent } from './components/admin/admin-main/admin-main.component';
 import { AdminGuard } from './Guards/admin.guard';
 import { loggedInGuard } from './Guards/logged-in.guard';
@@ -28,8 +28,8 @@ export const routes: Routes = [
     canActivate: [authGuard, adminAuthGuard],
     component: AdminMainComponent,
     children: [
-      // { path: 'dashboard', component: DashboardComponent },
-      // { path: 'adminProducts', component: ProductsComponent },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'adminProducts', component: ProductsComponent },
       { path: 'adminCreateProduct', component: CreateProductComponent },
       { path: 'adminOrders', component: OrdersComponent },
       { path: 'adminUsers', component: UsersComponent },
