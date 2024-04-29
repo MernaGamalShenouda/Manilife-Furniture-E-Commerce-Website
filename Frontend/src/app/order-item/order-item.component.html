@@ -1,26 +1,148 @@
-<div class="container mt-5">
-  <h2>User Orders</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Order ID</th>
-        <th>Product Title</th>
-        <th>Total Price</th>
-        <th>Order State</th>
-        <th>Order Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tbody >
-        @for (order of userOrders; track order._id) {
-        <tr>
-          
-          <td>{{order._id}}</td>
-          <td>{{order.productTitles.join(', ')}}</td>
-          <td>{{order.totalPrice}}</td>
-          <td>{{order.state}}</td>
-        </tr>
-      }
-      </tbody>
-  </table>
+<!-- user-orders.component.html -->
+
+<!-- <div *ngIf="orders">
+  <h2>Orders for {{ userId }}</h2>
+  <ul>
+    <li *ngFor="let order of orders">
+      <div>State: {{ order.state }}</div>
+      <div>Total Price: {{ order.totalPrice }}</div>
+ Add other order details as needed 
+    </li>
+  </ul>
+</div> -->
+<!-- <div class="container mt-5">
+  <div class="d-flex justify-content-center row">
+      <div class="col-md-10">
+          <div class="rounded">
+              <div class="table-responsive table-borderless">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                              <th class="text-center">
+                                  <div class="toggle-btn">
+                                      <div class="inner-circle"></div>
+                                  </div>
+                              </th>
+                              <th>Order #</th>
+                              <th>Company name</th>
+                              <th>status</th>
+                              <th>Total</th>
+                              <th>Created</th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody class="table-body">
+                          <tr class="cell-1">
+                              <td class="text-center">
+                                  <div class="toggle-btn">
+                                      <div class="inner-circle"></div>
+                                  </div>
+                              </td>
+                              <td>#SO-13487</td>
+                              <td>Gasper Antunes</td>
+                              <td><span class="badge badge-success">Fullfilled</span></td>
+                              <td>$2674.00</td>
+                              <td>Today</td>
+                              <td><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                          </tr>
+                          <tr class="cell-1">
+                              <td class="text-center">
+                                  <div class="toggle-btn">
+                                      <div class="inner-circle"></div>
+                                  </div>
+                              </td>
+                              <td>#SO-13453</td>
+                              <td>Aartsen van</td>
+                              <td><span class="badge badge-info">Confirmed</span></td>
+                              <td>$3454.00</td>
+                              <td>Yesterday</td>
+                              <td><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                          </tr>
+                          <tr class="cell-1">
+                              <td class="text-center">
+                                  <div class="toggle-btn">
+                                      <div class="inner-circle"></div>
+                                  </div>
+                              </td>
+                              <td>#SO-13498</td>
+                              <td>Trashes Habard</td>
+                              <td><span class="badge badge-danger">Partially shipped</span></td>
+                              <td>$6274.00</td>
+                              <td>May 12,2020</td>
+                              <td><i class="fa fa-ellipsis-h text-black-50"></i></td>
+                          </tr>
+                          <tr class="cell-1">
+                              <td class="text-center">
+                                  <div class="toggle-btn">
+                                      <div class="inner-circle"></div>
+                                  </div>
+                              </td>
+                              @for (order of orders; track order._id){
+                                <!-- <h1>{{order.state}}</h1>  
+                               <button class="btn btn-danger" (click)="deleteOrder(order._id)">delete</button> -->
+<!--                               
+                              <td>{{order.username}}</td>
+                              <td>{{order.title}}</td>
+                              <td><span class="badge badge-success">Fullfilled</span></td>
+                              <td>{{order.totalPrice}}</td>
+                              <td>{{order.state}}</td>
+                              <td><button class="btn btn-danger" (click)="deleteOrder(order._id)">delete</button></td>
+                              }
+                            </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<h2>{{orders[0].state}}</h2>
+
+ -->
+ <div class="cont ">
+ <app-navbar></app-navbar>
+<div class="grid my-5 py-4">
+ <section class="my-5 py-5">
+	<h1 class="text-center">Latest Transactions</h1>
+	<h2 class="text-center">Today</h2>
+	@for (order of orders; track order._id){
+  <details>
+    
+		<summary>
+			<div>
+				<span style="background-color: #f2dcbb;">
+          <i class="fa-solid fa-chair"></i>
+				</span>
+				<h3>
+					<strong>{{order.username}}</strong>
+					<small> Furniture</small>
+				</h3>
+				<span><button class="btn btn-danger" (click)="deleteOrder(order._id)"><i class="fa-regular fa-trash-can"></i></button></span>
+			</div>
+		</summary>
+		<div>
+			<dl>
+				<div>
+					<dt>Price</dt>
+					<dd>{{order.totalPrice + " $"}}</dd>
+				</div>
+
+				<div>
+					<dt>Date</dt>
+					<dd>{{order.date }}</dd>
+				</div>
+
+				<div>
+					<dt>State</dt>
+					<dd> {{order.state }}</dd>
+				</div>
+			</dl>
+		</div>
+	</details>
+}
+</section>
+</div>
 </div>

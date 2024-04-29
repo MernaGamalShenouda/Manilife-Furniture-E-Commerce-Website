@@ -1,10 +1,12 @@
 const Order = require("../Models/OrderModel");
 const User = require("../Models/UsersModel");
+const User = require("../Models/UsersModel");
 const OrderValid = require("../Utils/OrdersValidation");
 
 exports.getAllOrders = async (req, res) => {
   try {
     // const orders = await Order.find().populate("username");
+    const orders = await Order.find();
     const orders = await Order.find();
 
     res.json(orders);
@@ -21,6 +23,7 @@ exports.getOrdersByName = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
 
 exports.createOrder = async (req, res) => {
   try {
@@ -96,4 +99,5 @@ exports.deleteOrder = async (req, res) => {
       .status(500)
       .json({ message: "Internal Server Error", error: error.message });
   }
+
 };
