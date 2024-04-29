@@ -71,10 +71,14 @@
 </div>
 </div>
 
+ --> 
+<html>
+ 
+<body>
+  
 
 
 
- -->  
  <div class="cont ">
  <app-navbar></app-navbar>
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
@@ -125,11 +129,18 @@
               <i class=" mr-2 text-lg text-blueGray-400"></i><span class="idd">
                 <i class="fa-solid fa-venus-mars"></i> {{ userData.data.gender}}</span>
             </div>
+            
+       
           </div>
           <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
             <div class="flex flex-wrap justify-center">
               <div class="w-full lg:w-9/12 px-4">
-                <a href="#pablo" class="font-normal email text-pink-500">Show more</a>
+               
+                <a routerLink="/Orders">
+                  <button class="bg-pink-400 active:bg-pink-400 botn  uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                    Your Orders  <i class="fa-solid fa-arrow-right"></i>
+                  </button>
+                </a>
               </div>
             </div>
           </div>
@@ -139,3 +150,5 @@
   </section>
 </main> 
 </div>
+
+

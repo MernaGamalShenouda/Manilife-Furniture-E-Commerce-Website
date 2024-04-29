@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../Services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-edit-profile',
   standalone: true,
-  imports: [ HttpClientModule ],
+  imports: [ HttpClientModule , NavbarComponent ],
   providers:[AuthService],
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
