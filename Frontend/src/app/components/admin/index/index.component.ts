@@ -21,5 +21,6 @@ export class IndexComponent {
   toggleSidebar(): void {
     this.showSidebar = !this.showSidebar;
   }
+  
 
 }

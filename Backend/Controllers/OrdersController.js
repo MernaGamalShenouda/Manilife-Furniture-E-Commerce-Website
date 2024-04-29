@@ -3,10 +3,14 @@ const OrderValid = require("../Utils/OrdersValidation");
 
 exports.getAllOrders = async (req, res) => {
   try {
-    // const orders = await Order.find().populate("username");
-        const orders = await Order.find();
+    const orders = await Order.find().populate("username");
+    const countOrder= await Order.countDocuments();
+    const TotalPrice=await Order.find().select('totalPrice');
+  
+        // const orders = await Order.find();
 
-    res.json(orders);
+
+    res.json({orders:orders,countOrders:countOrder,TotalPrice:TotalPrice});
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
