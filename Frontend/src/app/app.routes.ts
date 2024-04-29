@@ -12,6 +12,9 @@ import { authGuard } from './Guards/auth.guard';
 import { adminAuthGuard } from './Guards/admin-auth.guard';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './components/error/error.component';
+import { EditProfileComponent } from  './edit-profile/edit-profile.component'
+import { ProfileInfoComponent } from './profile-info/profile-info.component';
+import { OrderItemComponent } from './order-item/order-item.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -64,5 +67,14 @@ export const routes: Routes = [
   },
  
 
-  { path: '**', component: ErrorComponent },
+  {path:'**', component:ErrorComponent},
+  {path: 'edit-profile/:id', component: EditProfileComponent},
+{ path: 'profile',component: ProfileInfoComponent},
+{ path: 'order-item/:username',component: OrderItemComponent}
 ];
+
+
+
+
+
+
