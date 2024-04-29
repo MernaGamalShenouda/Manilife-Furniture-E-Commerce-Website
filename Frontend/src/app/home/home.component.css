@@ -271,3 +271,63 @@ ul {
   height: 100vh;
   background-color: #ffeccc;
 }
+
+
+@media (max-width: 768px) {
+  /* Styles for screens up to 768px wide */
+
+  /* Award Winning Section */
+  .award-winning-section {
+    height: 50vh; /* Adjust section height for smaller screens */
+  }
+
+  .award-winning-content {
+    margin-top: 15vh; /* Adjust margin for smaller screens */
+  }
+
+  .award-winning-title {
+    font-size: 24px; /* Adjust font size for smaller screens */
+    margin-bottom: 15px; /* Adjust margin for smaller screens */
+  }
+
+  .award-winning-text {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    margin-bottom: 20px; /* Adjust margin for smaller screens */
+  }
+
+  /* Rotating Section */
+  .rotating-blocks {
+    left: 2%; /* Adjust left position for smaller screens */
+  }
+
+  /* .section-title-wrapper{
+    padding-top: 10px;
+  } */
+
+  .product-container{
+    align-items: center;
+    text-align: center;
+  }
+
+  .section-title{
+    padding-top: 5%;
+  }
+
+  /* Product Cards */
+  .product-card {
+    height: auto; /* Adjust card height to auto for smaller screens */
+    padding: 20px; /* Add padding for better spacing on smaller screens */
+  }
+
+  .product-title {
+    font-size: 20px; /* Adjust font size for product titles on smaller screens */
+    margin-bottom: 10px; /* Adjust margin for smaller screens */
+    padding: 10%;
+  }
+
+  .btn-primary {
+    padding: 10px 20px; /* Adjust padding for smaller screens */
+    margin-top: 30%; /* Adjust padding for smaller screens */
+    font-size: 16px; /* Adjust font size for buttons on smaller screens */
+  }
+}

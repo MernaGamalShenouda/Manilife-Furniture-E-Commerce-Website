@@ -125,3 +125,32 @@ ul {
 .logout {
   box-shadow: whitesmoke 2px 2px 0px;
 }
+
+
+/* Media query for smaller screens */
+@media (max-width: 1000px) {
+
+
+  .navbar-top {
+    height: auto; /* Allow height to adjust as needed */
+    justify-content: center; /* Center items */
+  }
+
+  .navbar-text {
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+    align-items: center; /* Center items */
+  }
+
+  .nav-item{
+     padding: 0.5rem;
+  }
+
+  .nav-link {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    margin: 5px 0; /* Add margin for spacing */
+  }
+}
