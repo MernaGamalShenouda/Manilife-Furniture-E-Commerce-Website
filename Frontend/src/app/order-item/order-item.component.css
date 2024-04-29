@@ -96,6 +96,41 @@ h2 {
 	}
 }
 
+.txt{
+	font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+	& + * {
+        margin-top: 1.5em;
+    }
+	font-weight: bold;
+	&:hover {
+        cursor: pointer;
+    }
+	color: rgb(216, 209, 5) !important;;
+}
+
+.txt2{
+	font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+	& + * {
+        margin-top: 1.5em;
+    }
+	font-weight: bold;
+	&:hover {
+        cursor: pointer;
+    }
+	color: green !important;;
+}
+
+.txt3{
+	font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+	& + * {
+        margin-top: 1.5em;
+    }
+	font-weight: bold;
+	&:hover {
+        cursor: pointer;
+    }
+	color: rgb(128, 0, 0) !important;;
+}
 
 
 summary {

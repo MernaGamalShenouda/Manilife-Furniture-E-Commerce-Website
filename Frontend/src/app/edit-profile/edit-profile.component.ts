@@ -29,7 +29,8 @@ export class EditProfileComponent implements OnInit {
     const updatedUserData = {
       username: updatedData.username,
       email: updatedData.email,
-      image: updatedData.image
+      image: updatedData.image,
+      fullname: updatedData.fullname
     };
     this.authService.updateUser(this.userId, updatedUserData).subscribe(updatedUser => {
       console.log('User updated successfully:', updatedUser);

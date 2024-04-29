@@ -120,12 +120,12 @@
 					<strong>{{order.username}}</strong>
 					<small> Furniture</small>
 				</h3>
-				<span><button class="btn btn-danger" (click)="deleteOrder(order._id)"><i class="fa-regular fa-trash-can"></i></button></span>
+				<span><button class="btn btn-danger" (click)="deleteOrder(order.data._id)"><i class="fa-regular fa-trash-can"></i></button></span>
 			</div>
 		</summary>
 		<div>
 			<dl>
-				<div>
+				<div >
 					<dt>Price</dt>
 					<dd>{{order.totalPrice + " $"}}</dd>
 				</div>
@@ -135,9 +135,9 @@
 					<dd>{{order.date }}</dd>
 				</div>
 
-				<div>
-					<dt>State</dt>
-					<dd> {{order.state }}</dd>
+				<div  >
+					<dt >State</dt>
+					<dd [ngClass]="{'txt': order.state === 'Pending', 'txt2': order.state === 'accepted' ,'txt3': order.state === 'rejected'}" > {{order.state }}</dd>
 				</div>
 			</dl>
 		</div>

@@ -138,7 +138,7 @@ import { Component, Input, OnInit, Output,EventEmitter  } from '@angular/core';
 import { AuthService } from '../Services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import {MatChipsModule} from '@angular/material/chips';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import {MatDialog} from '@angular/material/dialog';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -146,7 +146,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 @Component({
   selector: 'app-order-item',
   standalone: true,
-  imports:[NavbarComponent],
+  imports:[NavbarComponent ,NgClass],
   templateUrl: './order-item.component.html',
   styleUrls: ['./order-item.component.css']
 })
