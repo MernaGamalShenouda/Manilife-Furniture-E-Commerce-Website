@@ -12,6 +12,7 @@ const jwtHelper = new JwtHelperService();
 })
 export class AuthService {
   private apiUrl = 'http://localhost:7005/api/users'; // Change this to your API URL
+ 
   userData = new BehaviorSubject(null);
 
   constructor(private http: HttpClient, private router: Router) {
@@ -19,6 +20,7 @@ export class AuthService {
       this.saveUserData();
     }
   }
+  private URB_DB='http://localhost:7005/api/orders'; 
 
   login(email: string, password: string): Observable<any> {
     return this.http
@@ -48,16 +50,16 @@ export class AuthService {
   //   }
   // }
 
-  // async getMyUser() {
-  //   try {
-  //     const userID = await this.getLoggedInUser();
-  //     const user = await this.GetUserByID(userID);
-  //     return user;
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //     throw error;
-  //   }
-  // }
+  async getMyUser() {
+    try {
+      const userID = await this.getLoggedInUser();
+      const user = await this.GetUserByID(userID);
+      return user;
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  }
 
   GetUserByID(id: number) {
     return this.http.get(this.apiUrl + '/' + id);
@@ -107,4 +109,14 @@ export class AuthService {
     let role = localStorage.getItem('role');
     return role == 'user';
   }
+
+  getOrdersByUsername(username: any): Observable<any[]> {
+    const url = `${this.URB_DB}/${username}`;
+    return this.http.get<any[]>(url);
+  }
+  
+  deleteOrderById(id:any): Observable<any> {
+    const url = `${this.URB_DB}/${id}`;
+    return this.http.delete<any>(url);
+  } 
 }

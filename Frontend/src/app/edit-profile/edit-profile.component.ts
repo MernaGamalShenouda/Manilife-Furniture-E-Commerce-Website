@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -17,7 +18,8 @@ export class EditProfileComponent implements OnInit {
   userId : any; 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) { 
      this.userId =this.route.snapshot.params["id"]; // Assuming user ID is passed in route params }
   }

@@ -141,12 +141,11 @@ import {MatChipsModule} from '@angular/material/chips';
 import { CommonModule, NgClass } from '@angular/common';
 import {MatDialog} from '@angular/material/dialog';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-order-item',
   standalone: true,
-  imports:[NavbarComponent ,NgClass],
+  imports:[NgClass],
   templateUrl: './order-item.component.html',
   styleUrls: ['./order-item.component.css']
 })
@@ -165,7 +164,7 @@ export class OrdersComponent implements OnInit {
 
   loadOrdersByUsername(): void {
     // Get the username of the logged-in user from AuthService or any other method
-    this.username  = this.authService. getMyUser().then((userData: any) => {
+    this.username  = this.authService.getMyUser().then((userData: any) => {
       this.username = userData.data.username;
     console.log(this.username +"this is user")
  
