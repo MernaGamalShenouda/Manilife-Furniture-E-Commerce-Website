@@ -1,0 +1,36 @@
+.bg-btn {
+  background-color: #034058;
+}
+
+.text-main {
+  color: #fbedcf;
+}
+
+.btn-custom {
+  background-color: #034058;
+  color: #fbedcf;
+}
+.card-header {
+  background-color: #095472;
+  color: #034058;
+}
+
+.card-body {
+  background-color: #283336;
+  border: none;
+  border-radius: 10px;
+  color: #fbedcf;
+  box-shadow: 0px 0px 10px rgb(197, 197, 197);
+}
+.card-body:hover {
+  background-color: #034058;
+}
+
+.order-item {
+  margin-bottom: 20px;
+}
+
+.card-title:hover {
+  background-color: #034058;
+  color: #fbedcf;
+}

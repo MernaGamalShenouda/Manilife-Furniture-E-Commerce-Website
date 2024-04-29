@@ -1,23 +1,27 @@
 const ProductsModel = require("../Models/Products.Model");
 
-const  ProductsValidation=require("../Utils/ProductsValidation")
-
-
+const ProductsValidation = require("../Utils/ProductsValidation");
 
 // ----------GetALl Products---------------------------
 let GetAllProducts = async (req, res) => {
-
   const page = parseInt(req.query.page) || 1;
-  const pageSize = parseInt(req.query.pageSize) ||5;
+  const pageSize = parseInt(req.query.pageSize) || 5;
   try {
+    let countProducts = await ProductsModel.countDocuments();
+    let categories = await ProductsModel.distinct("category");
+    // console.log(categories);
+    let Products = await ProductsModel.find()
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+      .exec();
 
-    let countProducts= await ProductsModel.countDocuments();
-    let Products= await ProductsModel.find()
-            .skip((page - 1) * pageSize)
-            .limit(pageSize)
-            .exec();
-
-    return res.status(200).json({ Products: Products,countProducts:countProducts });
+    return res
+      .status(200)
+      .json({
+        Products: Products,
+        countProducts: countProducts,
+        categories: categories,
+      });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ err: "Server fail" });
@@ -33,20 +37,16 @@ let CreateProducts = (req, res) => {
       let createProduct = new ProductsModel(newProduct);
       createProduct.save();
 
-      return res
-        .status(201)
-        .json({
-          Message: "Product created successfully!",
-          Product: newProduct,
-        });
+      return res.status(201).json({
+        Message: "Product created successfully!",
+        Product: newProduct,
+      });
     } else {
-      return res
-        .status(404)
-        .json({
-          Message: `${
-            ProductsValidation.errors[0].instancePath.split("/")[1]
-          } ${ProductsValidation.errors[0].message}`,
-        });
+      return res.status(404).json({
+        Message: `${ProductsValidation.errors[0].instancePath.split("/")[1]} ${
+          ProductsValidation.errors[0].message
+        }`,
+      });
     }
   } catch (err) {
     console.error(err);
@@ -59,7 +59,7 @@ let CreateProducts = (req, res) => {
 let GetProductById = async (req, res) => {
   try {
     let product = await ProductsModel.findById(req.params.id);
-    return res.status(200).json({ Product: product });
+    return res.status(200).json(product);
   } catch (err) {
     console.error(err);
     return res.status(500).json({ err: "Server fail" });
@@ -70,8 +70,13 @@ let GetProductById = async (req, res) => {
 
 let GetProductByName = async (req, res) => {
   try {
-    let product = await ProductsModel.findOne({ title: req.params.title });
-    return res.status(200).json({ Product: product });
+    let searchPattern = new RegExp(req.params.title, "i");
+
+    let products = await ProductsModel.find({
+      title: { $regex: searchPattern },
+    });
+
+    return res.status(200).json({ Product: products });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ err: "Server fail" });
@@ -92,13 +97,11 @@ let UpdateProduct = async (req, res) => {
 
       return res.status(200).json({ Product: updatedProduct });
     } else {
-      return res
-        .status(404)
-        .json({
-          Message: `${
-            ProductsValidation.errors[0].instancePath.split("/")[1]
-          } ${ProductsValidation.errors[0].message}`,
-        });
+      return res.status(404).json({
+        Message: `${ProductsValidation.errors[0].instancePath.split("/")[1]} ${
+          ProductsValidation.errors[0].message
+        }`,
+      });
     }
   } catch (err) {
     console.error(err);

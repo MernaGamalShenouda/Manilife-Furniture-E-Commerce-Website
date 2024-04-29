@@ -1,0 +1,45 @@
+.container-fluid {
+  background-color: #92b7cc;
+  background-image: radial-gradient(
+      circle at 0% 50%,
+      rgba(119, 159, 178, 1),
+      transparent 600px
+    ),
+    radial-gradient(
+      circle at 100% 50%,
+      rgba(119, 159, 178, 1),
+      transparent 600px
+    );
+    
+}
+
+.img-fluid {
+  filter: drop-shadow(-1px 1px 0px rgba(0, 0, 0, 0.6));
+}
+
+.not-found h1 {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: 200px;
+}
+.not-found h2 {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: 50px;
+  margin-top: 80px;
+}
+.not-found h3 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 17px;
+  margin-top: 10px;
+}
+
+.home-link {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  transition: filter 0.1s;
+  width: fit-content;
+}
+.home-link:hover {
+  filter: brightness(107%);
+  scale: 1.01;
+}

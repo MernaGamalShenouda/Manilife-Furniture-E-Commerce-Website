@@ -1,20 +1,18 @@
 //#region Requires
 const express = require("express");
-const cors = require('cors');
-
-
-
-
-
+const cors = require("cors");
+require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 7005;
 const bodyParser = require("body-parser");
 const ProductsRoutes = require("./Routes/ProductsRoutes");
 const OrdersRoutes = require("./Routes/OrdersRoutes");
 const UsersRoutes = require("./Routes/UsersRoutes");
-let Products  = require("./Models/Products.Model");
+const uploadRoute = require("./Routes/UploadRoutes");
 
-const fs = require('fs');
+let Products = require("./Models/Products.Model");
+
+const fs = require("fs");
 
 app.use(cors());
 
@@ -34,10 +32,10 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", function () {
   console.log("Connected to MongoDB");
 
-   // Read data from JSON file
-  fs.readFile('data.json', 'utf8', (err, data) => {
+  // Read data from JSON file
+  fs.readFile("data.json", "utf8", (err, data) => {
     if (err) {
-      console.error('Error reading JSON file:', err);
+      console.error("Error reading JSON file:", err);
       return;
     }
 
@@ -53,25 +51,24 @@ db.once("open", function () {
             title: name,
             price: price,
             category: category,
-            quantity: 5, 
-            images: images, 
+            quantity: 5,
+            images: images,
             details: {
               description: short_description,
-              reviews: [] 
-            }
+              reviews: [],
+            },
           });
 
           await newProduct.save();
-          console.log('Product created:', newProduct);
+          console.log("Product created:", newProduct);
         } catch (err) {
-          console.error('Error creating product:', err);
+          console.error("Error creating product:", err);
         }
       });
     } catch (parseError) {
-      console.error('Error parsing JSON data:', parseError);
+      console.error("Error parsing JSON data:", parseError);
     }
   });
-  
 });
 //#endregion
 
@@ -84,6 +81,7 @@ app.use(bodyParser.json());
 app.use("/api/products", ProductsRoutes);
 app.use("/api/users", UsersRoutes);
 app.use("/api/orders", OrdersRoutes);
+app.use("/api/uploadPhoto", uploadRoute);
 
 app.listen(PORT, () => {
   console.log("http://localhost:" + PORT);

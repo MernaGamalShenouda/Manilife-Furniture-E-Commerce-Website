@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <h2>User Orders</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Product Title</th>
+        <th>Total Price</th>
+        <th>Order State</th>
+        <th>Order Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tbody >
+        @for (order of userOrders; track order._id) {
+        <tr>
+          
+          <td>{{order._id}}</td>
+          <td>{{order.productTitles.join(', ')}}</td>
+          <td>{{order.totalPrice}}</td>
+          <td>{{order.state}}</td>
+        </tr>
+      }
+      </tbody>
+  </table>
+</div>

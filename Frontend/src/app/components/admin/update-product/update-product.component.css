@@ -1,0 +1,24 @@
+.bg-color{
+  background-color: #FBEDCF;;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.btn-custom{
+  background-color:#002A3A;
+  color:  #FBEDCF;
+}
+
+
+.btn-custom:hover{
+  background-color:#006287;
+
+}
+
+.mat-dialog-actions {
+  justify-content: flex-end;
+}

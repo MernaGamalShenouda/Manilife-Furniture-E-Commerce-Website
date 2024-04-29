@@ -1,0 +1,14 @@
+
+<div class="card-container product-card">
+    <img src="{{Product.images[0]}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h3 class="product-title">{{Product.title}}</h3>
+        <!-- <p>{{Product.price}}</p> -->
+    </div>
+    <a class="btn btn-primary" (click)="openDialogUpdate(Product._id)">view</a> 
+    <!-- (click)="openDialogUpdate(product._id)" [routerLink]="'/shop/products/' + Product._id" -->
+</div>
+
+
+
+
