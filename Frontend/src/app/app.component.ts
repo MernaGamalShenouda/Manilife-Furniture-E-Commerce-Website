@@ -10,7 +10,6 @@ import { ShopComponent } from './components/shop/shop.component';
 import { DataSharingService } from './Services/data-sharing.service';
 import { AdminGuard } from './Guards/admin.guard';
 import { AuthService } from './Services/auth.service';
-import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
@@ -18,6 +17,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { ProductsService } from './Services/products.service';
 import { SearchComponent } from './components/search/search.component';
 import { CommonModule } from '@angular/common';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @Component({
   selector: 'app-root',
