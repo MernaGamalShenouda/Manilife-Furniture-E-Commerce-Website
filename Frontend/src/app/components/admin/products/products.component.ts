@@ -77,8 +77,8 @@ Getname(e:any) {
     this.getProducts()
   }
     this.adminService.GetProductByName(e.target.value.trim()).subscribe({
-        next: (responseData: any) => {
-            this.products = responseData.Product;
+        next: (data: any) => {
+            this.products = data.Product;
 
         },
         error: (error: any) => {
@@ -92,7 +92,6 @@ Getname(e:any) {
   getProducts(): void {
     this.adminService.GetProducts(this.currentPage, this.pageSize).subscribe({
       next: (data: any) => {
-
 
         this.products = data.Products;
         this.countProducts=data.countProducts;
@@ -162,7 +161,7 @@ Getname(e:any) {
     if (index !== -1) {
       this.products.splice(index);
 
-    }
+      }
     }
 
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
