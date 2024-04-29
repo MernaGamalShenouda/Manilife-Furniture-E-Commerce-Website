@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../Services/auth.service';
+import { ProfileService } from '../Services/profile.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-edit-profile',
   standalone: true,
-  imports: [ HttpClientModule , NavbarComponent ],
-  providers:[AuthService],
+  imports: [ HttpClientModule  ],
+  providers:[ProfileService],
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
 })
@@ -17,7 +17,7 @@ export class EditProfileComponent implements OnInit {
   userId : any; 
   constructor(
     private route: ActivatedRoute,
-    private authService: AuthService
+    private profileService: ProfileService
   ) { 
      this.userId =this.route.snapshot.params["id"]; // Assuming user ID is passed in route params }
   }
@@ -25,14 +25,14 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit(updatedData: any): void {
-    this.userId = this.authService.getLoggedInUser();
+    this.userId = this.profileService.getLoggedInUser();
     const updatedUserData = {
       username: updatedData.username,
       email: updatedData.email,
       image: updatedData.image,
       fullname: updatedData.fullname
     };
-    this.authService.updateUser(this.userId, updatedUserData).subscribe(updatedUser => {
+    this.profileService.updateUser(this.userId, updatedUserData).subscribe(updatedUser => {
       console.log('User updated successfully:', updatedUser);
     }, error => {
       console.error('Error:', error);

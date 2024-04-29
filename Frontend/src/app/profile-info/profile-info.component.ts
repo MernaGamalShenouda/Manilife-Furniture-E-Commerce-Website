@@ -1,7 +1,7 @@
 import { Component ,OnInit} from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import { RouterModule, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../Services/auth.service';
+import { ProfileService } from '../Services/profile.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { NgFor } from '@angular/common';
@@ -11,9 +11,9 @@ import { NgFor } from '@angular/common';
 @Component({
   selector: 'app-profile-info',
   standalone: true,
-  imports: [MatCardModule, RouterModule,HttpClientModule, NavbarComponent,NgFor],//OrdersComponent],
+  imports: [MatCardModule, RouterModule,HttpClientModule, NgFor],//OrdersComponent],
   providers:[
-    AuthService],
+    ProfileService],
   templateUrl: './profile-info.component.html',
   styleUrl: './profile-info.component.css'
 })
@@ -24,7 +24,7 @@ export class ProfileInfoComponent implements OnInit {
   public username: any='';
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private profileService: ProfileService) { }
 
   
 /*
@@ -43,14 +43,14 @@ export class ProfileInfoComponent implements OnInit {
   ngOnInit(): void {
     this.loadOrdersByUsername();
     this.handleOrdersLoaded(this.orders);
-    this.authService.getMyUser().then(user => {
+    this.profileService.getMyUser().then(user => {
       this.userData = user;
       console.log(this.userData);
     }).catch(error => {
       console.error('Error:', error);
     });
 
-    this.authService.getLoggedInUsername().then(user => {
+    this.profileService.getLoggedInUsername().then(user => {
       this.userData = user;
       console.log(this.userData);
     }).catch(error => {
@@ -66,13 +66,13 @@ export class ProfileInfoComponent implements OnInit {
 
   loadOrdersByUsername(): void {
    
-    this.username  = this.authService. getMyUser().then((userData: any) => {
+    this.username  = this.profileService. getMyUser().then((userData: any) => {
       this.username = userData.data.username;
     console.log(this.username +"this is user")
  
     if (this.username) {
      
-      this.authService.getOrdersByUsername(this.username).subscribe(
+      this.profileService.getOrdersByUsername(this.username).subscribe(
         (data) => {
           this.orders = data;
           console.log(this.orders[0].username);
@@ -89,7 +89,7 @@ export class ProfileInfoComponent implements OnInit {
 
 
   deleteOrder(id: any): void {
-    this.authService.deleteOrderById(id).subscribe(
+    this.profileService.deleteOrderById(id).subscribe(
       {
         next: (data) => {
           console.log('Order deleted:', data);
