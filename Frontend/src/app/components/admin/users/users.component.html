@@ -1,0 +1,105 @@
+<div class="container " style="height: 100%;">
+  <div class="row">
+    <div class="col-12 mt-3 d-flex justify-content-center ">
+      <div class="input-group w-50">
+        <input type="search" #search (input)="Getname($event)" class="form-control" placeholder="Search Product">
+        <div class="input-group-append">
+          <button class="btn bg-btn z-0" (click)="Getname(search.value)" type="button">
+            <i class="fa fa-search text-white"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="table-wrapper">
+        <div class="table-title">
+          <div class="row">
+            <div class="col-sm-6">
+              <h2>Manage <b>Users</b></h2>
+            </div>
+            <div class="col-sm-6">
+
+              <a class="btn btn-danger" data-toggle="modal"><i
+                  class="fa-sharp fa-solid fa-circle-minus"></i><span>Delete</span></a>
+            </div>
+          </div>
+        </div>
+        <table class="table table-striped table-hover">
+          <thead>
+
+            <tr>
+              <th>
+                <span class="custom-checkbox">
+                  <input type="checkbox" [(ngModel)]="selectAllChecked" (change)="toggleAllCheckboxes()">
+                  <label for="selectAll"></label>
+                </span>
+              </th>
+              <th>Profile</th>
+              <th>Full Name</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th>Actions</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+
+            @if(users){
+            @for (user of users; track user._id) {
+            @if (user.role!=="admin") {
+
+            <tr>
+              <td>
+                <span class="custom-checkbox">
+                  <input type="checkbox" id="checkbox1" [(ngModel)]="user.checked" name="options[]" value="1">
+                  <label for="checkbox1"></label>
+                </span>
+              </td>
+              <td>
+                <div style="height: 50px;width: 50px;">
+                  <img src="{{user.image}}" width="40" alt="profile" srcset="">
+                </div>
+              </td>
+              <td>{{ user.fullname }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.gender }}</td>
+              <td>
+                <a   (click)="openDialog('0ms', '0ms', user._id)"  class="delete"><i class="fa-solid fa-trash"></i></a>
+              </td>
+            </tr>
+
+              }
+            }
+         }
+
+          </tbody>
+        </table>
+
+
+
+        <div class="clearfix">
+          <div class="hint-text">Showing <b>{{ getRange()}}</b> out of <b>{{countUsers}}</b> entries</div>
+
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><button class="page-link btn-custom"
+                  (click)="goToPage(currentPage-1)">Previous</button></li>
+
+              <li class="page-item"><button class="page-link btn-custom" (click)="goToPage(currentPage+1)">Next</button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

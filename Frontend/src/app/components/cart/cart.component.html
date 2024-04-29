@@ -1,26 +1,82 @@
 <div>
   <div class="cart-clickable h-100 w-75" (click)="hide()"></div>
-  <div class="cart h-100 w-25 overflow-auto">
-    <div *ngFor="let product of userCart" class="product">
-      <div *ngIf="productDetails[product.productId]">
-        <p>Product Name: {{ productDetails[product.productId]?.title }}</p>
-        <p>
-          Price:
-          {{ productDetails[product.productId]?.price * product.quantity }}
-        </p>
+  <div *ngIf="!isCartEmpty" class="cart h-100 overflow-auto d-flex flex-column">
+    <div
+      class="mx-auto header p-4 w-100 row justify-content-between align-items-baseline"
+    >
+      <p class="col-4">Cart: {{ totalQuantity }}</p>
+      <button class="btn col-1 close-button" (click)="hide()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div
+      *ngFor="let product of userCart"
+      class="product mx-auto row p-0 m-3 mx-auto justify-content-evenly align-items-start pb-5 w-100"
+    >
+      <div class="image col-4 p-0 m-0 align-self-center">
         <img
-          width="100px"
+          width="100%"
           [src]="productDetails[product.productId]?.images[0]"
           alt=""
+          class="img-fluid"
         />
-        <button (click)="decreaseQuantity(product)">-</button>
-        <input type="number" [value]="product.quantity" />
-        <button (click)="increaseQuantity(product)">+</button>
-        <button (click)="deleteProductFromCart(product.productId)">
-          <i class="fa-solid fa-trash-can"></i>
-        </button>
       </div>
+      <div
+        *ngIf="productDetails[product.productId]"
+        class="col-6 flex-column justify-content-between h-100"
+      >
+        <p class="title">{{ productDetails[product.productId]?.title }}</p>
+        <br />
+        <p class="desc">
+          {{ productDetails[product.productId]?.details.description }}
+        </p>
+        <br />
+        <div
+          class="bottom row w-100 justify-content-between align-items-baseline"
+        >
+          <div
+            class="price row justify-content-center align-items-center p-0 m-0 justify-content-center col-8"
+          >
+            <button class="btn col-1" (click)="decreaseQuantity(product)">
+              -
+            </button>
+            <div class="in col-3">
+              <input
+                disabled
+                type="text"
+                [value]="product.quantity"
+                class="w-100"
+              />
+            </div>
+            <button class="btn col-1" (click)="increaseQuantity(product)">
+              +
+            </button>
+          </div>
+          <p class="col-3">
+            {{ productDetails[product.productId]?.price * product.quantity }}$
+          </p>
+        </div>
+      </div>
+      <button
+        class="col-1 btn"
+        (click)="deleteProductFromCart(product.productId)"
+      >
+        <i class="fa-solid fa-trash-can"></i>
+      </button>
     </div>
-    <button (click)="addOrder()">add order</button>
+    <br />
+    <button (click)="addOrder()" class="btn checkout-btn">
+      CHECKOUT: {{ totalPrice }}$
+    </button>
+  </div>
+  <div *ngIf="isCartEmpty" class="cart h-100 overflow-auto d-flex flex-column">
+    <div
+      class="mx-auto header p-4 w-100 row justify-content-between align-items-baseline"
+    >
+      <p class="col-8">Cart is Empty</p>
+      <button class="btn col-1 close-button" (click)="hide()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
   </div>
 </div>

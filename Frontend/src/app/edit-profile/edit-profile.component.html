@@ -1,83 +1,63 @@
-<nav class="navbar navbar-expand-lg">
-    <div class="navbar-top">
-      <div class="navbar-text">TRENDY FURNITURE IS AVAILABLE NOW</div>
-    </div>
-    <div class="navbar-light">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link" href="#">SHOP</a></li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">THE MANI STORY</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link manilife-text" href="#"
-            ><img
-              src="https://mani-life.com/cdn/shop/files/Group_276_2x_95a68e50-cf75-4902-9d13-432730e20bf9.png?v=1671513721"
-              style=" width: 70%"
-          /></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">PROFILE</a>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="/cart">CART</a></li>
-      </ul>
-    </div>
-  </nav> 
- 
- 
- <div class="all bg-black">
- <div class="container all bg-black ">
-    <div class="row">
-        <div class="col-5"></div>
-        <div class="col-7">
- <div class="container my-3">
-   
-        
-    <div class="text">
-        Contact us Form
-    </div>
-    <form (submit)="onSubmit( username.value , email.value , image.value)">
-        <div class="form-row">
-            <div class="input-data">
-                <input #username type="text" required>
-                <div class="underline"></div>
-                <label for="">Name</label>
-            </div>
-            <div class="input-data">
-                <input #email type="text" required>
-                <div class="underline"></div>
-                <label for="">E-mail</label>
-            </div>
-        </div>
-       <div class="form-row">
-            <div class="input-data">
-                <input #image type="text" required>
-                <div class="underline"></div>
-                <label for="">image</label>
-            </div>
-         <!--     <div class="input-data">
-                <input type="text" required>
-                <div class="underline"></div>
-                <label for="">Website Name</label>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="input-data textarea">
-                <textarea rows="8" cols="80" required></textarea>
-                <br />
-                <div class="underline"></div>
-                <label for="">Write your message</label>
-            </div> -->
+<div class="cont ">
+
+    <div class="container all my-5 py-5 ">
+       <div class="row">
+           <div class="col-5"></div>
+           <div class="col-7 my-4">
+    <div class="container my-5">
+      
+           
+       <div class="text">
+           Contact us Form
+       </div>
+       <form  (submit)="onSubmit({ username: username.value, fullname:fullname.value  ,email: email.value, image: image.value })">
+           <div class="form-row">
+               <div class="input-data">
+                   <input #username type="text" required>
+                   <div class="underline"></div>
+                   <label for="">User Name</label>
+               </div>
+           </div>
+               <div class="form-row">
+               <div class="input-data">
+                   <input #fullname type="text" required>
+                   <div class="underline"></div>
+                   <label for=""> Full Name </label>
+               </div>
+           </div>
+          
+          <div class="form-row">
+           <div class="input-data">
+               <input #email type="text" required>
+               <div class="underline"></div>
+               <label for="">E-mail</label>
+           </div>
+       </div>
+       <div class="form-row">        
+       <div class="input-data">
+                   <input #image type="text" required>
+                   <div class="underline"></div>
+                   <label for="">image</label>
+               </div>
+              
+           </div>
+           <div class="form-row">
         </div> 
-        <div class="form-row submit-btn">
-            <div class="input-data">
-                <div class="inner"></div>
-                <input type="submit" value="submit">
-            </div>
-        </div>
-    </form>
-</div>
-</div>
-</div>
+           <div class="form-row submit-btn">
+   
+                 <a routerLink="/profile">   
+                   <button class="bg-pink-400 mybutton inner active:bg-pink-400 botn  uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="submit" value="submit">
+                       Submit  
+                     </button>
+                   <!-- <div class="input-data">
+                   <div class="inner"></div>
+                   <input type="submit" value="submit">
+               </div> -->
+           </a>
+           </div>
+       </form>
+   </div>
+   </div>
+   </div>
+       </div>
     </div>
-</div>
-    

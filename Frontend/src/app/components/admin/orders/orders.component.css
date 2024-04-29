@@ -15,6 +15,24 @@
   color: #034058;
 }
 
+.Rejected {
+  background-color: darksalmon !important;
+  color: #d83f3f !important;
+  font-weight: bold !important;
+}
+
+.Accepted {
+  background-color: darkseagreen !important;
+  color: green !important;
+  font-weight: bold !important;
+}
+
+.Pending {
+  background-color: bisque !important;
+  color: #f0c02f !important;
+  font-weight: bold !important;
+}
+
 .card-body {
   background-color: #283336;
   border: none;

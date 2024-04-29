@@ -186,5 +186,5 @@ export class AllProductsComponent implements OnInit, DoCheck {
     }
   }
   
-
+  
 }

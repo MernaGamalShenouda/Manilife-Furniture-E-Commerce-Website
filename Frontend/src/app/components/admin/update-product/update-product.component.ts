@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { AdminServiceService } from '../admin-service.service';
+import { AdminServiceService } from '../../../Services/admin-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import {
   FormControl,

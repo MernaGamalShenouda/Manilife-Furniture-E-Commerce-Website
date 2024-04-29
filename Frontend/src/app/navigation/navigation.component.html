@@ -28,7 +28,12 @@
   <div class="navbar-light">
     <ul class="navbar-nav mx-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/shop/products">SHOP</a>
+        <a
+          [ngClass]="{ disabled: !isLoggedIn }"
+          class="nav-link"
+          routerLink="/shop/products"
+          >SHOP</a
+        >
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" routerLink="/about"
@@ -36,25 +41,26 @@
         >
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link manilife-text"
-          routerLinkActive="active"
-          routerLink="/"
+        <a class="nav-link manilife-text" routerLink="/Home"
           ><img src="../../assets/logo.png" style="width: 70%"
         /></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/profile"
+        <a
+          class="nav-link"
+          routerLink="/profile"
+          [ngClass]="{ disabled: !isLoggedIn }"
           >PROFILE</a
         >
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/orders"
-          >CART</a
+        <button
+          [ngClass]="{ disabled: !isLoggedIn }"
+          class="nav-link"
+          (click)="openCartDialog()"
         >
-      </li>
-      <li class="nav-item">
-        <button class="nav-link" (click)="openCartDialog()">CART</button>
+          CART
+        </button>
       </li>
     </ul>
   </div>

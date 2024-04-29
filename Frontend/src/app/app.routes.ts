@@ -14,20 +14,15 @@ import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
-import { OrderItemComponent } from './order-item/order-item.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { RegisterComponent } from './components/users/register/register.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { AboutComponent } from './about/about.component';
-import { CartComponent } from './components/cart/cart.component';
+import { UsersComponent } from './components/admin/users/users.component';
 
 export const routes: Routes = [
-  // {path:"",component:ProductsComponent},
-  // {path:"Products",component:ProductsComponent},
-  // {path:"CreateProduct",component:CreateProductComponent},
-
   {
     path: 'admin',
     canActivate: [authGuard, adminAuthGuard],
@@ -37,6 +32,7 @@ export const routes: Routes = [
       // { path: 'adminProducts', component: ProductsComponent },
       { path: 'adminCreateProduct', component: CreateProductComponent },
       { path: 'adminOrders', component: OrdersComponent },
+      { path: 'adminUsers', component: UsersComponent },
     ],
   },
 
@@ -59,28 +55,10 @@ export const routes: Routes = [
       { path: 'products/:id', component: ProductDetailsComponent },
     ],
   },
-
-  {
-    path: 'Orders',
-    canActivate: [userAuthGuard, authGuard],
-    component: OrdersComponent,
-  },
-
-  {
-    path: 'edit-profile/:id',
-    canActivate: [userAuthGuard, authGuard],
-    component: EditProfileComponent,
-  },
-  {
-    path: 'profile',
-    canActivate: [userAuthGuard, authGuard],
-    component: ProfileInfoComponent,
-  },
-  {
-    path: 'order-item/:username',
-    canActivate: [userAuthGuard, authGuard],
-    component: OrderItemComponent,
-  },
+  { path: 'edit-profile/:id', component: EditProfileComponent },
+  { path: 'profile', component: ProfileInfoComponent },
+  //{ path: 'users/:id/orders',component: UserOrdersComponent},
+  { path: 'OrdersbyUser', component: OrdersComponent },
 
   { path: '**', component: ErrorComponent },
 ];

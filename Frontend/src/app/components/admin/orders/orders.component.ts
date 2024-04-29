@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminServiceService } from '../admin-service.service';
+import { AdminServiceService } from '../../../Services/admin-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
@@ -34,9 +34,14 @@ export class OrdersComponent implements OnInit {
   GetOrders(): void {
     this.adminService.GetOrders().subscribe({
       next: (data: any) => {
-        this.Orders = data;
+        data.orders.sort(
+          (a: { date: string }, b: { date: string }) =>
+            new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
 
-        console.log(data);
+        this.Orders = data.orders;
+
+        console.log(this.Orders);
       },
 
       error: (error) => {

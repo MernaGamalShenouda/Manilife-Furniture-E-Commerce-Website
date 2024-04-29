@@ -21,13 +21,12 @@
                 name="fontStyle"
                 [value]="order.state"
                 (change)="updateOrderState(order._id, $event.value)"
-                class="d-flex justify-content-center"
+                class="d-flex justify-content-center text-danger"
                 aria-label="Font Style"
               >
                 <mat-button-toggle
                   *ngIf="order.state === 'Pending'"
-                  [class.bg-warning]="order.state === 'Pending'"
-                  [class.text-main]="order.state === 'Pending'"
+                  [class.Pending]="order.state === 'Pending'"
                   value="Pending"
                   >Pending</mat-button-toggle
                 >
@@ -38,7 +37,7 @@
                 >
                 <mat-button-toggle
                   *ngIf="order.state === 'Accepted'"
-                  [class.bg-success]="order.state === 'Accepted'"
+                  [class.Accepted]="order.state === 'Accepted'"
                   [class.text-main]="order.state === 'Accepted'"
                   value="Accepted"
                   >Accepted</mat-button-toggle
@@ -50,7 +49,7 @@
                 >
                 <mat-button-toggle
                   *ngIf="order.state === 'Rejected'"
-                  [class.bg-danger]="order.state === 'Rejected'"
+                  [class.Rejected]="order.state === 'Rejected'"
                   [class.text-main]="order.state === 'Rejected'"
                   value="Rejected"
                   >Rejected</mat-button-toggle

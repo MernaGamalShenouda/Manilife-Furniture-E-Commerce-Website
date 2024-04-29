@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
+  url_Photo: any = {};
 
   @ViewChild('registerForm', { static: false }) registerForm!: NgForm;
 
@@ -22,39 +23,38 @@ export class RegisterComponent {
     fullname: '',
     email: '',
     password: '',
-    image: null as File | null,
+    image: {},
     gender: '',
   };
 
-  emailError: string = ''; 
-  passError: string = ''; 
-
+  emailError: string = '';
+  passError: string = '';
   constructor(
     private registerService: RegisterService,
     private router: Router
   ) {}
 
   submitForm() {
+    this.user.image = this.url_Photo.data.secure_url;
     this.registerForm.form.markAllAsTouched();
 
     if (this.registerForm.form.valid) {
-
       if (this.checkPasswordStrength(this.registerForm.controls['password'])) {
         console.log('Password is too weak. Please enter a stronger password.');
         return;
       }
 
-      this.registerService.AddUser(this.user).subscribe(
-        (response: any) => {
+      this.registerService.AddUser(this.user).subscribe({
+        next: (response: any) => {
           console.log('User added successfully:', response);
           this.router.navigate(['/Login']);
         },
-        (error) => {
+        error: (error) => {
           console.error('Error adding user:', error);
-            this.emailError = error.error.text; 
-            console.log(this.emailError)
-        }
-      );
+          this.emailError = error.error.text;
+          console.log(this.emailError);
+        },
+      });
     } else {
       console.log('Form is invalid. Please check your inputs.');
     }
@@ -62,19 +62,26 @@ export class RegisterComponent {
 
   checkPasswordStrength(control: any) {
     if (control.value && control.value.length < 8) {
-      this.passError =  'Password is too weak. Please enter a stronger password.'; 
-      return { 'weakPassword': true };
+      this.passError =
+        'Password is too weak. Please enter a stronger password.';
+      return { weakPassword: true };
     }
     return null;
   }
 
+  //--------------Upload Photo----------------------------------
 
-  formData = new FormData();
-
-  onFileSelected(event: any) {
+  uploadPhoto(event: any) {
     const file: File = event.target.files[0];
-    console.log(file);
-    this.user.image = file;
-    this.formData.append('image', this.user.image);
+    const formData = new FormData();
+    formData.append('image', file);
+    this.registerService.uploadImage(formData).subscribe({
+      next: (data) => {
+        this.url_Photo = data;
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 }
