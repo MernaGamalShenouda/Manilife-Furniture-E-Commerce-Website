@@ -89,8 +89,14 @@ const updateUserById = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await UsersModel.find({});
-    return res.status(200).json({ data: users });
+    const page = parseInt(req.query.page) || 1;
+  const pageSize = parseInt(req.query.pageSize) ||5;
+    const users = await UsersModel.find({})
+              .skip((page - 1) * pageSize)
+              .limit(pageSize)
+              .exec();
+    const countUsers=await UsersModel.countDocuments();
+    return res.status(200).json({ data: users,countUsers:countUsers});
   } catch (error) {
     console.error("Error fetching users:", error.message);
     return res.status(500).send("Internal Server Error");
@@ -112,6 +118,24 @@ const getUserById = async (req, res) => {
     return res.status(500).send("Internal Server Error");
   }
 };
+
+//---------search by name-----------------//
+
+let GetUserByName = async (req, res) => {
+  try {
+   
+    
+    let searchPattern = new RegExp(req.params.fullname, 'i'); 
+
+    let users = await UsersModel.find({ fullname: { $regex: searchPattern } });
+
+    return res.status(200).json({ users: users});
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ err: "Server fail" });
+  }
+};
+
 
 const deleteUserById = async (req, res) => {
   try {
@@ -135,5 +159,6 @@ module.exports = {
   updateUserById,
   getUserById,
   deleteUserById,
+  GetUserByName,
   getAllUsers,
 };

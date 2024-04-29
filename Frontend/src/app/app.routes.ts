@@ -22,11 +22,9 @@ import { RegisterComponent } from './components/users/register/register.componen
 import { LoginComponent } from './components/users/login/login.component';
 import { AboutComponent } from './about/about.component';
 import { CartComponent } from './components/cart/cart.component';
+import { UsersComponent } from './components/admin/users/users.component';
 
 export const routes: Routes = [
-  // {path:"",component:ProductsComponent},
-  // {path:"Products",component:ProductsComponent},
-  // {path:"CreateProduct",component:CreateProductComponent},
 
   {
     path: 'admin',
@@ -37,6 +35,8 @@ export const routes: Routes = [
       { path: 'adminProducts', component: ProductsComponent },
       { path: 'adminCreateProduct', component: CreateProductComponent },
       { path: 'adminOrders', component: OrdersComponent },
+      { path: 'adminUsers', component: UsersComponent },
+
     ],
   },
 

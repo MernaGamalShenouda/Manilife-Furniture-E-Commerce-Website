@@ -1,55 +1,18 @@
-.card-body{
-  border: none;
-  border-radius: 10px;
+.bg-btn{
+  background-color: #034058;
+}
+
+
+.btn-custom{
+  background-color:#034058;
   color:  #FBEDCF;
-  box-shadow: 0px 0px  10px rgb(197, 197, 197);
-}
-
-.text-main{
-  color:  #FBEDCF;
-}
-
-.Rejected{
-  background-color: darksalmon;
-  color:#d83f3f ;
-  font-weight: bold;
-  border-radius: 5px;
-  padding: 4px;
 }
 
 
-.Accepted{
-  background-color: darkseagreen;
-  color:green ;
-  border-radius: 5px;
-  padding: 4px;
+.btn-custom:hover{
+  background-color:#006287;
+
 }
-
-.Pending{
-  background-color: bisque;
-  color:#f0c02f ;
-  border-radius: 5px;
-  padding: 4px;
-}
-
-.revenue
-{
-  background-color: #3D535A;
-}
-
-.order{
-  background-color: #77132B;
-}
-
-
-.profile{
-  background-color: #0B7B9D;
-}
-
-.prducts{
-  background-color: #352C2B;
-}
-
 
 .table-wrapper {
   background: #fff;
@@ -142,3 +105,56 @@ table.table td i {
   margin-top: 10px;
   font-size: 13px;
 }
+
+/* Custom checkbox */
+.custom-checkbox {
+position: relative;
+}
+.custom-checkbox input[type="checkbox"] {
+opacity: 0;
+position: absolute;
+margin: 5px 0 0 3px;
+z-index: 9;
+}
+.custom-checkbox label:before{
+width: 18px;
+height: 18px;
+}
+.custom-checkbox label:before {
+content: '';
+margin-right: 10px;
+display: inline-block;
+vertical-align: text-top;
+background: white;
+border: 1px solid #bbb;
+border-radius: 2px;
+box-sizing: border-box;
+z-index: 2;
+}
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+content: '';
+position: absolute;
+left: 6px;
+top: 3px;
+width: 6px;
+height: 11px;
+border: solid #000;
+border-width: 0 3px 3px 0;
+transform: inherit;
+z-index: 3;
+transform: rotateZ(45deg);
+}
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+border-color: #03A9F4;
+background: #03A9F4;
+}
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+border-color: #fff;
+}
+.custom-checkbox input[type="checkbox"]:disabled + label:before {
+color: #b8b8b8;
+cursor: auto;
+box-shadow: none;
+background: #ddd;
+}
+

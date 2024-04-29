@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
+  url_Photo:any={}
 
   @ViewChild('registerForm', { static: false }) registerForm!: NgForm;
 
@@ -22,19 +23,21 @@ export class RegisterComponent {
     fullname: '',
     email: '',
     password: '',
-    image: null as File | null,
-    gender: '',
+    image:{},
+    gender: ''
   };
 
   emailError: string = ''; 
   passError: string = ''; 
-
   constructor(
     private registerService: RegisterService,
     private router: Router
   ) {}
 
   submitForm() {
+
+
+this.user.image=this.url_Photo.data.secure_url;
     this.registerForm.form.markAllAsTouched();
 
     if (this.registerForm.form.valid) {
@@ -45,12 +48,14 @@ export class RegisterComponent {
       }
 
       this.registerService.AddUser(this.user).subscribe(
-        (response: any) => {
-          console.log('User added successfully:', response);
-          this.router.navigate(['/Login']);
-        },
-        (error) => {
-          console.error('Error adding user:', error);
+        {
+        next: (response: any) => {
+            console.log('User added successfully:', response);
+            this.router.navigate(['/Login']);
+          },
+          error: (error) => {
+            console.error('Error adding user:', error);
+        }
             this.emailError = error.error.text; 
             console.log(this.emailError)
         }
@@ -69,12 +74,22 @@ export class RegisterComponent {
   }
 
 
-  formData = new FormData();
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    console.log(file);
-    this.user.image = file;
-    this.formData.append('image', this.user.image);
-  }
+//--------------Upload Photo----------------------------------
+
+uploadPhoto(event: any) {
+  const file: File = event.target.files[0];
+  const formData = new FormData();
+    formData.append('image', file);
+  this.registerService.uploadImage(formData).subscribe({
+    next: data => {
+      this.url_Photo=data
+
+    },
+    error: err => {
+      console.error(err);
+    }
+  });
 }
+}
+
