@@ -1,16 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { CartComponent } from '../components/cart/cart.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from '../Services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.css'
+  styleUrl: './navigation.component.css',
 })
-export class NavigationComponent {
-constructor(private dialog: MatDialog){}
+export class NavigationComponent implements DoCheck{
+  isLoggedIn: boolean = true;
+
+  constructor(private dialog: MatDialog, private authService: AuthService) {}
+
+  ngDoCheck() {
+    this.isLoggedIn = this.authService.isLoggedIn();
+  }
 
   openCartDialog() {
     const dialogRef = this.dialog.open(CartComponent, {});
@@ -19,4 +27,8 @@ constructor(private dialog: MatDialog){}
       console.log(`Cart dialog closed: ${result}`);
     });
   }
-} 
+
+  logout() {
+    this.authService.logout();
+  }
+}
