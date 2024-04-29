@@ -32,7 +32,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     ProductDetailsComponent,
     ShopComponent,
     NavigationComponent,
-    HomeComponent,
+    HomeComponent, 
     FooterComponent,
     AboutComponent,
     CartComponent,
