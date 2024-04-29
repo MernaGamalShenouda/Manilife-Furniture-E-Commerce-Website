@@ -102,6 +102,7 @@ export class ProductDetailsComponent implements OnInit {
 
   Add_Item(Product: any) {
     this.openCartDialog();
+    
     console.log(
       'Quantity equals===> ',
       this.productForm.get('quantity')!.value
@@ -128,6 +129,7 @@ export class ProductDetailsComponent implements OnInit {
     this.updateuserFunction(this.userID, this.user).subscribe({
       next: () => {
         console.log('User updated successfully');
+        this.getCart();
       },
       error: (err) => {
         console.error('Error updating user:', err);
@@ -137,5 +139,25 @@ export class ProductDetailsComponent implements OnInit {
 
   updateuserFunction(userID: any, user: any): Observable<any> {
     return this.authService.updateUser(userID, user);
+  }
+
+  getCart() {
+    this.authService.GetUserByID(this.authService.getLoggedInUser()).subscribe({
+      next: (user: any) => {
+        this.userCart = user.data.cart;
+        this.userCart.forEach((product) => {
+          this.productsService
+            .GetProductByID(product.productId)
+            .subscribe((data) => {
+              if (data) {
+                this.productDetails[product.productId] = data;
+              }
+            });
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching cart:', err);
+      },
+    });
   }
 }
