@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { ProductsService } from '../../Services/products.service';
 import { AuthService } from '../../Services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -49,9 +49,10 @@ import { OrdersService } from '../../Services/orders.service';
   styleUrls: ['./cart.component.css'],
   providers: [ProductsService, AuthService, HttpClient, OrdersService],
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit,DoCheck {
   Product: any;
   user: any;
+  isCartEmpty: boolean=true;
   userID: number = 0;
   userCart: any[] = [];
   cartHidden = true;
@@ -66,15 +67,19 @@ export class CartComponent implements OnInit {
     private authService: AuthService,
     private orderService: OrdersService
   ) {}
+  ngDoCheck(): void {
+   
+     this.isCartEmpty=  this.userCart.length === 0;
+    
+  }
 
   ngOnInit(): void {
-    console.log(1233333333);
-
     this.userID = this.authService.getLoggedInUser();
     this.authService.GetUserByID(this.userID).subscribe({
       next: (data) => {
         this.user = data;
         this.userCart = this.user.data.cart;
+        this.isCartEmpty=  this.userCart.length === 0;
         console.log(this.userCart);
       },
       error: (err) => {
@@ -90,6 +95,7 @@ export class CartComponent implements OnInit {
             .subscribe((data) => {
               if (data) {
                 this.productDetails[product.productId] = data;
+                console.log(data);
               }
             });
         });
@@ -245,5 +251,18 @@ export class CartComponent implements OnInit {
         console.error('Error placing order:', error);
       },
     });
+  }
+
+
+
+  get totalQuantity(): number {
+    return this.userCart.reduce((total, item) => total + item.quantity, 0);
+  }
+
+  get totalPrice(): number {
+    return this.userCart.reduce((total, item) => {
+      const pricePerUnit = this.productDetails[item.productId]?.price || 0;
+      return total + item.quantity * pricePerUnit;
+    }, 0);
   }
 }
