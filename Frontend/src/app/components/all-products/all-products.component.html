@@ -1,13 +1,25 @@
 <div class="items-background">
+<div class="contain-items">
 
     @for (p of products; track p.id ){
+        
         <app-one-product [Product]="p"></app-one-product>
+        
     }
-
-    <ng-container *ngIf="!searchByWord && !productByCategory">
-        <input type="button" value="Prev" (click)="Prev()">
-        <input type="button" value="Next" (click)="Next()">
-    </ng-container>
-
     
 </div>
+<div class="button-container">
+
+    <ng-container *ngIf="!searchByWord && !productByCategory">
+        <button mat-raised-button (click)="Prev()" mat-flat-button>Prev</button>
+        <span class="button-space"> </span> <!-- Add space here -->
+        <button mat-raised-button (click)="Next()" mat-flat-button>Next</button>
+        
+    </ng-container>
+
+</div>
+    
+    
+</div>
+
+

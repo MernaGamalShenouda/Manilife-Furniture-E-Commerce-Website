@@ -22,7 +22,13 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { ProductsService } from '../../Services/products.service';
 import { DataSharingService } from '../../Services/data-sharing.service';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {PageEvent, MatPaginatorModule} from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
 @Component({
   selector: 'app-all-products',
   standalone: true,
@@ -37,7 +43,13 @@ import { DataSharingService } from '../../Services/data-sharing.service';
     ShopComponent,
     FormsModule,
     CommonModule,
-    HttpClientModule
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+     MatDividerModule, 
+     MatIconModule
+
   ],
   providers: [
     //services
@@ -53,7 +65,7 @@ export class AllProductsComponent implements OnInit, DoCheck {
   products: any;
   private subscriptions: Subscription[] = [];
   currentPage: number = 1;
-  pageSize: number = 8;
+  pageSize: number = 12;
   totalProducts: number = 500;//l7ad ma nkarar fe kam product 3andena
 
   constructor(
@@ -173,7 +185,6 @@ export class AllProductsComponent implements OnInit, DoCheck {
       this.getProducts();
     }
   }
-
   
 
 }

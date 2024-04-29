@@ -1,126 +1,93 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../Services/products.service';
-import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../Services/auth.service';
-import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule, NgFor } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import {
+  MatDialog,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
+import { IndexComponent } from '../../components/admin/index/index.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AllProductsComponent } from '../../components/all-products/all-products.component';
+import { OneProductComponent } from '../../components/one-product/one-product.component';
+import { ProductDetailsComponent } from '../../components/product-details/product-details.component';
+import { ShopComponent } from '../../components/shop/shop.component';
+import { NavbarComponent } from '../../navbar/navbar.component';
+import { NavigationComponent } from '../../navigation/navigation.component';
+import { HomeComponent } from '../../home/home.component';
+import { FooterComponent } from '../../footer/footer.component';
+import { AboutComponent } from '../../about/about.component';
+import { SearchComponent } from '../../components/search/search.component';
+import { OrdersService } from '../../Services/orders.service';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, CommonModule],
-  providers: [ProductsService, AuthService, ProductsService],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    RouterOutlet,
+    IndexComponent,
+    AllProductsComponent,
+    SearchComponent,
+    OneProductComponent,
+    HttpClientModule,
+    ProductDetailsComponent,
+    ShopComponent,
+    NavbarComponent,
+    NavigationComponent,
+    HomeComponent,
+    FooterComponent,
+    AboutComponent,
+    CartComponent,
+    CommonModule,
+  ],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css',
+  styleUrls: ['./cart.component.css'],
+  providers: [ProductsService, AuthService, HttpClient, OrdersService],
 })
 export class CartComponent implements OnInit {
-  ID: string;
   Product: any;
   user: any;
   userID: number = 0;
   userCart: any[] = [];
-  quantity: any = 1;
-  productItem: any = {};
   cartHidden = true;
-  cartProducts: any[] = [];
+  quantity = 1;
+  productItem: any = {};
   productDetails: { [key: string]: any } = {};
 
   constructor(
-    private myRoute: ActivatedRoute,
+    private dialog: MatDialog,
+    public dialogRef: MatDialogRef<CartComponent>,
     private productsService: ProductsService,
     private authService: AuthService,
-    private productService: ProductsService
-  ) {
-    this.ID = myRoute.snapshot.params['id'];
-  }
+    private orderService: OrdersService
+  ) {}
+
   ngOnInit(): void {
-    this.getCart();
-    this.productsService.GetProductByID(this.ID).subscribe({
-      next: (data) => {
-        this.Product = data;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    console.log(1233333333);
 
     this.userID = this.authService.getLoggedInUser();
     this.authService.GetUserByID(this.userID).subscribe({
       next: (data) => {
         this.user = data;
         this.userCart = this.user.data.cart;
-        // console.log('User Data:', this.user);
-        console.log('User Cart:', this.userCart);
+        console.log(this.userCart);
       },
       error: (err) => {
         console.log('Failed to update user:', err);
       },
     });
-  }
-
-  Add_Item(Product: any) {
-    this.show();
-    this.getCart();
-    this.productItem = {
-      productId: Product._id,
-      quantity: this.quantity,
-      _id: Product._id,
-    };
-
-    const existingProductIndex = this.userCart.findIndex(
-      (item) => item._id === Product._id
-    );
-
-    if (existingProductIndex === -1) {
-      this.userCart.push(this.productItem);
-      console.log('Product added to cart:', Product);
-    } else {
-      const pastquantity = this.userCart[existingProductIndex].quantity;
-      console.log(
-        'Product already exists in cart so quantity was added' + pastquantity
-      );
-      this.userCart[existingProductIndex].quantity =
-        this.quantity + pastquantity;
-      console.log('User Cart:', this.userCart);
-    }
-
-    console.log('User Cart:', this.userCart);
-    this.user.data.cart = this.userCart;
-
-    this.updateuserFunction(this.userID, this.user);
-  }
-
-  updateuserFunction(userID: any, user: any) {
-    console.log('User Data updateuserFunction ====>', user);
-
-    this.authService.updateUser(userID, user).subscribe({
-      next: (data) => {
-        console.log('User updated successfully:', data);
-      },
-      error: (err) => {
-        console.log('Failed to update user:', err);
-      },
-    });
-  }
-
-  hide() {
-    this.cartHidden = true;
-  }
-
-  show() {
-    this.cartHidden = false;
-  }
-
-  getCart() {
-    this.authService
-      .GetUserByID(this.authService.getLoggedInUser())
-      .subscribe((user: any) => {
-        this.cartProducts = user.data.cart;
-        this.cartProducts.forEach((product) => {
-          this.productService
+    this.authService.GetUserByID(this.authService.getLoggedInUser()).subscribe({
+      next: (user: any) => {
+        this.userCart = user.data.cart;
+        this.userCart.forEach((product) => {
+          this.productsService
             .GetProductByID(product.productId)
             .subscribe((data) => {
               if (data) {
@@ -128,22 +95,82 @@ export class CartComponent implements OnInit {
               }
             });
         });
-      });
+      },
+      error: (err) => {
+        console.error('Error fetching cart:', err);
+      },
+    });
   }
+
+  loadProductDetails() {
+    this.userCart.forEach((product) => {
+      this.productsService
+        .GetProductByID(product.productId)
+        .subscribe((data) => {
+          if (data) {
+            this.productDetails[product.productId] = data;
+          }
+        });
+    });
+  }
+
+  hide() {
+    this.dialogRef.close();
+  }
+
   decreaseQuantity(product: any) {
     if (product.quantity > 1) {
       product.quantity -= 1;
-      this.updateProductInCart(product);
+      this.updateProductInCart(product).subscribe({
+        next: () => {
+          console.log('User updated successfully');
+          this.getCart();
+        },
+        error: (err) => {
+          console.error('Error updating user:', err);
+        },
+      });
     }
   }
 
   increaseQuantity(product: any) {
     product.quantity += 1;
-    this.updateProductInCart(product);
+    this.updateProductInCart(product).subscribe({
+      next: () => {
+        console.log('User updated successfully');
+        this.getCart();
+      },
+      error: (err) => {
+        console.error('Error updating user:', err);
+      },
+    });
   }
 
-  updateProductInCart(product: any) {
-    const updatedCart = this.cartProducts.map((item) =>
+  deleteProductFromCart(productId: string) {
+    this.userCart = this.userCart.filter(
+      (product) => product.productId !== productId
+    );
+    console.log(this.userCart);
+
+    this.updateuserFunction(this.userID, {
+      ...this.user,
+      data: {
+        ...this.user.data,
+        cart: this.userCart,
+      },
+    }).subscribe({
+      next: () => {
+        console.log('User updated successfully');
+        this.getCart();
+      },
+      error: (err) => {
+        console.error('Error updating user:', err);
+      },
+    });
+  }
+
+  updateProductInCart(product: any): Observable<any> {
+    const updatedCart = this.userCart.map((item) =>
       item.productId === product.productId ? product : item
     );
 
@@ -155,21 +182,69 @@ export class CartComponent implements OnInit {
       },
     };
 
-    this.updateuserFunction(this.userID, updatedUser);
+    return this.updateuserFunction(this.userID, updatedUser);
   }
-  deleteProductFromCart(productId: string) {
-    // Remove the product from cartProducts
-    this.cartProducts = this.cartProducts.filter(
-      (product) => product.productId !== productId
-    );
-    console.log(this.cartProducts);
+  getCart() {
+    this.authService.GetUserByID(this.authService.getLoggedInUser()).subscribe({
+      next: (user: any) => {
+        this.userCart = user.data.cart;
+        this.userCart.forEach((product) => {
+          this.productsService
+            .GetProductByID(product.productId)
+            .subscribe((data) => {
+              if (data) {
+                this.productDetails[product.productId] = data;
+              }
+            });
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching cart:', err);
+      },
+    });
+  }
 
-    // Update the user with the new cart
-    this.updateuserFunction(this.userID, {
-      ...this.user,
-      data: {
-        ...this.user.data,
-        cart: this.cartProducts,
+  updateuserFunction(userID: any, user: any): Observable<any> {
+    return this.authService.updateUser(userID, user);
+  }
+
+  addOrder() {
+    const totalPrice = this.userCart.reduce((sum, product) => {
+      const pricePerUnit = this.productDetails[product.productId]?.price ?? 0;
+      return sum + pricePerUnit * product.quantity;
+    }, 0);
+
+    const productTitles = this.userCart.map(
+      (product) => this.productDetails[product.productId]?.title
+    );
+
+    console.log('Total price:', totalPrice);
+    console.log('Product titles:', productTitles);
+
+    this.orderService.createOrder(totalPrice, productTitles).subscribe({
+      next: (response) => {
+        console.log('Order placed successfully', response);
+        this.userCart = [];
+        this.user.data.cart = [];
+        const updatedUser = {
+          ...this.user,
+          data: {
+            ...this.user.data,
+            cart: this.userCart,
+          },
+        };
+        this.updateuserFunction(this.userID, updatedUser).subscribe({
+          next: () => {
+            console.log('User updated successfully');
+            this.getCart();
+          },
+          error: (err) => {
+            console.error('Error updating user:', err);
+          },
+        });
+      },
+      error: (error) => {
+        console.error('Error placing order:', error);
       },
     });
   }

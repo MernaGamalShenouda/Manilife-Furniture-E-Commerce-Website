@@ -1,13 +1,113 @@
-@if(Product){
-  <div class=" alert alert-secondary">
-      <img src="{{Product.images[0]}}" alt="...">
-      <p>Name: {{Product.title}}</p>
-      <p>Price: {{Product.price}}</p>
-      <input type="number" [(ngModel)]="quantity" placeholder="Enter quantity">
-      <input type="button" value="ADD" (click)="Add_Item(Product)">
+<h2 mat-dialog-title>{{ Product?.title }}</h2>
+
+<mat-dialog-content class="overflow-hidden">
+  <div class="row">
+    <div class="col-5">
+      <div
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="{{ Product?.images[0] }}"
+              class="img-fluid rounded-start d-block w-100"
+              alt="..."
+            />
+          </div>
+          @for (image of Product?.images; track image.image) {
+
+          <div class="carousel-item">
+            <img
+              src="{{ image }}"
+              class="img-fluid rounded-start d-block w-100"
+              alt="..."
+            />
+          </div>
+          }
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-7 mt-3">
+      <form [formGroup]="productForm" class="card-body">
+        <div class="row">
+          <div class="col-6">
+            <mat-card-title>Name:</mat-card-title>
+            <h2 mat-dialog-title>{{ Product?.title }}</h2>
+          </div>
+          <div class="col-6">
+            <mat-card-title>Category:</mat-card-title>
+            <h2 mat-dialog-title>{{ Product?.category }}</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <mat-card-title>Quantity:</mat-card-title>
+            <h2 mat-dialog-title>{{ Product?.quantity }}</h2>
+          </div>
+          <div class="col-6">
+            <mat-card-title>Price:</mat-card-title>
+            <h2 mat-dialog-title>{{ Product?.price }}.00$</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-8">
+            <mat-card-title>Description:</mat-card-title>
+            <p mat-dialog-title>{{ Product?.details.description }}</p>
+          </div>
+        </div>
+
+        <div
+          class="d-flex flex-column justify-content-center align-items-center"
+        >
+          <mat-form-field class="col-3">
+            <mat-label>quantity</mat-label>
+            <input
+              formControlName="quantity"
+              type="number"
+              matInput
+              [value]="quantity"
+              placeholder="Enter quantity"
+            />
+          </mat-form-field>
+ 
+          <button
+            (click)="Add_Item(Product)"
+            type="submit"
+            mat-raised-button
+            class="btn btn-custom w-10 fs-5"
+            mat-dialog-close
+          >
+            ADD
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-}@else {
-  <div>
-      <h1>Loading ...</h1>
-  </div>
-} 
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
+
