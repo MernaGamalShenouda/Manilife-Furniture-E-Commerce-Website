@@ -1,41 +1,6 @@
 .search-bar{
     background-color:#fbedcf;
 }
-/* .manilife-text{
-    background-color: #fbedcf;
-    display: inline-block; 
-    padding: 10px;
-    margin: 0 auto;
-    display: flex; 
-    justify-content: center;
-    width: 50%; 
-    max-width: 450px;
-}
-.navbar {
-    display: flex;
-    flex-direction: column;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    padding: 0 !important;
-    margin-bottom: 80px;
-    
-}
-.navbar-top {
-    background-color: #086484;
-    color: white;
-    display: flex;
-    align-items: center;
-    height: 37px;
-    width: 100%;
-}
-.navbar-text {
-    font-weight: 500;
-    font-size: 14px;
-    text-align: center;
-    color: white;
-    width: 100%;
-} */
 
 .search-container {
     background-color:#fbedcf;
@@ -185,8 +150,8 @@
 /* Media Queries for Responsive Design */
 @media only screen and (max-width: 768px) {
     .sidebar {
-        /* display: none; */
-        width: 0px; /* Set initial width of sidebar */
+        
+        width: 0px; 
         height: 0px;
     }
 
