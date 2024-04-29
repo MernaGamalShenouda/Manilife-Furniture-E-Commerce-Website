@@ -23,7 +23,9 @@
     </div>
     <div class="mb-3">
       <label for="image" class="form-label fs-6">Image:</label>
-      <input type="text" id="image" name="image" class="form-control fs-6" [(ngModel)]="user.image">
+      <input class="form-control fs-6" (change)="uploadPhoto($event)"  #imageProduct type="file"  multiple>
+
+      <!-- <input type="text" id="image" name="image" class="form-control fs-6" [(ngModel)]="user.image"> -->
     </div>
     <div class="mb-3">
       <label for="gender" class="form-label fs-6">Gender:</label>

@@ -19,35 +19,49 @@ import { Router } from '@angular/router';
 })
 
 export class RegisterComponent {
+  url_Photo:any={}
   user = {
     username: '',
     fullname: '',
     email: '',
     password: '',
-    image: null as File | null,
+    image:{},
     gender: ''
   };
-
   constructor(private registerService: RegisterService, private router: Router) {}
 
   submitForm() {
+
+
+this.user.image=this.url_Photo.data.secure_url;
     this.registerService.AddUser(this.user).subscribe(
-      (response: any) => {
-        console.log('User added successfully:', response);
-        this.router.navigate(['/Login']);
-      },
-      (error) => {
-        console.error('Error adding user:', error);
+      {
+        next: (response: any) => {
+          console.log('User added successfully:', response);
+          this.router.navigate(['/Login']);
+        },
+        error: (error) => {
+          console.error('Error adding user:', error);
+        }
       }
     );
   }
 
-  formData = new FormData();
 
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0]; 
-    console.log(file);
-    this.user.image = file; 
-    this.formData.append('image', this.user.image);
-  }
+//--------------Upload Photo----------------------------------
+
+uploadPhoto(event: any) {
+  const file: File = event.target.files[0];
+  const formData = new FormData();
+    formData.append('image', file);
+  this.registerService.uploadImage(formData).subscribe({
+    next: data => {
+      this.url_Photo=data
+
+    },
+    error: err => {
+      console.error(err);
+    }
+  });
+}
 }

@@ -5,7 +5,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { AdminServiceService } from '../admin-service.service';
+import { AdminServiceService } from '../../../Services/admin-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -34,6 +34,7 @@ export class UpdateProductComponent  implements OnInit {
 
   product:any={};
   categories:any={};
+  url_Photo:any={}
 
   constructor(private adminService:AdminServiceService,
                 @Inject(MAT_DIALOG_DATA) public data: any,
@@ -45,6 +46,8 @@ export class UpdateProductComponent  implements OnInit {
   ngOnInit(): void {
   this.getPoduct()
 this.getCategories()
+
+
 
 
   }
@@ -60,7 +63,7 @@ this.getCategories()
         quantity:this.product.quantity,
         price:this.product.price,
         description:this.product.details.description,
-        image:this.product.category,
+        images:this.product.images,
        });
 
 
@@ -91,34 +94,20 @@ this.getCategories()
   quantity:new FormControl('',[Validators.required]),
   price:new FormControl('',[Validators.required,Validators.min(0)]),
   description:new FormControl('',[Validators.required,Validators.minLength(10)]),
-  image:new FormControl('',[Validators.required])
+  images:new FormControl('',[Validators.required])
  });
 
 
 
-//  get titleValid() {
-//   return this.form.controls['title'].valid;
-// }
+ get titleValid() {
+  return this.form.controls['title'].valid;
+}
 
-// get categoryValid() {
-//   return this.form.controls['category'].valid;
-// }
 
-// get quantityValid() {
-//   return this.form.controls['quantity'].valid;
-// }
+get DescriptionValid() {
+  return this.form.controls['description'].valid;
+}
 
-// get priceValid() {
-//   return this.form.controls['price'].valid;
-// }
-
-// get DescriptionValid() {
-//   return this.form.controls['description'].valid;
-// }
-
-// get imageValid() {
-//   return this.form.controls['image'].valid;
-// }
 
 
 
@@ -128,7 +117,7 @@ this.getCategories()
               category:this.form.controls['category'].value,
               price:this.form.controls['price'].value,
               quantity:this.form.controls['quantity'].value,
-              image:this.form.controls['image'].value,
+              images:this.url_Photo.data.url,
               "details":{
                 description:this.form.controls['description'].value,
                 "reviews":[
@@ -147,5 +136,20 @@ this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
 }
 
 
+//--------------------upload Photo-------------------------------------------------
+uploadPhoto(event: any) {
+
+  const file: File = event.target.files[0];
+  const formData = new FormData();
+    formData.append('image', file);
+  this.adminService.uploadImage(formData).subscribe({
+    next: data => {
+      this.url_Photo=data
+    },
+    error: err => {
+      console.error(err);
+    }
+  });
 }
- 
+
+}

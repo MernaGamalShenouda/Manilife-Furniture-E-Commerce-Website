@@ -16,23 +16,24 @@ import { userAuthGuard } from './Guards/user-auth.guard';
 import { authGuard } from './Guards/auth.guard';
 import { adminAuthGuard } from './Guards/admin-auth.guard';
 import { ErrorComponent } from './components/error/error.component';
+import { OrdersComponent } from './components/admin/orders/orders.component';
+import { UsersComponent } from './components/admin/users/users.component';
 import { EditProfileComponent } from  './edit-profile/edit-profile.component'
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { OrdersItemComponent } from './order-item/order-item.component';
 
 export const routes: Routes = [
-  // {path:"",component:ProductsComponent},
-  // {path:"Products",component:ProductsComponent},
-  // {path:"CreateProduct",component:CreateProductComponent},
 
-  {
+ {
     path: 'admin',canActivate:[authGuard,adminAuthGuard],
     component: AdminMainComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'adminProducts', component: ProductsComponent },
       { path: 'adminCreateProduct', component: CreateProductComponent },
-  
+      { path: 'adminOrders', component: OrdersComponent },
+      { path: 'adminUsers', component: UsersComponent },
+
     ],
   },
 

@@ -1,10 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { AdminServiceService } from '../admin-service.service';
+import { AdminServiceService } from '../../../Services/admin-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {  MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 
 import {
   MatDialog,
@@ -15,7 +16,7 @@ import {
   MatDialogContent,
 
 } from '@angular/material/dialog';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UpdateProductComponent } from '../update-product/update-product.component';
 
 @Component({
@@ -40,16 +41,17 @@ export class ProductsComponent implements OnInit {
   totalPages: number = 0;
   countProducts:any;
   searchValue:string='';
+  checkedProducts: string[] = [];
 
 
   selectAllChecked: boolean = false;
 
-  name:any
 
 
 
 
-  constructor(private adminService: AdminServiceService ,public dialog: MatDialog) {
+
+  constructor(private adminService: AdminServiceService ,public dialog: MatDialog,private router:Router) {
 
 
 
@@ -63,6 +65,10 @@ export class ProductsComponent implements OnInit {
     }
 
 
+    checkDelet()
+    {
+      return this.checkedProducts.length>0;
+    }
 //------------------get Search Product------------------------------
 
 Getname(e:any) {
@@ -73,7 +79,6 @@ Getname(e:any) {
     this.adminService.GetProductByName(e.target.value.trim()).subscribe({
         next: (responseData: any) => {
             this.products = responseData.Product;
-            console.log(this.products);
 
         },
         error: (error: any) => {
@@ -107,11 +112,63 @@ Getname(e:any) {
     for (let index = 0; index < this.products.length; index++) {
       this.products[index].checked = this.selectAllChecked
 
+      if(this.selectAllChecked)
+        {
+          this.checkedProducts[index]=this.products[index]._id;
+      }else{
+        this.checkedProducts.splice(index);
+      }
     }
+
+   console.log(this.checkedProducts);
+
+
+
   }
 
 
+  toggleChecked(productId: string) {
+    const index = this.checkedProducts.indexOf(productId);
+    if (index === -1) {
+      this.checkedProducts.push(productId);
 
+    } else {
+      this.checkedProducts.splice(index, 1);
+    }
+
+    console.log(this.checkedProducts);
+  }
+
+
+  RemoveAll()
+  {
+
+    for (let i = 0; i < this.products.length; i++) {
+
+    let productId=this.checkedProducts[i];
+
+    this.adminService.deleteProduct(this.checkedProducts[i]).subscribe({
+      next:data=>{
+        console.log(data);
+
+      },
+      error:error=>{
+        console.error(error);
+
+      }
+    })
+
+    const index = this.products.findIndex((product: any) => product._id === productId);
+    if (index !== -1) {
+      this.products.splice(index);
+
+    }
+    }
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['admin/adminProducts']);
+    });
+  }
 
 
 //--------------Pagnation----------------------------------------------
@@ -134,7 +191,7 @@ getRange(): string {
 
 
 //-------------- Delete Modal-----------------------------------------
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string,productId:string): void {
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string,productId:any=null): void {
 
 
     const dialogRef = this.dialog.open(DeleteModal, {
@@ -143,7 +200,9 @@ getRange(): string {
         enterAnimationDuration,
         exitAnimationDuration,
         productId: productId,
-        products:this.products
+        products:this.products,
+        checkedProducts:this.checkedProducts
+
       }
     });
 
@@ -152,7 +211,6 @@ getRange(): string {
     dialogRef.afterClosed().subscribe((updatedProducts: any[]) => {
       if (updatedProducts) {
         this.products = updatedProducts;
-        console.log(this.products);
 
       }
     });
@@ -169,13 +227,25 @@ getRange(): string {
           });
 
           dialogRef.afterClosed().subscribe(result => {
-            console.log(`Dialog result: ${result}`);
           });
         }
+
+
+//------------
+
+createProduct(){
+  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['admin/adminCreateProduct']);
+  });
+}
+
+
+
 }
 
 
 //---------------component of Delete Modal-------------------------------------
+
 @Component({
   selector: 'DeleteModal.app',
   templateUrl: './DeleteModal.component.html',
@@ -186,17 +256,17 @@ getRange(): string {
      MatDialogClose,
      MatDialogTitle,
      MatDialogContent,
-     HttpClientModule
+     HttpClientModule,
     ],
     providers:[
       AdminServiceService
     ]
 })
 export class DeleteModal  {
-  constructor(public dialogRef: MatDialogRef<DeleteModal>,private adminService:AdminServiceService,    @Inject(MAT_DIALOG_DATA) public data: any) {}
+  products:any={}
+  constructor(public dialogRef: MatDialogRef<DeleteModal>,private adminService:AdminServiceService,    @Inject(MAT_DIALOG_DATA) public data: any,private router:Router) {}
 
   productId = this.data.productId;
-
 
 
 
@@ -206,7 +276,6 @@ export class DeleteModal  {
     if (index !== -1) {
       this.data.products.splice(index, 1);
     }
-
 
     this.adminService.deleteProduct(this.productId).subscribe({
       next:data=>{
@@ -225,5 +294,14 @@ export class DeleteModal  {
   Cenecl(){
     return ;
   }
+
+
+
+
+
+
+
+
+
 
 }
