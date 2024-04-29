@@ -3,7 +3,6 @@ import {MatCardModule} from '@angular/material/card';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../Services/profile.service';
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from '../navbar/navbar.component';
 import { NgFor } from '@angular/common';
 //import { OrdersComponent } from '../order-item/order-item.component';
 

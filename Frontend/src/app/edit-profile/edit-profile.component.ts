@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../Services/profile.service';
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-edit-profile',

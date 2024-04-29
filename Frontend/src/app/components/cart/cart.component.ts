@@ -266,4 +266,5 @@ export class CartComponent implements OnInit,DoCheck {
       return total + item.quantity * pricePerUnit;
     }, 0);
   }
+  
 }
