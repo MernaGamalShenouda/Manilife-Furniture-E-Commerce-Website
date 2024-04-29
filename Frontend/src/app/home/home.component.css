@@ -274,35 +274,27 @@ ul {
 
 
 @media (max-width: 768px) {
-  /* Styles for screens up to 768px wide */
-
-  /* Award Winning Section */
   .award-winning-section {
-    height: 50vh; /* Adjust section height for smaller screens */
+    height: 50vh; 
   }
 
   .award-winning-content {
-    margin-top: 15vh; /* Adjust margin for smaller screens */
+    margin-top: 15vh; 
   }
 
   .award-winning-title {
-    font-size: 24px; /* Adjust font size for smaller screens */
-    margin-bottom: 15px; /* Adjust margin for smaller screens */
+    font-size: 24px; 
+    margin-bottom: 15px;
   }
 
   .award-winning-text {
-    font-size: 14px; /* Adjust font size for smaller screens */
-    margin-bottom: 20px; /* Adjust margin for smaller screens */
+    font-size: 14px; 
+    margin-bottom: 20px; 
   }
 
-  /* Rotating Section */
   .rotating-blocks {
-    left: 2%; /* Adjust left position for smaller screens */
+    left: 2%;
   }
-
-  /* .section-title-wrapper{
-    padding-top: 10px;
-  } */
 
   .product-container{
     align-items: center;
@@ -313,21 +305,20 @@ ul {
     padding-top: 5%;
   }
 
-  /* Product Cards */
   .product-card {
-    height: auto; /* Adjust card height to auto for smaller screens */
-    padding: 20px; /* Add padding for better spacing on smaller screens */
+    height: auto; 
+    padding: 20px; 
   }
 
   .product-title {
-    font-size: 20px; /* Adjust font size for product titles on smaller screens */
-    margin-bottom: 10px; /* Adjust margin for smaller screens */
+    font-size: 20px; 
+    margin-bottom: 10px; 
     padding: 10%;
   }
 
   .btn-primary {
-    padding: 10px 20px; /* Adjust padding for smaller screens */
-    margin-top: 30%; /* Adjust padding for smaller screens */
-    font-size: 16px; /* Adjust font size for buttons on smaller screens */
+    padding: 10px 20px;
+    margin-top: 30%; 
+    font-size: 16px; 
   }
 }

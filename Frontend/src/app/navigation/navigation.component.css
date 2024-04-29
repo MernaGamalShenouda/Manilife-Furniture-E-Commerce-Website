@@ -127,22 +127,19 @@ ul {
 }
 
 
-/* Media query for smaller screens */
 @media (max-width: 1000px) {
-
-
   .navbar-top {
-    height: auto; /* Allow height to adjust as needed */
-    justify-content: center; /* Center items */
+    height: auto; 
+    justify-content: center; 
   }
 
   .navbar-text {
-    font-size: 12px; /* Adjust font size for smaller screens */
+    font-size: 12px; 
   }
 
   .navbar-nav {
     flex-direction: row;
-    align-items: center; /* Center items */
+    align-items: center;
   }
 
   .nav-item{
@@ -150,7 +147,7 @@ ul {
   }
 
   .nav-link {
-    font-size: 14px; /* Adjust font size for smaller screens */
-    margin: 5px 0; /* Add margin for spacing */
+    font-size: 14px; 
+    margin: 5px 0; 
   }
 }
