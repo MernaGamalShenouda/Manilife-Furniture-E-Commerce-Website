@@ -1,3 +1,16 @@
+<!-- @if(Product){
+    <div class=" alert alert-secondary">
+        <img src="{{Product.images[0]}}" alt="...">
+        <p>Name: {{Product.title}}</p>
+        <p>Price: {{Product.price}}</p>
+        <input type="number" [(ngModel)]="quantity" placeholder="Enter quantity">
+        <input type="button" value="ADD" (click)="Add_Item(Product)">
+    </div>
+}@else {
+    <div>
+        <h1>Loading ...</h1>
+    </div>
+} -->
 <h2 mat-dialog-title>{{Product?.title}}</h2>
 
 <mat-dialog-content >
@@ -77,7 +90,7 @@
             </mat-form-field>
           
 
-          <button (click)="Add_Item(Product)"  type="submit" mat-raised-button class="btn btn-custom w-10 fs-5">ADD</button>
+          <button (click)="Add_Item(Product)"  type="submit" mat-raised-button mat-dialog-close  class="btn btn-custom w-10 fs-5">ADD</button>
         </div>
         
       </form>
@@ -86,8 +99,8 @@
   </div>
 </mat-dialog-content>
 
-<mat-dialog-actions>
+<!-- <mat-dialog-actions>
   <button mat-button mat-dialog-close >Close</button>
-</mat-dialog-actions>
+</mat-dialog-actions> -->
 
 

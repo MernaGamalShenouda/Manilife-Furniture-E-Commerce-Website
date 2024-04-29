@@ -1,7 +1,7 @@
 .search-bar{
     background-color:#fbedcf;
 }
-.manilife-text{
+/* .manilife-text{
     background-color: #fbedcf;
     display: inline-block; 
     padding: 10px;
@@ -35,7 +35,7 @@
     text-align: center;
     color: white;
     width: 100%;
-}
+} */
 
 .search-container {
     background-color:#fbedcf;
@@ -59,7 +59,7 @@
     margin-right: 10px;
     font-weight: bold;
     color: #002a3a;
-    /* background-color: #ffffff48; */
+    background-color: #ffffff48;
 }
 
 .rounded-input:active {
@@ -89,6 +89,7 @@
     justify-content: center; 
     width: 100%;
     height: 12vh;
+    text-align: center;
 }
 
 .nav-link {
@@ -129,3 +130,77 @@
     border: 0px solid #002a3a;
 }
 
+.sidebar {
+    width: 0;
+    height: 100vh;
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+    transition: width 0.5s ease;
+    cursor: pointer; 
+}
+.sidebar.active {
+    width: 100%;
+    height: 100px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+}
+.sidebar ul li:hover{
+    background-color: #afbdc0;
+}
+
+.menu-toggle{
+    background-color: #fbedcf;
+    border-color: #002a3a;
+    color: #002a3a;
+    font-weight: bold;
+    padding: 0px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+@media only screen and (min-width: 768px) {
+    .sidebar {
+    display: none;
+    }
+
+    .menu-toggle {
+        display:none;
+    }
+
+    .sidebar-ag{
+        display: none;
+    }
+
+}
+
+/* Media Queries for Responsive Design */
+@media only screen and (max-width: 768px) {
+    .sidebar {
+        /* display: none; */
+        width: 0px; /* Set initial width of sidebar */
+        height: 0px;
+    }
+
+    .menu-toggle {
+        display: block;
+        cursor: pointer; 
+    }
+
+    .navbar-light{
+        display:none;
+    }
+
+    .main-content {
+        
+        text-align: center;
+    }
+}

@@ -1,31 +1,9 @@
 <div class="search-bar">
-    <div class="navbar-top">
-        <div class="navbar-text">TRENDY FURNITURE IS AVAILABLE NOW</div>
-    </div>
-
-    <div class="navbar navbar-expand-lg">
-        <div class="navbar-light">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link-text" href="#">SHOP</a></li>
-                <li class="nav-item">
-                    <a class="nav-link-text" href="#">SUBSCRIBE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link manilife-text" href="#">
-                        <img src="../../assets/logo.png" style="max-width: 200px;">
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link-text" href="#">THE MANI STORY</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" routerLink="/cart">CART</a></li>
-            </ul>
-        </div>
-    </div>
+    
 
     
 
-        <div class="search-container">
+        <!-- <div class="search-container">
             <div class="search-input">
                 <input class="rounded-input" type="text" placeholder="Search" [(ngModel)]="searchTerm">
                 <button class="btn" (click)="search()">Search</button>
@@ -36,6 +14,52 @@
             <ul class="navbar-nav mx-auto" *ngFor="let category of categories" (click)="pickedCategory(category)">
                 <li class="nav-item btn "><a class="nav-link">{{category.toUpperCase()}}</a></li>
             </ul>
-        </div>
+        </div> -->
     
+        
+<div class="container">
+    
+
+    <div class="main-content">
+        
+        <div class="search-container">
+            <div class="search-input">
+                <input class="rounded-input" type="text" placeholder="Search" [(ngModel)]="searchTerm">
+                <button class="btn" (click)="search()">Search</button>
+            </div>
+        </div>
+
+        <button class="menu-toggle" (click)="toggleSidebar()">☰</button>
+    
+    
+        <div class="sidebar" [ngClass]="{'active': isSidebarOpen}" (mouseleave)="closeSidebar()">
+            <ul>
+                <li *ngFor="let category of categories" (click)="pickedCategory(category)">
+                    <a>{{category.toUpperCase()}}</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- <div class="sidebar-ag">
+
+            <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+            
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item *ngFor="let category of categories" (click)="pickedCategory(category)">
+                    {{ category.toUpperCase() }}
+                </button>
+            </mat-menu>
+        </div> -->
+        
+        
+        <div class="navbar-light ">
+            <ul class="navbar-nav mx-auto" *ngFor="let category of categories" (click)="pickedCategory(category)">
+                <li class="nav-item btn" >
+                    <a class="nav-link">{{category.toUpperCase()}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 </div>
