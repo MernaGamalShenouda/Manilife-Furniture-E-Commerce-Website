@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AdminServiceService } from '../admin-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
@@ -20,7 +20,7 @@ import { UpdateProductComponent } from '../update-product/update-product.compone
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [HttpClientModule, CommonModule],
+  imports: [HttpClientModule, CommonModule, FormsModule],
   providers: [AdminServiceService],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',

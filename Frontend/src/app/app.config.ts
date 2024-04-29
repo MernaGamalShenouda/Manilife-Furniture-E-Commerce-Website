@@ -2,11 +2,12 @@ import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
-<<<<<<< HEAD
-  providers: [provideRouter(routes)]
-=======
-  providers: [provideRouter(routes), provideAnimationsAsync(), provideAnimationsAsync()]
->>>>>>> origin/Merna
+  providers: [
+    provideRouter(routes),
+    provideAnimationsAsync(),
+    provideAnimationsAsync(),
+  ],
 };

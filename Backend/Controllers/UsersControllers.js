@@ -41,6 +41,9 @@ let Login = async (req, res) => {
   });
   if (!foundUser) return res.send("Invalid Email / Password");
 
+  let passTrue = await bcrypt.compare(req.body.password, foundUser.password);
+  if (!passTrue) return res.send("Invalid Email / Password");
+
     let passTrue = await bcrypt.compare(req.body.password, foundUser.password);
 
     if (!passTrue) {

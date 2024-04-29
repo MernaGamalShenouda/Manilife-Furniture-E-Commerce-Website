@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { IndexComponent } from './components/admin/index/index.component';
-=======
 import { Component, DoCheck } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { Router } from '@angular/router';
@@ -13,9 +8,8 @@ import { OneProductComponent } from './components/one-product/one-product.compon
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { DataSharingService } from './Services/data-sharing.service';
-import { AdminGuard } from './Guards/admin.guard';
+// import { AdminGuard } from './Guards/admin.guard';
 import { AuthService } from './Services/auth.service';
->>>>>>> origin/Merna
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
@@ -31,15 +25,12 @@ import { CommonModule } from '@angular/common';
   imports: [
     RouterOutlet,
     IndexComponent,
-<<<<<<< HEAD
-=======
     AllProductsComponent,
     SearchComponent,
     OneProductComponent,
     HttpClientModule,
     ProductDetailsComponent,
     ShopComponent,
->>>>>>> origin/Merna
     NavigationComponent,
     HomeComponent,
     FooterComponent,
@@ -51,20 +42,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-<<<<<<< HEAD
-export class AppComponent {
-  title = 'Frontend';
-=======
-export class AppComponent implements DoCheck{
-  constructor(private router: Router,private authService :AuthService) {}
-  isAdmin:boolean = false;
+export class AppComponent implements DoCheck {
+  constructor(private router: Router, private authService: AuthService) {}
+  isAdmin: boolean = false;
   title = 'ManiLife';
 
   ngDoCheck(): void {
-    this.isAdmin=this.authService.isAdmin();
+    this.isAdmin = this.authService.isAdmin();
     console.log(this.isAdmin);
-    
   }
-  
->>>>>>> origin/Merna
 }

@@ -1,25 +1,13 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-=======
 import { Component, DoCheck } from '@angular/core';
 import { CartComponent } from '../components/cart/cart.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../Services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
->>>>>>> origin/Merna
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-<<<<<<< HEAD
-  imports: [RouterModule],
-  templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.css',
-})
-export class NavigationComponent {}
-=======
   imports: [CommonModule, RouterModule],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css',
@@ -56,4 +44,3 @@ export class NavigationComponent implements DoCheck {
     this.authService.logout();
   }
 }
->>>>>>> origin/Merna

@@ -12,7 +12,7 @@ const jwtHelper = new JwtHelperService();
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, HttpClientModule,RouterModule,CommonModule],
+  imports: [FormsModule, HttpClientModule, RouterModule, CommonModule],
   providers: [AuthService, GetUserService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -23,8 +23,8 @@ export class LoginComponent {
   message: string = '';
   token: string = '';
 
-  emailError: string = ''; 
-  passError: string = ''; 
+  emailError: string = '';
+  passError: string = '';
 
   constructor(
     private authService: AuthService,
@@ -43,13 +43,13 @@ export class LoginComponent {
 
       const decodedToken = jwtHelper.decodeToken(this.token);
 
-      const userResponse:any = await firstValueFrom(
+      const userResponse: any = await firstValueFrom(
         this.getUserService.getUser(decodedToken.id)
       );
 
       localStorage.setItem('role', userResponse.data.role);
 
-      this.authService.saveUserData(); 
+      this.authService.saveUserData();
 
       if (this.authService.isAdmin()) {
         this.router.navigate(['/admin'], {
@@ -60,18 +60,18 @@ export class LoginComponent {
           state: { message: this.message, token: this.token },
         });
       }
-    } catch (error:any) {
+    } catch (error: any) {
       console.log('Error logging in:', error.error.error);
       if (error) {
         if (error.error.error.includes('User')) {
           this.emailError = error.error.error;
-        } else{
+        } else {
           this.emailError = '';
         }
-        
-      if (error.error.error.includes('password')) {
+
+        if (error.error.error.includes('password')) {
           this.passError = error.error.error;
-        } else{
+        } else {
           this.passError = '';
         }
       }

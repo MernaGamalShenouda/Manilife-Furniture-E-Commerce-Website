@@ -2,9 +2,6 @@ import { Routes } from '@angular/router';
 import { ProductsComponent } from './components/admin/products/products.component';
 import { OrdersComponent } from './components/admin/orders/orders.component';
 import { CreateProductComponent } from './components/admin/create-product/create-product.component';
-<<<<<<< HEAD
-import { HomeComponent } from './home/home.component';
-=======
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { AdminMainComponent } from './components/admin/admin-main/admin-main.component';
 import { AdminGuard } from './Guards/admin.guard';
@@ -23,22 +20,10 @@ import { AllProductsComponent } from './components/all-products/all-products.com
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { RegisterComponent } from './components/users/register/register.component';
 import { LoginComponent } from './components/users/login/login.component';
->>>>>>> origin/Merna
 import { AboutComponent } from './about/about.component';
 import { CartComponent } from './components/cart/cart.component';
 
 export const routes: Routes = [
-<<<<<<< HEAD
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-
-  // { path: '', component: ProductsComponent },
-  { path: 'Products', component: ProductsComponent },
-  { path: 'CreateProduct', component: CreateProductComponent },
-
-  { path: 'Orders', component: OrdersComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-=======
   // {path:"",component:ProductsComponent},
   // {path:"Products",component:ProductsComponent},
   // {path:"CreateProduct",component:CreateProductComponent},
@@ -98,5 +83,4 @@ export const routes: Routes = [
   },
 
   { path: '**', component: ErrorComponent },
->>>>>>> origin/Merna
 ];
