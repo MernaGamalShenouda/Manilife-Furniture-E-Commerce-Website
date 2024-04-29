@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, DoCheck } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { Router } from '@angular/router';
 import { IndexComponent } from './components/admin/index/index.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -8,7 +8,6 @@ import { OneProductComponent } from './components/one-product/one-product.compon
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { DataSharingService } from './Services/data-sharing.service';
-import { NavbarComponent } from './navbar/navbar.component';
 import { AdminGuard } from './Guards/admin.guard';
 import { AuthService } from './Services/auth.service';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -32,13 +31,13 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     ProductDetailsComponent,
     ShopComponent,
-    NavbarComponent,
     NavigationComponent,
     HomeComponent,
     FooterComponent,
     AboutComponent,
     CartComponent,
-    CommonModule
+    CommonModule,
+    RouterModule,
   ],
   providers: [
     //services
@@ -50,8 +49,15 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  constructor(private router: Router) {}
-  title = 'Frontend';
-  cartShown=false;
+export class AppComponent implements DoCheck{
+  constructor(private router: Router,private authService :AuthService) {}
+  isAdmin:boolean = false;
+  title = 'ManiLife';
+
+  ngDoCheck(): void {
+    this.isAdmin=this.authService.isAdmin();
+    console.log(this.isAdmin);
+    
+  }
+  
 }

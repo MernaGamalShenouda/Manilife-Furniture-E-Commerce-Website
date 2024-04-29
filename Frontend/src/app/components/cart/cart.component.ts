@@ -17,7 +17,6 @@ import { AllProductsComponent } from '../../components/all-products/all-products
 import { OneProductComponent } from '../../components/one-product/one-product.component';
 import { ProductDetailsComponent } from '../../components/product-details/product-details.component';
 import { ShopComponent } from '../../components/shop/shop.component';
-import { NavbarComponent } from '../../navbar/navbar.component';
 import { NavigationComponent } from '../../navigation/navigation.component';
 import { HomeComponent } from '../../home/home.component';
 import { FooterComponent } from '../../footer/footer.component';
@@ -39,7 +38,6 @@ import { OrdersService } from '../../Services/orders.service';
     HttpClientModule,
     ProductDetailsComponent,
     ShopComponent,
-    NavbarComponent,
     NavigationComponent,
     HomeComponent,
     FooterComponent,

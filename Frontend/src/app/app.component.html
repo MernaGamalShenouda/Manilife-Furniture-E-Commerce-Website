@@ -1,6 +1,6 @@
 <!-- <app-index></app-index> -->
 <!-- <h1 class="bg-danger">dd</h1> -->
-<app-navigation></app-navigation>
+<app-navigation *ngIf="!isAdmin"></app-navigation>
 <router-outlet></router-outlet>
 
-<app-footer></app-footer>
+<app-footer *ngIf="!isAdmin"></app-footer>
