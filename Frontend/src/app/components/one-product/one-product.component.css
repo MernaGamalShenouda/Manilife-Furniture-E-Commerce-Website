@@ -9,20 +9,20 @@
   gap: 20px;
 }
 
-/* For large screens, display 'n' cards horizontally */
+
 @media only screen and (min-width: 768px) {
   .card-container {
-    width: calc(80% / 4); /* Adjust the width based on the number of cards */
-    margin: 10px 10px; /* Optional: Adjust margin between cards */
+    width: calc(80% / 4);
+    margin: 10px 10px;
     
   }
 }
 
-/* For small screens, display 1 card horizontally */
+
 @media only screen and (max-width: 767px) {
   .card-container {
-    width: calc(100%); /* Full width with margin-right */
-    margin-right: 0;
+    width: calc(90%/2);
+    margin: 10px 10px;
   }
 }
 

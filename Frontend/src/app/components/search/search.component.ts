@@ -66,7 +66,7 @@
 //   }
 // }
 
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ProductsService } from '../../Services/products.service';
 import { DataSharingService } from '../../Services/data-sharing.service';
 import { AllProductsComponent } from '../all-products/all-products.component';
@@ -75,6 +75,10 @@ import { IndexComponent } from '../admin/index/index.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import {MatMenu, MatMenuModule, MatMenuTrigger} from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-search',
@@ -89,6 +93,9 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     RouterModule,
     CommonModule,
+    MatButtonModule, 
+    MatMenuModule, 
+    MatIconModule
   ],
   providers: [
     //services
@@ -104,10 +111,13 @@ export class SearchComponent implements OnInit {
   TotalNumberOfProducts: number=500;//l7ad ma n3raf el number
   // DataSharingService: any;
   viewDetails:string=';'
+  @ViewChild('MatMenu') menu!: MatMenu;
+  isSidebarOpen: boolean = false;
 
   constructor(
     private productsService: ProductsService,
     // private dataSharingService: DataSharingService
+    private elRef: ElementRef
   ) {}
 
   ngOnInit(): void {
@@ -147,6 +157,13 @@ export class SearchComponent implements OnInit {
   pickedCategory(category: string): void {
     DataSharingService.updateProductByCategory(category);
   }
+  
 
+    toggleSidebar() {
+        this.isSidebarOpen = !this.isSidebarOpen;
+    }
 
+    closeSidebar() {
+      this.isSidebarOpen = false;
+    }
 }
