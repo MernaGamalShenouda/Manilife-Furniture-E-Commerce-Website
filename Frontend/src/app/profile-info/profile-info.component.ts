@@ -65,7 +65,7 @@ export class ProfileInfoComponent implements OnInit {
   }
 
   loadOrdersByUsername(): void {
-    // Get the username of the logged-in user from AuthService or any other method
+   
     this.username  = this.authService. getMyUser().then((userData: any) => {
       this.username = userData.data.username;
     console.log(this.username +"this is user")
