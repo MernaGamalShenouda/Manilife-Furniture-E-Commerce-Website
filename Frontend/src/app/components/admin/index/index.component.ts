@@ -27,7 +27,7 @@ user:any={};
       this.auth.getMyUser().then(
         data=>{
           this.user=data;
-console.log(data.data.fullname);
+console.log(this.user.data);
 
         }
       );
