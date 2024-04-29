@@ -36,13 +36,14 @@ let Register = async (req, res) => {
 };
 
 let Login = async (req, res) => {
-  let foundUser = await UsersModel.findOne({
-    email: req.body.email.toLowerCase(),
-  });
-  if (!foundUser) return res.send("Invalid Email / Password");
+  try {
+    let foundUser = await UsersModel.findOne({
+      email: req.body.email.toLowerCase(),
+    });
 
-  let passTrue = await bcrypt.compare(req.body.password, foundUser.password);
-  if (!passTrue) return res.send("Invalid Email / Password");
+    if (!foundUser) {
+      return res.status(401).json({ error: "User not found" });
+    }
 
     let passTrue = await bcrypt.compare(req.body.password, foundUser.password);
 
