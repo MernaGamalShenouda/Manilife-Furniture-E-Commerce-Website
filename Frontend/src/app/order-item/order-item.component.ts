@@ -15,7 +15,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
   templateUrl: './order-item.component.html',
   styleUrls: ['./order-item.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersItemComponent implements OnInit {
  @Output() ordersLoaded = new EventEmitter<any[]>();
   orders:any[]=[];
   username: any='';

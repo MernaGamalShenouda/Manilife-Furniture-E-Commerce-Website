@@ -18,7 +18,7 @@ import { adminAuthGuard } from './Guards/admin-auth.guard';
 import { ErrorComponent } from './components/error/error.component';
 import { EditProfileComponent } from  './edit-profile/edit-profile.component'
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
-import { OrdersComponent } from './order-item/order-item.component';
+import { OrdersItemComponent } from './order-item/order-item.component';
 
 export const routes: Routes = [
   // {path:"",component:ProductsComponent},
@@ -32,7 +32,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'adminProducts', component: ProductsComponent },
       { path: 'adminCreateProduct', component: CreateProductComponent },
-      { path: 'adminOrders', component: OrdersComponent },
+  
     ],
   },
 
@@ -55,7 +55,7 @@ export const routes: Routes = [
   {path: 'edit-profile/:id', component: EditProfileComponent},
   { path: 'profile',component: ProfileInfoComponent},
   //{ path: 'users/:id/orders',component: UserOrdersComponent},
-  { path: 'OrdersByUser',component: OrdersComponent},
+  { path: 'OrdersByUser',component: OrdersItemComponent},
 
   {path:'**', component:ErrorComponent},
  
