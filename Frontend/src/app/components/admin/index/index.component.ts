@@ -24,13 +24,13 @@ user:any={};
   constructor(private auth:AuthService){}
       ngOnInit(): void {
 
-      this.auth.getMyUser().then(
-        data=>{
-          this.user=data;
-console.log(this.user.data);
+//       this.auth.getMyUser().then(
+//         data=>{
+//           this.user=data;
+// console.log(this.user);
 
-        }
-      );
+//         }
+//       );
 
       }
 
@@ -39,8 +39,6 @@ console.log(this.user.data);
   toggleSidebar(): void {
     this.showSidebar = !this.showSidebar;
   }
-
-
 
 
 }

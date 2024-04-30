@@ -12,8 +12,8 @@ import { authGuard } from './Guards/auth.guard';
 import { adminAuthGuard } from './Guards/admin-auth.guard';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './components/error/error.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { ProfileInfoComponent } from './profile-info/profile-info.component';
+// import { EditProfileComponent } from './edit-profile/edit-profile.component';
+// import { ProfileInfoComponent } from './profile-info/profile-info.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -28,7 +28,7 @@ export const routes: Routes = [
     canActivate: [authGuard, adminAuthGuard],
     component: AdminMainComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, 
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'adminProducts', component: ProductsComponent },
       { path: 'adminCreateProduct', component: CreateProductComponent },
@@ -56,8 +56,8 @@ export const routes: Routes = [
       { path: 'products/:id', component: ProductDetailsComponent },
     ],
   },
-  { path: 'edit-profile/:id', component: EditProfileComponent },
-  { path: 'profile', component: ProfileInfoComponent },
+  // { path: 'edit-profile/:id', component: EditProfileComponent },
+  // { path: 'profile', component: ProfileInfoComponent },
   //{ path: 'users/:id/orders',component: UserOrdersComponent},
   { path: 'OrdersbyUser', component: OrdersComponent },
 
