@@ -28,7 +28,7 @@ export const routes: Routes = [
     canActivate: [authGuard, adminAuthGuard],
     component: AdminMainComponent,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, 
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'adminProducts', component: ProductsComponent },
       { path: 'adminCreateProduct', component: CreateProductComponent },
@@ -56,10 +56,10 @@ export const routes: Routes = [
       { path: 'products/:id', component: ProductDetailsComponent },
     ],
   },
-  { path: 'edit-profile/:id', component: EditProfileComponent },
-  { path: 'profile', component: ProfileInfoComponent },
+  { path: 'edit-profile/:id', canActivate: [userAuthGuard, authGuard], component: EditProfileComponent },
+  { path: 'profile', canActivate: [userAuthGuard, authGuard], component: ProfileInfoComponent },
   //{ path: 'users/:id/orders',component: UserOrdersComponent},
-  { path: 'OrdersByUser',component: OrdersComponent},
+  { path: 'OrdersByUser', canActivate: [userAuthGuard, authGuard], component: OrdersComponent },
 
   { path: '**', component: ErrorComponent },
 ];
