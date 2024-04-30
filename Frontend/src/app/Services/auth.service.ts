@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 
 const jwtHelper = new JwtHelperService();
@@ -12,7 +13,7 @@ const jwtHelper = new JwtHelperService();
 })
 export class AuthService {
   private apiUrl = 'http://localhost:7005/api/users'; // Change this to your API URL
- 
+
   userData = new BehaviorSubject(null);
 
   constructor(private http: HttpClient, private router: Router) {
@@ -20,7 +21,7 @@ export class AuthService {
       this.saveUserData();
     }
   }
-  private URB_DB='http://localhost:7005/api/orders'; 
+  private URB_DB = 'http://localhost:7005/api/orders';
 
   login(email: string, password: string): Observable<any> {
     return this.http
@@ -53,30 +54,29 @@ export class AuthService {
   async getLoggedInUsername(): Promise<any> {
     try {
       const userData = await this.getLoggedInUser();
-      const user:any = await this.GetUserByID(userData).subscribe((user)=>{
-        const userNEW:any=user;
+      const user: any = await this.GetUserByID(userData).subscribe((user) => {
+        const userNEW: any = user;
         console.log(userNEW);
-        
+
         return userNEW;
       });
     } catch (error) {
       console.error('Error:', error);
       throw error;
     }
-  } 
+  }
 
-  async getMyUser() {
+  async getMyUser(): Promise<any> {
     try {
       const userID = await this.getLoggedInUser();
-      const user = await this.GetUserByID(userID).subscribe((user)=>{
-
-        console.log(user);
-        return user;
-      });
+      const userObservable = this.GetUserByID(userID);
       
+      const user = await firstValueFrom(userObservable);
+      
+      return user; 
     } catch (error) {
-      console.error('Error:', error);
-      throw error;
+      console.error('Error fetching user:', error);
+      throw error; 
     }
   }
 
@@ -133,9 +133,9 @@ export class AuthService {
     const url = `${this.URB_DB}/${username}`;
     return this.http.get<any[]>(url);
   }
-  
-  deleteOrderById(id:any): Observable<any> {
+
+  deleteOrderById(id: any): Observable<any> {
     const url = `${this.URB_DB}/${id}`;
     return this.http.delete<any>(url);
-  } 
+  }
 }
