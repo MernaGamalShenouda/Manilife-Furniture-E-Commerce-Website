@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterService } from '../../../Services/register.service';
+
 import { ProfileService } from '../../../Services/profile.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -10,19 +12,22 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   selector: 'app-edit-profile',
   standalone: true,
   imports: [ HttpClientModule ,FormsModule , ReactiveFormsModule],
-  providers:[ProfileService],
+  providers:[ProfileService,RegisterService],
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
   user: any;
   userId : any;
-  
+  url_Photo: any = {};
+
+
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private registerService: RegisterService
   ) {
      this.userId =this.route.snapshot.params["id"]; // Assuming user ID is passed in route params }
   }
@@ -35,7 +40,6 @@ export class EditProfileComponent implements OnInit {
     username: new FormControl('', [Validators.required, Validators.minLength(3)]),
     fullname: new FormControl('', [Validators.required]),
     email:new FormControl ('',[Validators.required]),
-    image:new FormControl('',[Validators.required])
    });
 
 
@@ -43,11 +47,11 @@ export class EditProfileComponent implements OnInit {
     const updatedUserData = {
       username: this.form.controls['username'].value,
       email: this.form.controls['email'].value,
-      image: this.form.controls['image'].value,
+      image: this.url_Photo.data.secure_url,
       fullname: this.form.controls['fullname'].value
     };
     console.log(updatedUserData);
-    
+
     this.profileService.updateUser(this.userId, updatedUserData).subscribe(
       {
         next:data=>{
@@ -59,6 +63,24 @@ export class EditProfileComponent implements OnInit {
       }
     );
     // this.router.navigate(['/profile']);
+  }
+
+
+
+  //--------------Upload Photo----------------------------------
+
+  uploadPhoto(event: any) {
+    const file: File = event.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    this.registerService.uploadImage(formData).subscribe({
+      next: (data) => {
+        this.url_Photo = data;
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 
 

@@ -1,3 +1,14 @@
 .active{
   background-color: #0e485f;
 }
+
+
+@media (max-width: 474px) {
+  .col-x-12 {
+    display: flex;
+  }
+
+  .col-12 {
+    width: 100% !important;
+  }
+}
