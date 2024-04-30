@@ -42,14 +42,14 @@
 }
 
 .card-body{
-  background-color:#283336;
+  background-color:#034058;
   border: none;
   border-radius: 10px;
   color:  #FBEDCF;
-  box-shadow: 0px 0px  10px rgb(197, 197, 197);
+  box-shadow: 0px 0px  5px #28708d;
 }
 .card-body:hover{
-  background-color:#034058;
+  background-color:#032e3f;
 
 }
 

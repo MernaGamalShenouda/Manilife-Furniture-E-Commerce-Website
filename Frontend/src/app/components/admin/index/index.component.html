@@ -5,10 +5,12 @@
       <a (click)="toggleSidebar()" class="mx-5 mb-3">
         <i class="fa-solid fa-bars text-white fs-4"></i>
       </a>
+      <a routerLink="dashboard" class="text-decoration-none">
       <div class="d-flex mx-5">
-        <img src="https://cdn-icons-png.flaticon.com/512/14663/14663195.png" class="mb-3" width="40px" alt="">
-        <p class="text-white mt-2 mx-3">admin</p>
-      </div>
+          <img src="{{user.data.image}}" class="mb-3  rounded-circle" width="40px" height="40px" alt="">
+          <p class="text-white mt-2 mx-3">{{user.data.username}}</p>
+        </div>
+      </a>
     </div>
   </div>
 
