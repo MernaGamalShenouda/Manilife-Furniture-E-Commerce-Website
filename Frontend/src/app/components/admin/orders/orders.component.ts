@@ -49,7 +49,7 @@ export class OrdersComponent  implements OnInit {
         console.error(error);
 
       }
-    })
+    }) 
   }
 
 
