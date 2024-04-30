@@ -63,7 +63,7 @@ let Login = async (req, res) => {
 };
 
 const updateUserById = async (req, res) => {
-  const newData = req.body.newData;
+  const newData = req.body;
 
   try {
     const userId = req.params.id;
@@ -73,7 +73,8 @@ const updateUserById = async (req, res) => {
       newData,
       { new: true }
     );
-
+    console.log("yyousrsgsd " +updatedUser);
+    console.log("lol"+ newData.data);
     if (!updatedUser) {
       return res.status(404).send("User not found");
     }

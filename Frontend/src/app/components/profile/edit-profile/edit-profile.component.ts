@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileService } from '../../../Services/profile.service';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 
 @Component({
   selector: 'app-edit-profile',
   standalone: true,
-  imports: [ HttpClientModule  ],
+  imports: [ HttpClientModule ,FormsModule , ReactiveFormsModule],
   providers:[ProfileService],
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
@@ -16,6 +17,7 @@ import { ProfileService } from '../../../Services/profile.service';
 export class EditProfileComponent implements OnInit {
   user: any;
   userId : any;
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -25,16 +27,27 @@ export class EditProfileComponent implements OnInit {
      this.userId =this.route.snapshot.params["id"]; // Assuming user ID is passed in route params }
   }
   ngOnInit(): void {
+    console.log('form:', this.form);
   }
 
-  onSubmit(updatedData: any): void {
-    this.userId = this.profileService.getLoggedInUser();
+
+  form = new FormGroup({
+    username: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    fullname: new FormControl('', [Validators.required]),
+    email:new FormControl ('',[Validators.required]),
+    image:new FormControl('',[Validators.required])
+   });
+
+
+  onSubmit(): void {
     const updatedUserData = {
-      username: updatedData.username,
-      email: updatedData.email,
-      image: updatedData.image,
-      fullname: updatedData.fullname
+      username: this.form.controls['username'].value,
+      email: this.form.controls['email'].value,
+      image: this.form.controls['image'].value,
+      fullname: this.form.controls['fullname'].value
     };
+    console.log(updatedUserData);
+    
     this.profileService.updateUser(this.userId, updatedUserData).subscribe(
       {
         next:data=>{
