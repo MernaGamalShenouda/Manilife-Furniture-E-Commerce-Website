@@ -39,6 +39,13 @@ import { NavigationComponent } from './navigation/navigation.component';
     CommonModule,
     RouterModule,
   ],
+  providers: [
+    //services
+    ProductsService,
+    DataSharingService,
+    AuthService,
+    AdminGuard,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

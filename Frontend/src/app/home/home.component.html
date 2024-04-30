@@ -1,29 +1,5 @@
 <div class="body">
   <section class="award-winning-section">
-    <!-- <nav class="navbar navbar-expand-lg">
-      <div class="navbar-top">
-        <div class="navbar-text">TRENDY FURNITURE IS AVAILABLE NOW</div>
-      </div>
-      <div class="navbar-light">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item"><a class="nav-link" href="#">SHOP</a></li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">THE MANI STORY</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link manilife-text" href="#"
-              ><img
-                src="../../assets/logo.png"
-                style="margin-top: 2rem; width: 70%"
-            /></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">PROFILE</a>
-          </li>
-          <li class="nav-item"><a class="nav-link" routerLink="/cart">CART</a></li>
-        </ul>
-      </div>
-    </nav> -->
     <div class="container">
       <div class="row align-items-center">
         <div class="offset-6 col-md-6 col-sm-6">
@@ -73,7 +49,7 @@
             <img src="../../assets/chair.png" class="card-image" />
             <a
               routerLinkActive="active"
-              routerLink="/products"
+              routerLink="/shop/products"
               class="btn btn-primary"
               >SHOP NOW</a
             >
@@ -85,7 +61,7 @@
             <img src="../../assets/table.png" class="card-image" />
             <a
               routerLinkActive="active"
-              routerLink="/products"
+              routerLink="/shop/products"
               class="btn btn-primary"
               >SHOP NOW</a
             >
@@ -97,7 +73,7 @@
             <img src="../../assets/bed.png" class="card-image" />
             <a
               routerLinkActive="active"
-              routerLink="/products"
+              routerLink="/shop/products"
               class="btn btn-primary"
               >SHOP NOW</a
             >
@@ -109,7 +85,7 @@
             <img src="../../assets/bookcase.png" class="card-image" />
             <a
               routerLinkActive="active"
-              routerLink="/products"
+              routerLink="/shop/products"
               class="btn btn-primary"
               >SHOP NOW</a
             >
@@ -118,13 +94,31 @@
       </div>
     </div>
   </section>
-  <section class="featured-products">
+  <section class="featured-products-wrapper">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-12 mb-4 card-container"></div>
-        <div class="col-lg-3 col-md-6 col-sm-12 mb-4 card-container"></div>
-        <div class="col-lg-3 col-md-6 col-sm-12 mb-4 card-container"></div>
-        <div class="col-lg-3 col-md-6 col-sm-12 mb-4 card-container"></div>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-12">
+          <h2 class="featured-products-title">FEATURED PRODUCTS</h2>
+          <a routerLink="/shop/products" class="shop-all-button btn"
+            >SHOP ALL PRODUCTS</a
+          >
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div
+          *ngFor="let product of products"
+          class="featured-product-col col-lg-3 col-md-6 col-sm-12 mb-4"
+        >
+          <div class="featured-product-card">
+            <img [src]="product.images[1]" class="featured-product-image" />
+            <div class="featured-product-body">
+              <h3 class="featured-product-title">{{ product.title }}</h3>
+              <a class="view-button btn" (click)="viewProduct(product._id)"
+                >View</a
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
