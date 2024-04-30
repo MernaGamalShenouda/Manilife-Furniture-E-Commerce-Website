@@ -18,6 +18,7 @@ import { ProductsService } from './Services/products.service';
 import { SearchComponent } from './components/search/search.component';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation/navigation.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @Component({
   selector: 'app-root',
@@ -59,3 +60,4 @@ export class AppComponent implements DoCheck {
     console.log(this.isAdmin);
   }
 }
+export const carouselModule = CarouselModule;

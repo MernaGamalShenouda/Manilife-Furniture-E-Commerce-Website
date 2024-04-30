@@ -11,20 +11,22 @@
 
 .award-winning-content {
   text-align: center;
-  margin-top: 30vh;
+  margin-top: 35vh;
 }
 
 .award-winning-title {
+  margin-top: 45%;
   color: #002a3a;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 2.5em;
   margin-bottom: 20px;
 }
 
 .award-winning-text {
   color: #002a3a;
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 30px;
+  font-weight: 500;
 }
 
 .shop-button,

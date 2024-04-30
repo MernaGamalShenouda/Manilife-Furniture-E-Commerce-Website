@@ -1,9 +1,11 @@
 <div class="body">
-  <section class="award-winning-section">
-    <div class="container">
+  <div class="container-fluid">
+    <section class="award-winning-section">
       <div class="row align-items-center">
-        <div class="offset-6 col-md-6 col-sm-6">
-          <div class="award-winning-content">
+        <div
+          class="offset-lg-6 col-lg-6 offset-md-6 col-md-6 offset-sm-6 col-sm-6"
+        >
+          <div class="award-winning-content text-center">
             <h1 class="award-winning-title">OUR AWARD WINNING RANGE</h1>
             <p class="award-winning-text">
               Take your pick from our multi-award winning furniture
@@ -12,8 +14,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <section class="rotating-section">
     <div class="container">
@@ -94,6 +96,7 @@
       </div>
     </div>
   </section>
+
   <section class="featured-products-wrapper">
     <div class="container">
       <div class="row justify-content-center align-items-center">
@@ -104,22 +107,57 @@
           >
         </div>
       </div>
-      <div class="row justify-content-center">
-        <div
-          *ngFor="let product of products"
-          class="featured-product-col col-lg-3 col-md-6 col-sm-12 mb-4"
-        >
-          <div class="featured-product-card">
-            <img [src]="product.images[1]" class="featured-product-image" />
-            <div class="featured-product-body">
-              <h3 class="featured-product-title">{{ product.title }}</h3>
-              <a class="view-button btn" (click)="viewProduct(product._id)"
-                >View</a
-              >
+      <div
+        class="row justify-content-center"
+        *ngIf="isSmallOrMediumScreen; else cardGrid"
+      >
+        <div class="col-lg-8 col-md-10">
+          <carousel>
+            <slide *ngFor="let product of products">
+              <carousel>
+                <slide *ngFor="let product of products">
+                  <div class="featured-product-col">
+                    <div class="featured-product-card">
+                      <img
+                        [src]="product.images[1]"
+                        class="featured-product-image"
+                      />
+                      <div class="featured-product-body">
+                        <h3 class="featured-product-title">
+                          {{ product.title }}
+                        </h3>
+                        <a
+                          class="view-button btn"
+                          (click)="viewProduct(product._id)"
+                          >View</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </slide>
+              </carousel>
+            </slide>
+          </carousel>
+        </div>
+      </div>
+      <ng-template #cardGrid>
+        <div class="row">
+          <div
+            *ngFor="let product of products"
+            class="col-lg-3 col-md-6 col-sm-12 mb-4"
+          >
+            <div class="featured-product-card">
+              <img [src]="product.images[1]" class="featured-product-image" />
+              <div class="featured-product-body">
+                <h3 class="featured-product-title">{{ product.title }}</h3>
+                <a class="view-button btn" (click)="viewProduct(product._id)"
+                  >View</a
+                >
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </ng-template>
     </div>
   </section>
 </div>
