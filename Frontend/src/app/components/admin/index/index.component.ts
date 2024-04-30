@@ -7,38 +7,26 @@ import { AuthService } from '../../../Services/auth.service';
 @Component({
   selector: 'app-index',
   standalone: true,
-  imports: [
-    CommonModule,
-    HeaderComponent,
-    RouterModule,
-    RouterOutlet
-  ],
+  imports: [CommonModule, HeaderComponent, RouterModule, RouterOutlet],
 
-  providers:[AuthService],
+  providers: [AuthService],
   templateUrl: './index.component.html',
-  styleUrl: './index.component.css'
+  styleUrl: './index.component.css',
 })
 export class IndexComponent implements OnInit {
+  user: any = {};
+  constructor(private auth: AuthService) {}
+  ngOnInit(): void {
 
-user:any={};
-  constructor(private auth:AuthService){}
-      ngOnInit(): void {
-
-//       this.auth.getMyUser().then(
-//         data=>{
-//           this.user=data;
-// console.log(this.user);
-
-//         }
-//       );
-
-      }
+    this.auth.getMyUser().then((data) => {
+      this.user = data;
+      console.log(this.user);
+    });
+  }
 
   showSidebar: boolean = true;
 
   toggleSidebar(): void {
     this.showSidebar = !this.showSidebar;
   }
-
-
 }

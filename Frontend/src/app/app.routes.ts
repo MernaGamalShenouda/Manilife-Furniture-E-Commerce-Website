@@ -59,7 +59,7 @@ export const routes: Routes = [
   // { path: 'edit-profile/:id', component: EditProfileComponent },
   // { path: 'profile', component: ProfileInfoComponent },
   //{ path: 'users/:id/orders',component: UserOrdersComponent},
-  { path: 'OrdersbyUser', component: OrdersComponent },
+  { path: 'OrdersByUser',component: OrdersComponent},
 
   { path: '**', component: ErrorComponent },
 ];

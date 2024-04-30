@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 
 const jwtHelper = new JwtHelperService();
@@ -20,7 +21,7 @@ export class AuthService {
       this.saveUserData();
     }
   }
-  private URB_DB='http://localhost:7005/api/orders';
+  private URB_DB = 'http://localhost:7005/api/orders';
 
   login(email: string, password: string): Observable<any> {
     return this.http
@@ -53,8 +54,8 @@ export class AuthService {
   async getLoggedInUsername(): Promise<any> {
     try {
       const userData = await this.getLoggedInUser();
-      const user:any = await this.GetUserByID(userData).subscribe((user)=>{
-        const userNEW:any=user;
+      const user: any = await this.GetUserByID(userData).subscribe((user) => {
+        const userNEW: any = user;
         console.log(userNEW);
 
         return userNEW;
@@ -65,16 +66,16 @@ export class AuthService {
     }
   }
 
-  async getMyUser() {
+  async getMyUser(): Promise<any> {
     try {
       const userID = await this.getLoggedInUser();
-      const user = await this.GetUserByID(userID).subscribe((user)=>{
+      const userObservable = this.GetUserByID(userID);
 
-        return user;
-      });
+      const user = await firstValueFrom(userObservable);
 
+      return user;
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error fetching user:', error);
       throw error;
     }
   }
@@ -133,7 +134,7 @@ export class AuthService {
     return this.http.get<any[]>(url);
   }
 
-  deleteOrderById(id:any): Observable<any> {
+  deleteOrderById(id: any): Observable<any> {
     const url = `${this.URB_DB}/${id}`;
     return this.http.delete<any>(url);
   }
