@@ -18,7 +18,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.css'
 })
-export class OrdersComponent  implements OnInit {
+export class OrdersAdminComponent  implements OnInit {
 
   Orders:any[]=[];
 
@@ -49,7 +49,7 @@ export class OrdersComponent  implements OnInit {
         console.error(error);
 
       }
-    }) 
+    })
   }
 
 

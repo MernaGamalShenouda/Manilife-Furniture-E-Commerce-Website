@@ -1,7 +1,9 @@
+
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ProfileService } from '../Services/profile.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ProfileService } from '../../../Services/profile.service';
+
 
 @Component({
   selector: 'app-edit-profile',
@@ -13,11 +15,13 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class EditProfileComponent implements OnInit {
   user: any;
-  userId : any; 
+  userId : any;
+
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private profileService: ProfileService
-  ) { 
+  ) {
      this.userId =this.route.snapshot.params["id"]; // Assuming user ID is passed in route params }
   }
   ngOnInit(): void {
@@ -31,11 +35,19 @@ export class EditProfileComponent implements OnInit {
       image: updatedData.image,
       fullname: updatedData.fullname
     };
-    this.profileService.updateUser(this.userId, updatedUserData).subscribe(updatedUser => {
-      console.log('User updated successfully:', updatedUser);
-    }, error => {
-      console.error('Error:', error);
-    });
+    this.profileService.updateUser(this.userId, updatedUserData).subscribe(
+      {
+        next:data=>{
+          console.log('User updated successfully:', data);
+
+        },error:error => {
+          console.error('Error:', error);
+        }
+      }
+    );
+    // this.router.navigate(['/profile']);
   }
+
+
 }
 

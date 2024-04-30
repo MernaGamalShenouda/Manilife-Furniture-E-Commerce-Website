@@ -1,10 +1,9 @@
 import { Component ,OnInit} from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import { RouterModule, ActivatedRoute } from '@angular/router';
-import { ProfileService } from '../Services/profile.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgFor } from '@angular/common';
-//import { OrdersComponent } from '../order-item/order-item.component';
+import { ProfileService } from '../../../Services/profile.service';
 
 
 @Component({
@@ -25,7 +24,7 @@ export class ProfileInfoComponent implements OnInit {
 
   constructor(private profileService: ProfileService) { }
 
-  
+
 /*
   loadUserData(): void {
     this.authService.getMyUser().then(
@@ -55,22 +54,22 @@ export class ProfileInfoComponent implements OnInit {
     }).catch(error => {
       console.error('Error:', error);
     });
- 
+
   }
   handleOrdersLoaded(orders: any[]): void {
     this.orders = orders;
     console.log(this.orders);
-    
+
   }
 
   loadOrdersByUsername(): void {
-   
+
     this.username  = this.profileService. getMyUser().then((userData: any) => {
       this.username = userData.data.username;
     console.log(this.username +"this is user")
- 
+
     if (this.username) {
-     
+
       this.profileService.getOrdersByUsername(this.username).subscribe(
         (data) => {
           this.orders = data;

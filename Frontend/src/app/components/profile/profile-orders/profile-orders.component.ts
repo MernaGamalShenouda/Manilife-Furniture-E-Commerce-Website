@@ -1,21 +1,21 @@
 import { Component, Input, OnInit, Output,EventEmitter  } from '@angular/core';
-import { ProfileService } from '../Services/profile.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {MatChipsModule} from '@angular/material/chips';
 import { CommonModule, NgClass } from '@angular/common';
 import {MatDialog} from '@angular/material/dialog';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { ProfileService } from '../../../Services/profile.service';
 
 
 @Component({
-  selector: 'app-order-item',
+  selector: 'app-profileOrders',
   standalone: true,
   imports:[NgClass,HttpClientModule],
   providers:[ProfileService],
-  templateUrl: './order-item.component.html',
-  styleUrls: ['./order-item.component.css']
+  templateUrl: './profile-orders.component.html',
+  styleUrls: ['./profile-orders.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class profileOrders implements OnInit {
  @Output() ordersLoaded = new EventEmitter<any[]>();
   orders:any[]=[];
   username: any='';
@@ -33,9 +33,9 @@ export class OrdersComponent implements OnInit {
     this.username = this.profileService.getMyUser().then((userData: any) => {
       this.username = userData.data.username;
     console.log(this.username +"this is user")
- 
+
     if (this.username) {
-     
+
       this.profileService.getOrdersByUsername(this.username).subscribe(
         (data) => {
           this.orders = data;
@@ -56,7 +56,7 @@ export class OrdersComponent implements OnInit {
     this.profileService.deleteOrderById(id).subscribe(
       {
         next: (data) => {
-          console.log('Order deleted:', data);
+          console.log('Order deleted:');
           this.loadOrdersByUsername();
         },
         error: (error) => {
