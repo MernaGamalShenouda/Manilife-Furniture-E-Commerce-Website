@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit, HostListener } from '@angular/core';
 import { CartComponent } from '../components/cart/cart.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../Services/auth.service';
@@ -17,6 +17,7 @@ export class NavigationComponent implements DoCheck {
   login: boolean = false;
   register: boolean = false;
   currentUrl: string = '';
+  showBackground: boolean = false;
 
   constructor(
     private dialog: MatDialog,
@@ -42,5 +43,16 @@ export class NavigationComponent implements DoCheck {
 
   logout() {
     this.authService.logout();
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(event: Event) {
+    const offset =
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+    this.showBackground = offset >= window.innerHeight * 0.1;
+    console.log('showBackground:', this.showBackground);
   }
 }

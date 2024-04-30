@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg fixed-top">
   <div class="navbar-top p-4">
     <div class="navbar-text">TRENDY FURNITURE IS AVAILABLE NOW</div>
     <div class="buttons d-flex justify-content-center align-items-center">
@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="navbar-light">
-    <ul class="navbar-nav mx-auto">
+    <ul class="navbar-nav mx-auto" [ngClass]="{ 'bg-colored': showBackground }">
       <li class="nav-item">
         <a
           [ngClass]="{ disabled: !isLoggedIn }"
