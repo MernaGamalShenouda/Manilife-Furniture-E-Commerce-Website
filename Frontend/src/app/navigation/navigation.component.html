@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="navbar-top p-4">
+    <div class="navbar-text">TRENDY FURNITURE IS AVAILABLE NOW</div>
+    <div class="buttons d-flex justify-content-center align-items-center">
+      <button *ngIf="isLoggedIn" class="btn btn-danger logout" (click)="logout()">
+        LOGOUT
+      </button>
+      <button
+        *ngIf="!isLoggedIn && !login"
+        class="btn btn-light login"
+        routerLink="/Login"
+      >
+        LOGIN
+      </button>
+      <button
+        *ngIf="!isLoggedIn && !register"
+        class="btn btn-light register"
+        routerLink="/Register"
+      >
+        REGISTER
+      </button>
+    </div>
+  </div>
+  <div class="navbar-light">
+    <ul class="navbar-nav mx-auto">
+      <li  class="nav-item">
+        <a [ngClass]="{ 'disabled': !isLoggedIn }" class="nav-link" routerLink="/shop/products">SHOP</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about">THE MANI STORY</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link manilife-text" routerLink="/Home"
+          ><img
+            src="../../assets/logo.png"
+            style="width: 70%"
+        /></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/profile" [ngClass]="{ 'disabled': !isLoggedIn }">PROFILE</a>
+      </li>
+      <li class="nav-item">
+        <button [ngClass]="{ 'disabled': !isLoggedIn }" class="nav-link" (click)="openCartDialog()">CART</button>
+      </li>
+    </ul>
+  </div>
+</nav>

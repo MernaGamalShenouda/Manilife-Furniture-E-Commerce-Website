@@ -1,8 +1,8 @@
 const UsersModel = require("../Models/UsersModel");
 const bcrypt = require("bcrypt");
 const UserValid = require("../Utils/UsersValidation");
-const jwt = require('jsonwebtoken');
-const jwtSecret = 'secret_key'; 
+const jwt = require("jsonwebtoken");
+const jwtSecret = "secret_key";
 
 let Register = async (req, res) => {
   let foundUser = await UsersModel.findOne({
@@ -51,27 +51,22 @@ let Login = async (req, res) => {
       return res.status(401).json({ error: "Invalid password" });
     }
 
-    const token = jwt.sign({ id: foundUser._id }, jwtSecret, { expiresIn: '5h' });
+    const token = jwt.sign({ id: foundUser._id }, jwtSecret, {
+      expiresIn: "5h",
+    });
 
     return res.json({ message: "Logged-In Successfully", token });
   } catch (error) {
-    console.error('Error logging in:', error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    console.error("Error logging in:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
 const updateUserById = async (req, res) => {
+  const newData = req.body.newData;
+
   try {
     const userId = req.params.id;
-    const newData = {
-      username: req.body.username,
-      fullname: req.body.fullname,
-      email: req.body.email,
-      password: req.body.password,
-      image: req.body.image,
-      gender: req.body.gender,
-      cart: req.body.cart,
-    };
 
     const updatedUser = await UsersModel.findOneAndUpdate(
       { _id: userId },
@@ -157,7 +152,6 @@ const deleteUserById = async (req, res) => {
     return res.status(500).send("Internal Server Error");
   }
 };
-
 
 module.exports = {
   Register,

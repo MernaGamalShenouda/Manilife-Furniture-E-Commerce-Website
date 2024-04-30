@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -12,6 +12,7 @@ const jwtHelper = new JwtHelperService();
 })
 export class AuthService {
   private apiUrl = 'http://localhost:7005/api/users'; // Change this to your API URL
+ 
   userData = new BehaviorSubject(null);
 
   constructor(private http: HttpClient, private router: Router) {
@@ -19,7 +20,7 @@ export class AuthService {
       this.saveUserData();
     }
   }
- 
+  private URB_DB='http://localhost:7005/api/orders'; 
 
   login(email: string, password: string): Observable<any> {
     return this.http
@@ -37,27 +38,55 @@ export class AuthService {
       );
   }
 
-  async GetUserByID(id: number): Promise<any> {
+  // async GetUserByID(id: number): Promise<any> {
+  //   try {
+  //     const userData = await this.http
+  //       .get<any>(`${this.apiUrl}/${id}`)
+  //       .toPromise();
+  //     return userData;
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //     throw error;
+  //   }
+  // }
+
+  async getLoggedInUsername(): Promise<any> {
     try {
-      const userData = await this.http
-        .get<any>(`${this.apiUrl}/${id}`)
-        .toPromise();
-      return userData;
+      const userData = await this.getLoggedInUser();
+      const user:any = await this.GetUserByID(userData).subscribe((user)=>{
+        const userNEW:any=user;
+        console.log(userNEW);
+        
+        return userNEW;
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  } 
+
+  async getMyUser() {
+    try {
+      const userID = await this.getLoggedInUser();
+      const user = await this.GetUserByID(userID).subscribe((user)=>{
+
+        console.log(user);
+        return user;
+      });
+      
     } catch (error) {
       console.error('Error:', error);
       throw error;
     }
   }
 
-  async getMyUser() {
-    try {
-      const userID = await this.getLoggedInUser();
-      const user = await this.GetUserByID(userID);
-      return user;
-    } catch (error) {
-      console.error('Error:', error);
-      throw error;
-    }
+  GetUserByID(id: number) {
+    return this.http.get(this.apiUrl + '/' + id);
+  }
+
+  updateUser(id: number, user: any): Observable<any> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put(url, { newData: user.data });
   }
 
   getLoggedInUser() {
@@ -67,8 +96,6 @@ export class AuthService {
       return decodedToken.id;
     }
   }
-
-
 
   saveUserData() {
     const encodedUserData = localStorage.getItem('token');
@@ -81,13 +108,14 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.userData.next(null);
     this.router.navigate(['/Login']);
   }
 
   isLoggedIn(): boolean {
     let token = localStorage.getItem('token');
-    
+
     return token != null;
   }
 
@@ -100,4 +128,14 @@ export class AuthService {
     let role = localStorage.getItem('role');
     return role == 'user';
   }
+
+  getOrdersByUsername(username: any): Observable<any[]> {
+    const url = `${this.URB_DB}/${username}`;
+    return this.http.get<any[]>(url);
+  }
+  
+  deleteOrderById(id:any): Observable<any> {
+    const url = `${this.URB_DB}/${id}`;
+    return this.http.delete<any>(url);
+  } 
 }

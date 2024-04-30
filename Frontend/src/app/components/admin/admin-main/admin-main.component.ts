@@ -7,7 +7,7 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [
     RouterOutlet,
-    IndexComponent,
+    IndexComponent
   ],
   templateUrl: './admin-main.component.html'
 })

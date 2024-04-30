@@ -1,0 +1,153 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  padding: 0 !important;
+  z-index: 5;
+}
+
+.navbar-top {
+  background-color: #086484;
+  color: white;
+  display: flex;
+  align-items: center;
+  height: 37px;
+  width: 100%;
+}
+
+.navbar-text {
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+.navbar-light {
+  background-color: transparent;
+  display: inline;
+  width: 100%;
+  height: 0;
+}
+
+.nav-link {
+  list-style: none;
+  display: flex;
+  font-weight: 600;
+  font-size: 18px;
+  color: #002a3a;
+}
+
+.nav-link a {
+  color: white;
+  text-decoration: none;
+}
+
+.manilife-text {
+  font-weight: bold;
+}
+
+ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.buttons {
+  position: absolute;
+  right: 10px;
+  top: 18%;
+}
+
+.login,
+.register {
+  margin-left: 20px;
+}
+
+.login {
+  background-color: #086484;
+  color: white;
+  box-shadow: white 2px 2px 0px;
+  border: 1px white solid;
+  position: relative;
+}
+
+.login::after {
+  box-shadow: #086484 2px 2px 0px;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  top: 2px;
+  left: 3px;
+}
+
+.login:hover {
+  background-color: white;
+  color: #086484;
+}
+
+.register {
+  box-shadow: #086484 2px 2px 0px;
+  color: #086484;
+  border: #086484;
+  position: relative;
+  background-color: white;
+}
+
+.register::after {
+  box-shadow: white 2px 2px 0px;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  top: 2px;
+  left: 3px;
+}
+
+.register:hover {
+  background-color: #086484;
+  color: white;
+}
+
+.login,
+.register,
+.logout {
+  font-size: 16px;
+  padding: 3px 10px 2px 10px !important;
+}
+
+.logout {
+  box-shadow: whitesmoke 2px 2px 0px;
+}
+
+
+@media (max-width: 1000px) {
+  .navbar-top {
+    height: auto; 
+    justify-content: center; 
+  }
+
+  .navbar-text {
+    font-size: 12px; 
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav-item{
+     padding: 0.5rem;
+  }
+
+  .nav-link {
+    font-size: 14px; 
+    margin: 5px 0; 
+  }
+}

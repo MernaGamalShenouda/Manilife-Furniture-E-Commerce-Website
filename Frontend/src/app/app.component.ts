@@ -1,18 +1,24 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, DoCheck } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { Router } from '@angular/router';
 import { IndexComponent } from './components/admin/index/index.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AllProductsComponent } from './components/all-products/all-products.component';
-import { SearchComponent } from './components/search/search.component';
 import { OneProductComponent } from './components/one-product/one-product.component';
-import { ProductsService } from './Services/products.service';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { DataSharingService } from './Services/data-sharing.service';
-import { NavbarComponent } from './navbar/navbar.component';
 import { AdminGuard } from './Guards/admin.guard';
 import { AuthService } from './Services/auth.service';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
+import { CartComponent } from './components/cart/cart.component';
+import { ProductsService } from './Services/products.service';
+import { SearchComponent } from './components/search/search.component';
+import { CommonModule } from '@angular/common';
+import { NavigationComponent } from './navigation/navigation.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -25,8 +31,13 @@ import { AuthService } from './Services/auth.service';
     HttpClientModule,
     ProductDetailsComponent,
     ShopComponent,
-    NavbarComponent,
-
+    NavigationComponent,
+    HomeComponent, 
+    FooterComponent,
+    AboutComponent,
+    CartComponent,
+    CommonModule,
+    RouterModule,
   ],
   providers: [
     //services
@@ -34,12 +45,19 @@ import { AuthService } from './Services/auth.service';
     DataSharingService,
     AuthService,
     AdminGuard,
-
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
-  constructor(private router: Router) {}
-  title = 'Frontend';
+export class AppComponent implements DoCheck{
+  constructor(private router: Router,private authService :AuthService) {}
+  isAdmin:boolean = false;
+  title = 'ManiLife';
+
+  ngDoCheck(): void {
+    this.isAdmin=this.authService.isAdmin();
+    console.log(this.isAdmin);
+    
+  }
+  
 }
