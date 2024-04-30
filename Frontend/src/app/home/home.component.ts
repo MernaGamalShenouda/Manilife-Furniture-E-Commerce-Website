@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadRandomProducts();
+    this.isSmallOrMediumScreen = window.innerWidth <= 992;
   }
 
   ngOnDestroy(): void {
