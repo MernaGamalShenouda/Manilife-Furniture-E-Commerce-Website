@@ -21,7 +21,7 @@
          </div>
              <div class="form-row">
              <div class="input-data">
-                 <!-- <input #fullname type="text" required> -->                              
+                 <!-- <input #fullname type="text" required> -->
                  <input formControlName="fullname" #title matInput placeholder="Ex. NORDVIKEN" >
                  <div class="underline"></div>
                  <label for=""> Full Name </label>
@@ -38,10 +38,9 @@
      </div>
      <div class="form-row">
      <div class="input-data">
-                 <!-- <input #image type="text" required> -->
-                 <input type="text" formControlName="image" class="example-right-align" placeholder="0" >
+                <input class="form-control fs-6"  (change)="uploadPhoto($event)"  #imageProduct type="file" >
                  <div class="underline"></div>
-                 <label for="">image</label>
+                 <label for="" class="mb-2">image</label>
              </div>
 
          </div>
@@ -49,19 +48,13 @@
       </div>
          <div class="form-row submit-btn">
 
-               
-                 <!-- <button class="bg-pink-400 mybutton inner active:bg-pink-400 botn  uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="submit" value="submit">
-                     Submit
-                   </button> -->
 
-                   <button  type="submit" (click)=" onSubmit()"  [disabled]="!form.valid" disabled class="btn btn-custom w-50 fs-5" >Submit</button>
-       
+          <button  type="submit" (click)="onSubmit()"  [disabled]="!form.valid" disabled class="bg-pink-400 mybutton inner active:bg-pink-400 botn  uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" >Submit</button>
+
          </div>
-         <!-- (click)="onSubmit()" -->
      </form>
  </div>
  </div>
  </div>
  </div>
   </div>
-  

@@ -143,7 +143,7 @@ deleteOrderById(id:any): Observable<any> {
   updateUser(id: number, updatedData: any): Observable<any> {
         return this.http.put(`${this.apiUrl}/${id}`, updatedData)
         }
-        
+
       updateOrders(userId: number, newUsername: string): Observable<any> {
         // Replace this with the actual API endpoint and data format
         return this.http.put(`${this.URB_DB}/${userId}`, { username: newUsername }).pipe(
@@ -153,4 +153,7 @@ deleteOrderById(id:any): Observable<any> {
           })
         );
       }
-     }
+
+
+
+}
