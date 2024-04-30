@@ -22,7 +22,7 @@ export class ProfileService {
       this.saveUserData();
     }
   }
- 
+
 
   login(email: string, password: string): Observable<any> {
     return this.http
@@ -63,7 +63,7 @@ export class ProfileService {
     }
   }
 
- 
+
   getLoggedInUser() {
     const token = localStorage.getItem('token');
     if (token) {
@@ -86,7 +86,7 @@ async getLoggedInUsername(): Promise<any> {
     console.error('Error:', error);
     throw error;
   }
-}   
+}
 
 getOrdersByUsername(username: any): Observable<any[]> {
   const url = `${this.URB_DB}/${username}`;
@@ -127,7 +127,7 @@ deleteOrderById(id:any): Observable<any> {
 
   isLoggedIn(): boolean {
     let token = localStorage.getItem('token');
-    
+
     return token != null;
   }
 
@@ -141,17 +141,9 @@ deleteOrderById(id:any): Observable<any> {
     return role == 'user';
   }
   updateUser(id: number, updatedData: any): Observable<any> {
-        return this.http.put(`${this.apiUrl}/${id}`, updatedData).pipe(
-          switchMap((userData: any) => { // Specify the type of userData as any
-            // Assuming you have a method updateOrders that takes the user id and the new username
-            return this.updateOrders(id, userData.username);
-          }),
-          catchError((error: any) => {
-            console.error('Error:', error);
-            throw error;
-          })
-        );
-      }
+        return this.http.put(`${this.apiUrl}/${id}`, updatedData)
+        }
+        
       updateOrders(userId: number, newUsername: string): Observable<any> {
         // Replace this with the actual API endpoint and data format
         return this.http.put(`${this.URB_DB}/${userId}`, { username: newUsername }).pipe(

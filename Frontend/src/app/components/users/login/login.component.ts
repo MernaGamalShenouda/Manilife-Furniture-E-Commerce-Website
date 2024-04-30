@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../Services/auth.service';
 import { GetUserService } from '../../../Services/get-user.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { firstValueFrom } from 'rxjs';
+import { CommonModule } from '@angular/common';
 const jwtHelper = new JwtHelperService();
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule, HttpClientModule,RouterModule,CommonModule],
   providers: [AuthService, GetUserService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -21,6 +22,9 @@ export class LoginComponent {
   password: string = '';
   message: string = '';
   token: string = '';
+
+  emailError: string = ''; 
+  passError: string = ''; 
 
   constructor(
     private authService: AuthService,
@@ -56,8 +60,21 @@ export class LoginComponent {
           state: { message: this.message, token: this.token },
         });
       }
-    } catch (error) {
-      console.error('Error logging in:', error);
-      this.message = 'Failed to log in. Please try again.';
+    } catch (error:any) {
+      console.log('Error logging in:', error.error.error);
+      if (error) {
+        if (error.error.error.includes('User')) {
+          this.emailError = error.error.error;
+        } else{
+          this.emailError = '';
+        }
+        
+      if (error.error.error.includes('password')) {
+          this.passError = error.error.error;
+        } else{
+          this.passError = '';
+        }
+      }
     }
-  }}
+  }
+}
