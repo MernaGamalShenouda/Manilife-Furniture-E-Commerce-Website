@@ -62,7 +62,7 @@ export class EditProfileComponent implements OnInit {
         }
       }
     );
-    // this.router.navigate(['/profile']);
+    this.router.navigate(['/profile']);
   }
 
 

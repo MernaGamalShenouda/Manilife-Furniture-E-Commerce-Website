@@ -1,3 +1,6 @@
+<div class="infor bg-body-secondary"> 
+
+
 <div class="cont ">
   <div class="container all my-5 py-5 ">
      <div class="row">
@@ -22,7 +25,7 @@
              <div class="form-row">
              <div class="input-data">
                  <!-- <input #fullname type="text" required> -->
-                 <input formControlName="fullname" #title matInput placeholder="Ex. NORDVIKEN" >
+                <input formControlName="fullname" #fullname matInput placeholder="Ex. John Doe">
                  <div class="underline"></div>
                  <label for=""> Full Name </label>
              </div>
@@ -31,7 +34,7 @@
         <div class="form-row">
          <div class="input-data">
              <!-- <input #email type="text" required> -->
-             <input  formControlName="email" type="email" class="example-right-align" placeholder="0" >
+             <input  formControlName="email" type="email" class="example-right-align" placeholder="user@gmail" >
              <div class="underline"></div>
              <label for="">E-mail</label>
          </div>
@@ -49,7 +52,8 @@
          <div class="form-row submit-btn">
 
 
-          <button  type="submit" (click)="onSubmit()"  [disabled]="!form.valid" disabled class="bg-pink-400 mybutton inner active:bg-pink-400 botn  uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" >Submit</button>
+
+            <button  type="submit" (click)="onSubmit()"  [disabled]="!form.valid" disabled class="bg-pink-400 mybutton inner active:bg-pink-400 botn  uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" >Submit</button>
 
          </div>
      </form>
@@ -58,3 +62,4 @@
  </div>
  </div>
   </div>
+</div>

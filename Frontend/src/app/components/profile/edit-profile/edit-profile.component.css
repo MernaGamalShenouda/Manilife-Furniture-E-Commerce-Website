@@ -6,9 +6,11 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
-
+/* */
 .cont {
-  background-color: #e8cab3 !important;
+  background-color: #e8cab3  !important;
+  height: 100vh;
+  margin-top: -60px;
 
 }
 
