@@ -1,5 +1,5 @@
 {
-    "name": "Test",
+    "name": "project",
     "version": "0.0.0",
     "engines": {
         "node": ">=18 <21"
