@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ProductsService {
-  private readonly URL_API = 'http://localhost:7005/api/products'; //API
+  private readonly URL_API = 'https://e-commerce-project-q5po.onrender.com/api/products'; //API
   constructor(public readonly http: HttpClient) {}
 
   GetAllProducts(page: number, pageSize: number): Observable<ApiResponse> {

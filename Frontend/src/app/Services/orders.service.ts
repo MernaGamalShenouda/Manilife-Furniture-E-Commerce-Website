@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class OrdersService {
-  private URL_API = 'http://localhost:7005/api/orders';
+  private URL_API = 'https://e-commerce-project-q5po.onrender.com/api/orders';
   username: String = '';
   constructor(public http: HttpClient, private authService: AuthService) {}
   async getUsername(): Promise<string> {

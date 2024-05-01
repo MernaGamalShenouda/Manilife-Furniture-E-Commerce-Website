@@ -13,9 +13,9 @@ const jwtHelper = new JwtHelperService();
   providedIn: 'root',
 })
 export class ProfileService {
-  private apiUrl = 'http://localhost:7005/api/users'; // Change this to your API URL
+  private apiUrl = 'https://e-commerce-project-q5po.onrender.com/api/users'; // Change this to your API URL
   userData = new BehaviorSubject(null);
-  private URB_DB=' http://localhost:7005/api/orders';
+  private URB_DB='https://e-commerce-project-q5po.onrender.com/api/orders';
 
   constructor(private http: HttpClient, private router: Router) {
     if (localStorage.getItem('token') != null) {
