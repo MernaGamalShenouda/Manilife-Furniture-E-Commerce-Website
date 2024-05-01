@@ -47,6 +47,7 @@ export class UpdateProductComponent  implements OnInit {
   this.getPoduct()
 this.getCategories()
 
+// console.log(this.product);
 
 
 
@@ -125,7 +126,6 @@ get DescriptionValid() {
                 ]
               }
             }
-
 
 
 this.adminService.updateProduct(product,this.productId).subscribe();
