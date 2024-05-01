@@ -1,6 +1,6 @@
 <div>
   <div class="cart-clickable h-100 w-75" (click)="hide()"></div>
-  <div class="cart h-100 overflow-auto d-flex flex-column">
+  <div *ngIf="!isCartEmpty" class="cart h-100 overflow-auto d-flex flex-column">
     <div
       class="mx-auto header p-4 w-100 row justify-content-between align-items-baseline"
     >
@@ -69,7 +69,7 @@
       CHECKOUT: {{ totalPrice }}$
     </button>
   </div>
-  <!-- <div *ngIf="isCartEmpty" class="cart h-100 overflow-auto d-flex flex-column">
+  <div *ngIf="isCartEmpty" class="cart h-100 overflow-auto d-flex flex-column">
     <div
       class="mx-auto header p-4 w-100 row justify-content-between align-items-baseline"
     >
@@ -78,5 +78,5 @@
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
-  </div> -->
+  </div>
 </div>

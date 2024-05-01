@@ -53,6 +53,8 @@ export class ProductsComponent implements OnInit {
   //------------------get Search Product------------------------------
 
   Getname(e: any) {
+    console.log(e.target.value);
+
     if (e.target.value.trim() === '') {
       this.getProducts();
     }
