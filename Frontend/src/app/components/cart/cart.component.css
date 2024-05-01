@@ -3,7 +3,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .cart-clickable {
@@ -15,6 +15,7 @@
   background-color: #fbedcf;
   width: 30%;
   scrollbar-width: none;
+  z-index: 5000;
   padding-bottom: 30px;
 }
 .product,
