@@ -1,3 +1,20 @@
 .active{
   background-color: #0e485f;
 }
+
+
+@media (max-width: 474px) {
+  i{
+    display:none;
+  }
+
+  button{
+
+    width: 60px;
+    padding: 0px;
+    font-size: 13px;
+  }
+  .col-12 {
+    width: 100% !important;
+  }
+}

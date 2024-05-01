@@ -1,6 +1,5 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ProductsComponent } from './components/admin/products/products.component';
-import { OrdersComponent } from './components/admin/orders/orders.component';
 import { CreateProductComponent } from './components/admin/create-product/create-product.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { AdminMainComponent } from './components/admin/admin-main/admin-main.component';
@@ -12,8 +11,7 @@ import { authGuard } from './Guards/auth.guard';
 import { adminAuthGuard } from './Guards/admin-auth.guard';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './components/error/error.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { ProfileInfoComponent } from './profile-info/profile-info.component';
+
 import { ShopComponent } from './components/shop/shop.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -21,6 +19,11 @@ import { RegisterComponent } from './components/users/register/register.componen
 import { LoginComponent } from './components/users/login/login.component';
 import { AboutComponent } from './about/about.component';
 import { UsersComponent } from './components/admin/users/users.component';
+import { OrdersAdminComponent } from './components/admin/adminOrders/orders.component';
+import { profileOrders } from './components/profile/profile-orders/profile-orders.component';
+import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
+import { ProfileInfoComponent } from './components/profile/profile-info/profile-info.component';
+
 
 export const routes: Routes = [
   {
@@ -32,7 +35,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'adminProducts', component: ProductsComponent },
       { path: 'adminCreateProduct', component: CreateProductComponent },
-      { path: 'adminOrders', component: OrdersComponent },
+      { path: 'adminOrders', component: OrdersAdminComponent },
       { path: 'adminUsers', component: UsersComponent },
     ],
   },
@@ -59,7 +62,7 @@ export const routes: Routes = [
   { path: 'edit-profile/:id', canActivate: [userAuthGuard, authGuard], component: EditProfileComponent },
   { path: 'profile', canActivate: [userAuthGuard, authGuard], component: ProfileInfoComponent },
   //{ path: 'users/:id/orders',component: UserOrdersComponent},
-  { path: 'OrdersByUser', canActivate: [userAuthGuard, authGuard], component: OrdersComponent },
+  { path: 'OrdersByUser', canActivate: [userAuthGuard, authGuard], component: profileOrders },
 
   { path: '**', component: ErrorComponent },
 ];

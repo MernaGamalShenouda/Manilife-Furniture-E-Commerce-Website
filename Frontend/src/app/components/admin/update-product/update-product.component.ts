@@ -50,6 +50,8 @@ export class UpdateProductComponent implements OnInit {
   ngOnInit(): void {
     this.getPoduct();
     this.getCategories();
+
+    // console.log(this.product);
   }
 
   //-------------------get Prodcut Details------------------------------------

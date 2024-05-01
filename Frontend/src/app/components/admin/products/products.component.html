@@ -18,7 +18,7 @@
 
   <div class="row">
     <div class="col-12">
-      <div class="table-wrapper">
+      <div class="table-wrapper table-responsive">
         <div class="table-title">
           <div class="row">
             <div class="col-sm-6">
@@ -42,58 +42,61 @@
             </div>
           </div>
         </div>
-        <table class="table table-striped table-hover">
-          <thead>
-            <tr>
-              <th>
-                <span class="custom-checkbox">
-                  <input type="checkbox" id="selectAll" />
-                  <label for="selectAll"></label>
-                </span>
-              </th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Category</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr *ngFor="let product of products">
-              <td>
-                <span class="custom-checkbox">
-                  <input
-                    type="checkbox"
-                    id="{{ 'checkbox' + product._id }}"
-                    [(ngModel)]="product.checked"
-                    (change)="toggleChecked(product._id)"
-                  />
-                  <label for="{{ 'checkbox' + product._id }}"></label>
-                </span>
-              </td>
-              <td>{{ product.title }}</td>
-              <td>{{ product.price }}$</td>
-              <td>{{ product.quantity }}</td>
-              <td>{{ product.category }}</td>
-              <td>
-                <a
-                  (click)="openDialogUpdate(product._id)"
-                  class="edit"
-                  data-toggle="modal"
-                  ><i class="fa-solid fa-pen-to-square"></i
-                ></a>
-                <a
-                  (click)="openDialog('0ms', '0ms', product._id)"
-                  class="delete"
-                  ><i class="fa-solid fa-trash"></i
-                ></a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- @for (item of items; track $index) { -->
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>
+                  <span class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      [(ngModel)]="selectAllChecked"
+                      (change)="toggleAllCheckboxes()"
+                    />
+                    <label for="selectAll"></label>
+                  </span>
+                </th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Category</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of products">
+                <td>
+                  <span class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      id="{{ 'checkbox' + product._id }}"
+                      [(ngModel)]="product.checked"
+                      (change)="toggleChecked(product._id)"
+                    />
+                    <label for="{{ 'checkbox' + product._id }}"></label>
+                  </span>
+                </td>
+                <td>{{ product.title }}</td>
+                <td>{{ product.price }}$</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.category }}</td>
+                <td>
+                  <a
+                    (click)="openDialogUpdate(product._id)"
+                    class="edit"
+                    data-toggle="modal"
+                    ><i class="fa-solid fa-pen-to-square"></i
+                  ></a>
+                  <a
+                    (click)="openDialog('0ms', '0ms', product._id)"
+                    class="delete"
+                    ><i class="fa-solid fa-trash"></i
+                  ></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="clearfix">
           <div class="hint-text">
@@ -104,23 +107,25 @@
           <nav aria-label="Page navigation example">
             <ul class="pagination">
               <li class="page-item">
-                <button class="page-link" (click)="goToPage(currentPage - 1)">
+                <button
+                  class="page-link btn-custom"
+                  (click)="goToPage(currentPage - 1)"
+                >
                   Previous
                 </button>
               </li>
-              <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+
               <li class="page-item">
-                <button class="page-link" (click)="goToPage(currentPage + 1)">
+                <button
+                  class="page-link btn-custom"
+                  (click)="goToPage(currentPage + 1)"
+                >
                   Next
                 </button>
               </li>
             </ul>
           </nav>
         </div>
-
-        <!-- } -->
       </div>
     </div>
   </div>

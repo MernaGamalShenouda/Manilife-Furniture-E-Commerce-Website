@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div
-      class="col-12 p-2"
+      class="col-12 col-x-12 p-2"
       [routerLinkActiveOptions]="{ exact: true }"
       routerLinkActive="active"
     >
@@ -35,7 +35,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center gap-2">
             <i class="fa-solid fa-cart-plus"></i>
-            <span>CreateProduct</span>
+            <span>Create Product</span>
           </div>
 
           <i class="fa-solid fa-chevron-right text-white"></i>
@@ -56,21 +56,18 @@
       </a>
     </div>
 
-    <div class="col-12   p-2" routerLinkActive="active">
-      <a class="nav-link"   routerLink="adminUsers">
-       <div class="d-flex  justify-content-between align-items-center">
-        <div class="d-flex  align-items-center gap-2">
-          <i class="fa-solid fa-users"></i>
-              <span>Users</span>
-        </div>
+    <div class="col-12 p-2" routerLinkActive="active">
+      <a class="nav-link" routerLink="adminUsers">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center gap-2">
+            <i class="fa-solid fa-users"></i>
+            <span>Users</span>
+          </div>
 
-        <i class="fa-solid fa-chevron-right text-white "></i>
-       </div>
+          <i class="fa-solid fa-chevron-right text-white"></i>
+        </div>
       </a>
     </div>
-
-
-
   </div>
   <button class="btn btn-danger m-0 mt-5 align-self-end" (click)="logout()">
     LOGOUT

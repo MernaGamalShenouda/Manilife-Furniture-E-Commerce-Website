@@ -61,7 +61,7 @@ export class UsersComponent implements OnInit {
 
           this.users = data.data;
           this.countUsers=data.countUsers;
-          this.totalPages = Math.ceil(data.countProducts/ this.pageSize);
+          this.totalPages = Math.ceil(this.countUsers/ this.pageSize);
 
         },
         error: (err) => {
@@ -83,6 +83,7 @@ export class UsersComponent implements OnInit {
 //--------------Pagnation----------------------------------------------
 
 goToPage(page: number): void {
+  console.log(this.totalPages)
   if (page >= 1 && page <= this.totalPages) {
     this.currentPage = page;
     this.getUsers();

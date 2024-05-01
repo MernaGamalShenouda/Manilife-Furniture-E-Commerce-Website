@@ -92,8 +92,21 @@ export class ProductDetailsComponent implements OnInit {
       },
     });
   }
+  openCartDialog() {
+    const dialogRef = this.dialog.open(CartComponent, {});
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Cart dialog closed: ${result}`);
+    });
+  }
 
   Add_Item(Product: any) {
+    this.openCartDialog();
+
+    console.log(
+      'Quantity equals===> ',
+      this.productForm.get('quantity')!.value
+    );
     this.quantity = this.productForm.get('quantity')!.value;
     this.productItem = {
       productId: Product._id,
@@ -108,20 +121,41 @@ export class ProductDetailsComponent implements OnInit {
     if (existingProductIndex === -1) {
       this.userCart.push(this.productItem);
     } else {
-      const pastquantity = this.userCart[existingProductIndex].quantity;
-      // console.log('Product already exists in cart so quantity was added');
-      this.userCart[existingProductIndex].quantity =
-        this.quantity + pastquantity;
+      this.userCart[existingProductIndex].quantity += this.quantity;
     }
 
     this.user.data.cart = this.userCart;
+    console.log(this.userCart);
 
-    this.updateuserFunction(this.userID, this.user);
+    this.updateuserFunction(this.userID, this.user).subscribe({
+      next: () => {
+        console.log('User updated successfully');
+        this.getCart();
+      },
+      error: (err) => {
+        console.error('Error updating user:', err);
+      },
+    });
   }
 
-  updateuserFunction(userID: any, user: any) {
-    this.authService.updateUser(userID, user).subscribe({
-      next: (data) => {},
+  updateuserFunction(userID: any, user: any): Observable<any> {
+    return this.authService.updateUser(userID, user);
+  }
+
+  getCart() {
+    this.authService.GetUserByID(this.authService.getLoggedInUser()).subscribe({
+      next: (user: any) => {
+        this.userCart = user.data.cart;
+        this.userCart.forEach((product) => {
+          this.productsService
+            .GetProductByID(product.productId)
+            .subscribe((data) => {
+              if (data) {
+                this.productDetails[product.productId] = data;
+              }
+            });
+        });
+      },
       error: (err) => {
         console.error('Error fetching cart:', err);
       },
