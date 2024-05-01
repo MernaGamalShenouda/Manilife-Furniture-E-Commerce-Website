@@ -52,18 +52,36 @@ export class profileOrders implements OnInit {
 }
 
 
-  deleteOrder(id: any): void {
-    this.profileService.deleteOrderById(id).subscribe(
-      {
-        next: (data) => {
-          console.log('Order deleted:');
-          this.loadOrdersByUsername();
-        },
-        error: (error) => {
-          console.error('Error deleting order:', error);
+  // deleteOrder(id: any): void {
+  //   this.profileService.deleteOrderById(id).subscribe(
+  //     {
+  //       next: (data) => {
+  //         console.log('Order deleted:');
+  //         this.loadOrdersByUsername();
+  //       },
+  //       error: (error) => {
+  //         console.error('Error deleting order:', error);
+  //       }
+  //     }
+  //   );
+  // }
+
+  deleteOrder(order: any): void {
+    if (order.state === 'Pending') {
+      this.profileService.deleteOrderById(order._id).subscribe(
+        {
+          next: (data) => {
+            console.log('Order deleted:');
+            this.loadOrdersByUsername();
+          },
+          error: (error) => {
+            console.error('Error deleting order:', error);
+          }
         }
-      }
-    );
+      );
+    } else {
+      alert('Cannot delete order. Order state is not Pending.');
+    }
   }
 
 }

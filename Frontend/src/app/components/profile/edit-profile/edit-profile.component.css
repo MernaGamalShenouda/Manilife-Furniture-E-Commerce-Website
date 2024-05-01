@@ -29,6 +29,10 @@ body{
     height: 100vh;
 
 }
+.left{
+  margin-left:60px !important ;
+  margin-top: 40px  !important ;
+}
 .container{
   max-width: 800px;
   background: #fff;
