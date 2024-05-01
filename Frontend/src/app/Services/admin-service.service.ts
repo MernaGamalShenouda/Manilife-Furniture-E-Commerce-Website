@@ -8,8 +8,7 @@ export class AdminServiceService {
 
   constructor(private readonly  http:HttpClient) { }
 
-  private URL_DB="http://localhost:7005/api/";
-
+  private URL_DB="https://e-commerce-project-q5po.onrender.com/api/";
 
 
   //----------Product CRUD Methods-------------------

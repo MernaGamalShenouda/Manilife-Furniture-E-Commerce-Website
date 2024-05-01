@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:3000/users';
+  private apiUrl = 'https://e-commerce-project-q5po.onrender.com/api/users';
 
   constructor(private http: HttpClient) { }
 

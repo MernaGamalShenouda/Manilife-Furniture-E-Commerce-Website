@@ -12,7 +12,7 @@ const jwtHelper = new JwtHelperService();
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:7005/api/users'; // Change this to your API URL
+  private apiUrl = 'https://e-commerce-project-q5po.onrender.com/api/users'; 
 
   userData = new BehaviorSubject(null);
 
