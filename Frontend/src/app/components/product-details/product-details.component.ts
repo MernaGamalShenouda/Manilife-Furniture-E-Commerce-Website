@@ -126,6 +126,8 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     this.user.data.cart = this.userCart;
+    console.log(this.userCart);
+    
 
     this.updateuserFunction(this.userID, this.user).subscribe({
       next: () => {
