@@ -1,3 +1,4 @@
+/* first section styles */
 .body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -6,7 +7,7 @@
   background-image: url("../../assets/section1_background.jpg");
   background-size: cover;
   background-position: center;
-  height: 85vh;
+  height: 90vh;
 }
 
 .award-winning-content {
@@ -53,6 +54,7 @@
   border-color: #002a3a;
 }
 
+/* rotating section styles */
 .rotating-section {
   background-color: #ffeccc;
   height: 10vh;
@@ -62,19 +64,32 @@
 
 .rotating-blocks {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 5%;
   transform: translateY(-50%);
   white-space: nowrap;
-  animation: scrollText 20s linear;
-  -webkit-animation: scrollText 20s linear;
+  animation: scrollText 60s linear infinite;
+  -webkit-animation: scrollText 60s linear infinite;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
 .rotating-block {
   display: inline-block;
-  margin-right: 5rem;
+  margin-right: 8rem;
+  font-weight: 500;
+  font-size: 16px;
+  font-style: oblique;
+  color: #002a3a;
 }
-/* @keyframes scrollText {
+
+i {
+  margin-left: 0.5rem;
+  color: #487366;
+}
+@keyframes scrollText {
   0% {
     transform: translateX(0%);
   }
@@ -90,9 +105,9 @@
   100% {
     transform: translateX(-100%);
   }
-} */
+}
 
-/* products section */
+/* products section styles*/
 .container-fluid {
   padding-right: 0;
   padding-left: 0;
@@ -223,12 +238,7 @@
   -o-transition: ease-in-out 0.3s;
 }
 
-.featured-products {
-  height: 100vh;
-  background-color: #ffeccc;
-}
-
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .award-winning-section {
     height: 50vh;
   }
@@ -276,9 +286,43 @@
     margin-top: 30%;
     font-size: 16px;
   }
+} */
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 14px;
+    padding-top: 15%;
+    color: #ffffff;
+  }
+
+  .product-card {
+    height: auto;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .product-container {
+    background-color: #ffeccc;
+    align-items: center;
+    text-align: center;
+  }
+
+  .product-title {
+    font-size: 20px;
+    margin-bottom: 10%;
+    padding: 10%;
+    margin-left: 20%;
+  }
+
+  .btn-primary {
+    padding: 10px 20px;
+    margin-top: 40%;
+    font-size: 16px;
+    margin-left: 10%;
+  }
 }
 
-/* featured products */
+/* featured products styles*/
 .featured-products-wrapper {
   background-color: #ffeccc;
   padding: 50px 0;
@@ -306,7 +350,6 @@
 .featured-product-card {
   border: none;
   overflow: hidden;
-  /* height: 60vh; */
   transition: box-shadow 0.3s;
   padding: 5%;
   background-color: #b1c6cc7a;

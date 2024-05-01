@@ -9,6 +9,13 @@ import { ProductsService } from '../Services/products.service';
 import { DataSharingService } from '../Services/data-sharing.service';
 import { Router } from '@angular/router';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+  keyframes,
+} from '@angular/animations';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -16,6 +23,14 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
   providers: [DataSharingService],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('500ms', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   products: any[] = [];
