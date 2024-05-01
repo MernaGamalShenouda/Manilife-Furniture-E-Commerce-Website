@@ -33,9 +33,8 @@
     "tslib": "^2.3.0"
     },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^13.0.0",
-    "@angular/cli": "^13.0.0",
-    "@angular/compiler-cli": "^13.0.0",
+    "@angular-devkit/build-angular": "^13.3.11",
+    "@angular/compiler-cli": "^13.3.11",
     "@types/jasmine": "~5.1.0",
     "@types/jquery": "^3.5.29",
     "jasmine-core": "~5.1.0",
