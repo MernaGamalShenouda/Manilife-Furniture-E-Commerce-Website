@@ -26,7 +26,7 @@
     "bootstrap": "^5.3.3",
     "fontawesome": "^5.6.3",
     "ngx-bootstrap": "^12.0.0",
-    "ngx-marquee": "^13.2.1",
+    "ngx-marquee": "^13.2.0",
     "rxjs": "~7.8.0",
     "tailwind": "^4.0.0",
     "textillate": "^0.4.1",
