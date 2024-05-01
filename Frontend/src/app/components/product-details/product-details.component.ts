@@ -72,7 +72,6 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    
     this.productsService.GetProductByID(this.data.productId).subscribe({
       next: (data) => {
         this.Product = data;
@@ -93,21 +92,8 @@ export class ProductDetailsComponent implements OnInit {
       },
     });
   }
-  openCartDialog() {
-    const dialogRef = this.dialog.open(CartComponent, {});
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Cart dialog closed: ${result}`);
-    });
-  }
 
   Add_Item(Product: any) {
-    this.openCartDialog();
-    
-    console.log(
-      'Quantity equals===> ',
-      this.productForm.get('quantity')!.value
-    );
     this.quantity = this.productForm.get('quantity')!.value;
     this.productItem = {
       productId: Product._id,
@@ -122,40 +108,20 @@ export class ProductDetailsComponent implements OnInit {
     if (existingProductIndex === -1) {
       this.userCart.push(this.productItem);
     } else {
-      this.userCart[existingProductIndex].quantity += this.quantity;
+      const pastquantity = this.userCart[existingProductIndex].quantity;
+      // console.log('Product already exists in cart so quantity was added');
+      this.userCart[existingProductIndex].quantity =
+        this.quantity + pastquantity;
     }
 
     this.user.data.cart = this.userCart;
 
-    this.updateuserFunction(this.userID, this.user).subscribe({
-      next: () => {
-        console.log('User updated successfully');
-        this.getCart();
-      },
-      error: (err) => {
-        console.error('Error updating user:', err);
-      },
-    });
+    this.updateuserFunction(this.userID, this.user);
   }
 
-  updateuserFunction(userID: any, user: any): Observable<any> {
-    return this.authService.updateUser(userID, user);
-  }
-
-  getCart() {
-    this.authService.GetUserByID(this.authService.getLoggedInUser()).subscribe({
-      next: (user: any) => {
-        this.userCart = user.data.cart;
-        this.userCart.forEach((product) => {
-          this.productsService
-            .GetProductByID(product.productId)
-            .subscribe((data) => {
-              if (data) {
-                this.productDetails[product.productId] = data;
-              }
-            });
-        });
-      },
+  updateuserFunction(userID: any, user: any) {
+    this.authService.updateUser(userID, user).subscribe({
+      next: (data) => {},
       error: (err) => {
         console.error('Error fetching cart:', err);
       },

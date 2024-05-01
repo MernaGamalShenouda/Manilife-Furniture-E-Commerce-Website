@@ -1,27 +1,42 @@
 
-/* CSS for the card containers */
+
 .card-container {
   display: flex; 
   flex-wrap: wrap;
   display: inline-block;
-  width: 500px; /* Adjust the width of the cards */
-  border-radius: 15px;
+  width: 20%; 
+  border-radius: 10px;
   gap: 20px;
+  height: auto;
 }
 
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1232px) {
   .card-container {
     width: calc(80% / 4);
     margin: 10px 10px;
     
   }
 }
+@media only screen and (min-width: 823px) and (max-width: 1232px) {
+  .card-container {
+    width: calc(80% / 3);
+    margin: 10px 10px;
+    
+  }
 
+}
 
-@media only screen and (max-width: 767px) {
+@media only screen and (min-width: 533px) and (max-width: 923px) {
   .card-container {
     width: calc(90%/2);
+    margin: 10px 10px;
+  }
+}
+
+@media only screen and (max-width: 533px) {
+  .card-container {
+    width: calc(70%/1);
     margin: 10px 10px;
   }
 }
@@ -30,13 +45,13 @@ img {
   margin: auto;
   display: block;
   margin-top: 40px;
-  width: 250px; /* Make sure image fills the card */
-  height: auto; /* Automatically adjust height based on image width */
+  width: 70%;
+  height: auto;
 }
 
 .product-title {
   color: #002a3a;
-  font-size: 22px;
+  font-size: 1.2rem;
   font-weight: 600;
   /* opacity: 0; */
   text-align: center;

@@ -56,10 +56,8 @@ export class OneProductComponent implements OnInit {
         productId: productId,
       },
     });
-    console.log(productId);
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+
+    dialogRef.afterClosed().subscribe();
   }
 }
 

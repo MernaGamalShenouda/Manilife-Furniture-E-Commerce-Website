@@ -47,8 +47,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatInputModule,
     FormsModule,
     MatButtonModule,
-     MatDividerModule, 
-     MatIconModule
+    MatDividerModule, 
+    MatIconModule
 
   ],
   providers: [
@@ -66,7 +66,7 @@ export class AllProductsComponent implements OnInit, DoCheck {
   private subscriptions: Subscription[] = [];
   currentPage: number = 1;
   pageSize: number = 12;
-  totalProducts: number = 500;//l7ad ma nkarar fe kam product 3andena
+  totalProducts: number = 500;
 
   constructor(
     private http: HttpClient,
@@ -97,7 +97,7 @@ export class AllProductsComponent implements OnInit, DoCheck {
 
     this.productsService.GetAllProducts(this.currentPage,this.pageSize).subscribe({
       next: (data) => {
-        console.log(data);
+        
           this.products = data.Products;
         
       },
@@ -105,7 +105,7 @@ export class AllProductsComponent implements OnInit, DoCheck {
         console.log(err);
       },
     });
-    // this.loadProducts();
+    
   }
 
   ngDoCheck(): void {}
@@ -137,7 +137,6 @@ export class AllProductsComponent implements OnInit, DoCheck {
           this.productByCategory='';
           this.productsService.GetAllProducts(1,this.pageSize).subscribe({
             next: (data) => {
-              console.log(data);
               
                 this.products = data.Products;
               
@@ -161,7 +160,7 @@ export class AllProductsComponent implements OnInit, DoCheck {
       (response) => {
         this.products = response.Products;
         this.totalProducts = response.countProducts;
-        console.log(this.products)
+        
       },
       (error: any) => {
         console.error(error);
