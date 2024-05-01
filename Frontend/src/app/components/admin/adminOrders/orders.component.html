@@ -16,8 +16,8 @@
             </div>
           </div>
           <div class="d-flex justify-content-center">
-            <div style="width: 400px;">
-              <mat-button-toggle-group name="fontStyle" [value]="order.state" (change)="updateOrderState(order._id, $event.value)" class="d-flex justify-content-center text-danger" aria-label="Font Style">
+            <div class="col-12">
+              <mat-button-toggle-group name="fontStyle" [value]="order.state" (change)="updateOrderState(order._id, $event.value)" class="d-flex justify-content-center text-danger w-100" aria-label="Font Style">
                 <mat-button-toggle *ngIf="order.state === 'Pending'"    [class.Pending]="order.state === 'Pending'" value="Pending">Pending</mat-button-toggle>
                 <mat-button-toggle *ngIf="order.state !== 'Pending'" value="Pending">Pending</mat-button-toggle>
                 <mat-button-toggle *ngIf="order.state === 'Accepted'" [class.Accepted]="order.state === 'Accepted'" [class.text-main]="order.state === 'Accepted'" value="Accepted">Accepted</mat-button-toggle>

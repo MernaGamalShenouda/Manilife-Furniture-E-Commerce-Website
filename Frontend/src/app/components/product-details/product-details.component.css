@@ -1,17 +1,17 @@
 .cart,.cart-parent{
-    position: fixed;
-    top: 0;
-    right: 0;  
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 
 .cart-clickable{
-    background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .cart{
-    background-color: #FBEDCF;
+  background-color: #FBEDCF;
 }
 
 .product{
-    border: black solid 1px;
+  border: black solid 1px;
 }

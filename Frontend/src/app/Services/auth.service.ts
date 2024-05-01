@@ -86,7 +86,7 @@ export class AuthService {
 
   updateUser(id: number, user: any): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.put(url, { newData: user.data });
+    return this.http.put(url, { newData: user.data } );
   }
 
   getLoggedInUser() {

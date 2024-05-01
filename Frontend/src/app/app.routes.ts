@@ -59,9 +59,10 @@ export const routes: Routes = [
       { path: 'products/:id', component: ProductDetailsComponent },
     ],
   },
-  { path: 'edit-profile/:id', component: EditProfileComponent },
-  { path: 'profile', component: ProfileInfoComponent },
-  { path: 'OrdersByUser',component: profileOrders},
+  { path: 'edit-profile/:id', canActivate: [userAuthGuard, authGuard], component: EditProfileComponent },
+  { path: 'profile', canActivate: [userAuthGuard, authGuard], component: ProfileInfoComponent },
+  //{ path: 'users/:id/orders',component: UserOrdersComponent},
+  { path: 'OrdersByUser', canActivate: [userAuthGuard, authGuard], component: profileOrders },
 
   { path: '**', component: ErrorComponent },
 ];

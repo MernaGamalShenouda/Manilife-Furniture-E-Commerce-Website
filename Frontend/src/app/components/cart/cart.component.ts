@@ -68,9 +68,9 @@ export class CartComponent implements OnInit,DoCheck {
     private orderService: OrdersService
   ) {}
   ngDoCheck(): void {
-   
+
      this.isCartEmpty=  this.userCart.length === 0;
-    
+
   }
 
   ngOnInit(): void {
@@ -81,7 +81,7 @@ export class CartComponent implements OnInit,DoCheck {
         this.userCart = this.user.data.cart;
         this.isCartEmpty=  this.userCart.length === 0;
         this.getCart();
-        console.log(this.userCart);
+        console.log(this.user);
       },
       error: (err) => {
         console.log('Failed to update user:', err);
@@ -266,5 +266,5 @@ export class CartComponent implements OnInit,DoCheck {
       return total + item.quantity * pricePerUnit;
     }, 0);
   }
-  
+
 }

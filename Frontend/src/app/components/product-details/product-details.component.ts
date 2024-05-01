@@ -72,7 +72,7 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    
+
     this.productsService.GetProductByID(this.data.productId).subscribe({
       next: (data) => {
         this.Product = data;
@@ -103,7 +103,7 @@ export class ProductDetailsComponent implements OnInit {
 
   Add_Item(Product: any) {
     this.openCartDialog();
-    
+
     console.log(
       'Quantity equals===> ',
       this.productForm.get('quantity')!.value
@@ -127,7 +127,9 @@ export class ProductDetailsComponent implements OnInit {
 
     this.user.data.cart = this.userCart;
 
-    this.updateuserFunction(this.userID, this.user).subscribe({
+    console.log("test",this.user.data)
+
+    this.updateuserFunction(this.userID, this.user.data).subscribe({
       next: () => {
         console.log('User updated successfully');
         this.getCart();

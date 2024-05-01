@@ -4,10 +4,16 @@
 
 
 @media (max-width: 474px) {
-  .col-x-12 {
-    display: flex;
+  i{
+    display:none;
   }
 
+  button{
+
+    width: 60px;
+    padding: 0px;
+    font-size: 13px;
+  }
   .col-12 {
     width: 100% !important;
   }
