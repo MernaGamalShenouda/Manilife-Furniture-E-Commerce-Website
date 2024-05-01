@@ -63,11 +63,12 @@ export class LoginComponent {
     } catch (error: any) {
       console.log('Error logging in:', error.error.error);
       if (error) {
-        if (error.error.error.includes('User')) {
-          this.emailError = error.error.error;
-        } else {
-          this.emailError = '';
-        }
+        console.log('Hello',error)
+        // if (error.error.error.includes('User')) {
+        //   this.emailError = error.error.error;
+        // } else {
+        //   this.emailError = '';
+        // }
 
         if (error.error.error.includes('password')) {
           this.passError = error.error.error;

@@ -21,7 +21,7 @@ export class AuthService {
       this.saveUserData();
     }
   }
-  private URB_DB = 'http://localhost:7005/api/orders';
+  private URB_DB = 'https://e-commerce-project-q5po.onrender.com/api/orders';
 
   login(email: string, password: string): Observable<any> {
     return this.http
