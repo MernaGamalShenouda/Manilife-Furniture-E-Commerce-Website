@@ -1,9 +1,7 @@
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterService } from '../../../Services/register.service';
-
 import { ProfileService } from '../../../Services/profile.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -85,4 +83,5 @@ export class EditProfileComponent implements OnInit {
 
 
 }
+
 
