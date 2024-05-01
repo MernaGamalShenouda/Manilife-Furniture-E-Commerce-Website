@@ -3,9 +3,13 @@
     <div
       class="container-fluid row justify-content-center align-items-center pt-5 p-0 m-0 h-100"
     >
-      <div class="col-10 row justify-content-center align-items-center h-100">
-        <div class="col-6 image-container row justify-content-end">
-          <div class="image col-8 row">
+      <div
+        class="col-12 col-lg-10 row justify-content-center align-items-center h-100"
+      >
+        <div
+          class="col-6 d-none d-lg-block col-xl-6 image-container row justify-content-end"
+        >
+          <div class="image col-xl-8 col-11 row justify-content-end">
             <img
               src="../../../assets/images/not-found.png"
               class="img-fluid col-9"
@@ -14,7 +18,7 @@
           </div>
         </div>
         <div
-          class="col-6 text-white not-found d-flex flex-column justify-content-center"
+          class="col-12 text-center text-lg-start col-lg-6 text-white not-found d-flex flex-column justify-content-center align-items-center align-items-lg-start"
         >
           <h1>404</h1>
           <h2>Something's missing.</h2>
@@ -25,8 +29,7 @@
           <a
             class="text-decoration-none text-white home-link"
             [routerLink]="'/Home'"
-          ><i class="fa-solid fa-arrow-left-long"></i>
-            GO TO HOME PAGE</a
+            ><i class="fa-solid fa-arrow-left-long"></i> GO TO HOME PAGE</a
           >
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 
 const jwtHelper = new JwtHelperService();
@@ -65,15 +66,16 @@ export class AuthService {
     }
   }
 
-  async getMyUser() {
+  async getMyUser(): Promise<any> {
     try {
       const userID = await this.getLoggedInUser();
-      const user = await this.GetUserByID(userID).subscribe((user) => {
-        console.log(user);
-        return user;
-      });
+      const userObservable = this.GetUserByID(userID);
+
+      const user = await firstValueFrom(userObservable);
+
+      return user;
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error fetching user:', error);
       throw error;
     }
   }

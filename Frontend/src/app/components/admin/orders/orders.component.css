@@ -33,6 +33,7 @@
   font-weight: bold !important;
 }
 
+<<<<<<< HEAD
 .card-body {
   background-color: #283336;
   border: none;
@@ -42,6 +43,18 @@
 }
 .card-body:hover {
   background-color: #034058;
+=======
+.card-body{
+  background-color:#034058;
+  border: none;
+  border-radius: 10px;
+  color:  #FBEDCF;
+  box-shadow: 0px 0px  5px #28708d;
+}
+.card-body:hover{
+  background-color:#032e3f;
+
+>>>>>>> origin/FatmaElzahraa
 }
 
 .order-item {

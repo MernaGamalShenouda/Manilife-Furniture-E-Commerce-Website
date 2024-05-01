@@ -57,8 +57,8 @@ export class ProductsComponent implements OnInit {
       this.getProducts();
     }
     this.adminService.GetProductByName(e.target.value.trim()).subscribe({
-      next: (responseData: any) => {
-        this.products = responseData.Product;
+      next: (data: any) => {
+        this.products = data.Product;
       },
       error: (error: any) => {
         console.error(error);
