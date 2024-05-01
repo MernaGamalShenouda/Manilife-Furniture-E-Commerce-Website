@@ -35,26 +35,26 @@
       <form [formGroup]="productForm" class="card-body " >
 
         <div class="row">
-          <div class="col-6">
+          <div class="col-lg-6 col-sm-12">
             
-              <mat-card-title>Name:</mat-card-title>
-              <h2 mat-dialog-title>{{Product?.title}}</h2>
+              <mat-card-title class="responsive-title">Name:</mat-card-title>
+              <h2 mat-dialog-title  class="responsive-title" >{{Product?.title}}</h2>
           </div>
-          <div class="col-6">
-            <mat-card-title>Category:</mat-card-title>
-            <h2 mat-dialog-title>{{Product?.category}}</h2>
+          <div class="col-lg-6 col-sm-12">
+            <mat-card-title class="responsive-title">Category:</mat-card-title>
+            <h2 mat-dialog-title  class="responsive-title" >{{Product?.category}}</h2>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-6">
-            <mat-card-title>Quantity:</mat-card-title>
-            <h2 mat-dialog-title>{{Product?.quantity}}</h2>
+          <div class="col-lg-6 col-sm-12">
+            <mat-card-title class="responsive-title">Quantity:</mat-card-title>
+            <h2 mat-dialog-title class="responsive-title">{{Product?.quantity}}</h2>
             
           </div>
-          <div class="col-6">
-            <mat-card-title>Price:</mat-card-title>
-            <h2 mat-dialog-title>{{Product?.price}}.00$</h2>
+          <div class="col-lg-6 col-sm-12">
+            <mat-card-title class="responsive-title">Price:</mat-card-title>
+            <h2 mat-dialog-title class="responsive-title">{{Product?.price}}.00$</h2>
               
               
             
@@ -62,9 +62,9 @@
         </div>
 
         <div class="row">
-          <div class="col-8">
-            <mat-card-title>Description:</mat-card-title>
-            <p mat-dialog-title>{{Product?.details.description}}</p>
+          <div class="col-lg-8 col-sm-12">
+            <mat-card-title class="responsive-title">Description:</mat-card-title>
+            <p mat-dialog-title class="responsive-desccription">{{Product?.details.description}}</p>
           </div>
         </div>
 
@@ -72,13 +72,13 @@
         <div class="d-flex flex-column justify-content-center align-items-center">
 
           
-            <mat-form-field class="col-3">
-              <mat-label>quantity</mat-label>
-              <input formControlName="quantity" type="number" matInput placeholder="Enter quantity">
+            <mat-form-field class="col-md-3 col-lg-3 col-8">
+              <mat-label class="responsive-title d-none d-md-block d-lg-block">quantity</mat-label>
+              <input  formControlName="quantity" type="number" matInput placeholder="Enter quantity">
             </mat-form-field>
           
 
-          <button (click)="Add_Item(Product)"  type="submit" mat-raised-button mat-dialog-close  class="btn btn-custom w-10 fs-5">ADD</button>
+          <button class="responsive-title" (click)="Add_Item(Product)"  type="submit" mat-raised-button mat-dialog-close  class="btn btn-custom w-10 fs-5">ADD</button>
         </div>
         
       </form>

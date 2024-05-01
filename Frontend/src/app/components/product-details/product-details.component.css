@@ -1,0 +1,8 @@
+@media (max-width: 768px) {
+    .responsive-title {
+      font-size: 0.8rem; /* Adjust the font size as needed */
+    }
+    .responsive-desccription{
+        font-size: 0.6rem;
+    }
+  }
