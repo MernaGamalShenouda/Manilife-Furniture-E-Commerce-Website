@@ -7,7 +7,7 @@ This e-commerce platform utilizes Node.js for the backend and Angular for the fr
 Click [here](https://e-commerce-omj8.vercel.app/) to visit our website.
 
 ## Demo Video
-Watch our demo video [here](https://drive.google.com/file/d/1QQP0mnOxmIIcgtwi8E2AwYi4EHIWCz53/view?usp=drive_link) to see our platform in action.
+[Watch the video](https://drive.google.com/file/d/1QQP0mnOxmIIcgtwi8E2AwYi4EHIWCz53/view?usp=drive_link)
 
 ## Project Features
 
