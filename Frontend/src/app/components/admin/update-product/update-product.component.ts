@@ -124,7 +124,7 @@ export class UpdateProductComponent implements OnInit {
     this.adminService.updateProduct(product, this.productId).subscribe();
 
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['adminProducts']);
+      this.router.navigate(['admin/adminProducts']);
     });
   }
 
