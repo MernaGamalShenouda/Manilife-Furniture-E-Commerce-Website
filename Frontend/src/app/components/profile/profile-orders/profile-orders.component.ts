@@ -79,8 +79,8 @@ export class profileOrders implements OnInit {
         }
       );
     } else {
-      alert('Cannot delete order. Order state is not Pending.');
+      console.log('Cannot delete order. Order state is not Pending.');
     }
   }
-
+  
 }
