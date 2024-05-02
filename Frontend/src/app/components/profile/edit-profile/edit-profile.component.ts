@@ -20,6 +20,7 @@ export class EditProfileComponent implements OnInit {
   user: any;
   userId : any;
   url_Photo: any = {};
+  userData: any;
 
 
 
@@ -33,11 +34,24 @@ export class EditProfileComponent implements OnInit {
   }
   ngOnInit(): void {
     console.log('form:', this.form);
+    this.profileService.getMyUser().then(user => {
+      this.userData = user;
+      console.log(this.userData);
+    }).catch(error => {
+      console.error('Error:', error);
+    });
+
+    this.profileService.getLoggedInUsername().then(user => {
+      this.userData = user;
+      console.log(this.userData);
+    }).catch(error => {
+      console.error('Error:', error);
+    });
+
   }
 
 
   form = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.minLength(3)]),
     fullname: new FormControl('', [Validators.required]),
     email:new FormControl ('',[Validators.required]),
    });
@@ -45,7 +59,6 @@ export class EditProfileComponent implements OnInit {
 
   onSubmit(): void {
     const updatedUserData = {
-      username: this.form.controls['username'].value,
       email: this.form.controls['email'].value,
       image: this.url_Photo.data.secure_url,
       fullname: this.form.controls['fullname'].value

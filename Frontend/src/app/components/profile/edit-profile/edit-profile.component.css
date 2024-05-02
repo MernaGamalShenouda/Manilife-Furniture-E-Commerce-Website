@@ -14,6 +14,16 @@
 
 }
 
+@media (max-width: 768px) {
+  .cont {
+    padding: 10px; 
+  }
+}
+
+.text1{
+  color: darkred;
+}
+
 body{
   display: flex;
   align-items: center;
@@ -28,6 +38,11 @@ body{
     background-color: #e8cab3 !important ;
     height: 100vh;
 
+}
+@media (max-width: 768px) {
+  .all {
+    padding: 10px; 
+  }
 }
 .left{
   margin-left:60px !important ;
@@ -90,7 +105,7 @@ form .form-row .textarea{
 .input-data label{
   position: absolute;
   pointer-events: none;
-  bottom: 10px;
+  top: 10px;
   font-size: 16px;
   transition: all 0.3s ease;
 }
@@ -98,6 +113,11 @@ form .form-row .textarea{
   width: 100%;
   bottom: 40px;
   background: #fff;
+}
+.lebel{
+  margin-top: -25px !important;
+  color: #3498db;
+  margin-left: -5px !important;
 }
 .input-data .underline{
   position: absolute;
